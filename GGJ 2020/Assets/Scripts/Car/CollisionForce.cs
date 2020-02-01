@@ -14,23 +14,21 @@ public class CollisionForce : MonoBehaviour
             Vector3 selfVelocity = this.GetComponent<Rigidbody>().velocity;
             Vector3 otherVelcity = collision.gameObject.GetComponent<Rigidbody>().velocity;
             Vector3 impulse = collision.impulse;
-            float selfDot = Vector3.Dot(selfVelocity, impulse);
-            float otherDot = Vector3.Dot(otherVelcity, impulse);
+            float selfDot = Mathf.Abs(Vector3.Dot(selfVelocity, impulse));
+            float otherDot = Mathf.Abs(Vector3.Dot(otherVelcity, impulse));
 
-            if (selfDot < otherDot)
+            if (selfDot > otherDot)
             {
-                Vector3 oppositeForce = -selfVelocity  * selfVelocity.sqrMagnitude * this.GetComponent<Rigidbody>().mass * forceMultiplier;
-                oppositeForce.y = 0;
-                selfVelocity.y = 0;
-                this.GetComponent<Rigidbody>().velocity = selfVelocity;
-                this.GetComponent<Rigidbody>().AddForce(oppositeForce, ForceMode.Impulse);
+                float boostForce = Mathf.Sqrt(selfVelocity.sqrMagnitude * this.GetComponent<Rigidbody>().mass * 0.5f);
+                this.GetComponent<Rigidbody>().AddForce(boostForce * selfVelocity.normalized, ForceMode.Impulse);
             }
             else
             {
-                Vector3 appliedForce = otherVelcity * otherVelcity.sqrMagnitude * this.GetComponent<Rigidbody>().mass * forceMultiplier;
-                Debug.Log("Why am I suffering");
-                Debug.Log(appliedForce.y);
-                this.GetComponent<Rigidbody>().AddForce(new Vector3(0, appliedForce.y, 0), ForceMode.Impulse);
+                float forceMag = this.GetComponent<Rigidbody>().mass * forceMultiplier;
+                Vector3 forceVec = forceMag * (selfVelocity + otherVelcity).normalized;
+                Debug.Log(this.transform.name);
+                Debug.Log(forceVec);
+                this.GetComponent<Rigidbody>().AddForceAtPosition(forceVec, collision.collider.ClosestPointOnBounds(this.transform.position), ForceMode.Impulse);
             }
         }
 
