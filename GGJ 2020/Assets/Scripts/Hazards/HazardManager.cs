@@ -10,6 +10,7 @@ public class HazardManager : MonoBehaviour
     [SerializeField] private Hazard turret;
     [SerializeField] private Hazard trap;
     [SerializeField] private Hazard bar;
+    [SerializeField] private Hazard bulldozer;
 
     [SerializeField] private Hazard barrier;
     [SerializeField] private AnimationCurve barrierFreq;
@@ -37,7 +38,7 @@ public class HazardManager : MonoBehaviour
             timer += 1;
             if (Random.value <= trapFreq.Evaluate(Mathf.Clamp01(timer / maxTime)))
             {
-                int rng = Mathf.FloorToInt(Random.Range(0, 3));
+                int rng = Mathf.FloorToInt(Random.Range(0, 4));
                 GameObject o;
                 switch (rng)
                 {
@@ -55,6 +56,9 @@ public class HazardManager : MonoBehaviour
                         o.transform.position = new Vector3(Random.Range(-5, 5), o.transform.position.y, Random.Range(-3, 3));
                         o.transform.rotation = Quaternion.Euler(o.transform.rotation.eulerAngles.x, Random.Range(0, 360), o.transform.rotation.eulerAngles.z);
                         o.GetComponent<Hazard>().Activate();
+                        break;
+                    case 3:
+                        bulldozer.Activate();
                         break;
                     default:
                         break;
