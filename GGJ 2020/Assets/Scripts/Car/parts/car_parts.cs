@@ -4,7 +4,6 @@ using UnityEngine;
 
 public enum part { tire, steering_wheel, bumper, horn, muffler } // WHEN YOU CHANGE THIS, update parts_init
 
-[RequireComponent(typeof(Collider))]
 public class car_parts : MonoBehaviour {
 
     // Readonly settings
@@ -32,6 +31,8 @@ public class car_parts : MonoBehaviour {
     }
 
     private void OnCollisionEnter(Collision collision) {
+        // TODO - integrate partConfig.delayBetweenLosingParts
+        Debug.Log("car_parts collision impulse: " + collision.impulse.magnitude);
         if (collision.impulse.magnitude > partConfig.impulseToLosePart) {
             lose_random_part(collision.impulse);
         }
@@ -58,6 +59,11 @@ public class car_parts : MonoBehaviour {
 
     // Send a specific part flying off
     public void lose_part(part partType, Vector3 collisionImpulse) {
+        Vector3 partImpulse = collisionImpulse + Vector3.up * collisionImpulse.magnitude * partConfig.flyingPartImpulseUpBoost; // TODO - make this go up
+        partImpulse = partImpulse.normalized * collisionImpulse.magnitude;
+        partImpulse *= partConfig.flyingPartImpulseMult;
+        partImpulse = new Vector3(partImpulse.x, Mathf.Abs(partImpulse.y), partImpulse.z);
+
         if (my_parts[(int)partType] <= 0) {
             Debug.LogError("Trying to lose part that you're already out of: " + partType);
         }
@@ -65,7 +71,8 @@ public class car_parts : MonoBehaviour {
         foreach (part_prefab pp in partConfig.partPrefabs) {
             if (pp.Part == partType) {
                 GameObject floatingPart = Instantiate(pp.Prefab);
-                floatingPart.GetComponent<Rigidbody>().AddForce(collisionImpulse * partConfig.flyingPartSpeedMult, ForceMode.Impulse);
+                floatingPart.transform.position = transform.position + Vector3.up * partConfig.flyingPartYOffset;
+                floatingPart.GetComponent<Rigidbody>().AddForce(partImpulse, ForceMode.Impulse);
                 return;
             }
         }
