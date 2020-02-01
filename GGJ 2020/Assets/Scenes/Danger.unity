@@ -314,6 +314,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6307678080096954699}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1588347981 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1588347981, guid: 8712cf139834edd4eb91b656914521d5,
+    type: 3}
+  m_PrefabInstance: {fileID: 6307678080096954699}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 002191723d691f4409e77502247ba868, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1853825532 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6307678079528290487, guid: 8712cf139834edd4eb91b656914521d5,
@@ -353,6 +365,11 @@ PrefabInstance:
       propertyPath: barrier
       value: 
       objectReference: {fileID: 1853825532}
+    - target: {fileID: 2677573954624739601, guid: d40a1d3646c0a604bb0c0f3af74508d2,
+        type: 3}
+      propertyPath: bulldozer
+      value: 
+      objectReference: {fileID: 1588347981}
     - target: {fileID: 2677573954624739614, guid: d40a1d3646c0a604bb0c0f3af74508d2,
         type: 3}
       propertyPath: m_LocalPosition.x
