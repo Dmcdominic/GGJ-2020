@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91e63d3bfb004034d8a4d33712f00a41, type: 3}
+  m_Name: PartConfig
+  m_EditorClassIdentifier: 
+  pickupDelay: 0.5
+  impulseToLosePart: 1
+  flyingPartSpeedMult: 1
+  partPrefabs:
+  - Part: 0
+    Prefab: {fileID: 8853901069658469001, guid: 1e3f44c69ac3e98439becf9c064a480e,
+      type: 3}
+  - Part: 1
+    Prefab: {fileID: 0}
