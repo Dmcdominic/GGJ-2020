@@ -31,6 +31,8 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform frontLWheel;
     [SerializeField] private Transform frontRWheel;
     [SerializeField] private PartList myParts;
+    [SerializeField] private Transform root;
+    private float steerAngle = 0;
     
     private int curGear = 0;
 
@@ -74,6 +76,7 @@ public class CarController : MonoBehaviour
 
     void ThrottleNormal()
     {
+
         rearWheels.Map
         (
             wheel =>
@@ -84,6 +87,19 @@ public class CarController : MonoBehaviour
                     carConfig.gearThrottles
                         [curGear]; //Mathf.Sign(Vector3.Dot(transform.forward, inputDir) * carConfig.gearThrottles[curGear]);
             });
+    }
+
+    private void FixedUpdate()
+    {
+        carRB.AddForceAtPosition(pci.throttle * 40000.0f * (Quaternion.AngleAxis(steerAngle, transform.up) * carRB.transform.forward), carRB.transform.position);
+        if(pci.throttle < 0.1f)
+        {
+            carRB.drag = carRB.velocity.magnitude *  0.24f;
+        }
+        else
+        {
+            carRB.drag = 1;
+        }
     }
 
     void SteerNormal()
@@ -108,9 +124,10 @@ public class CarController : MonoBehaviour
                     minABS(Mathf.Clamp(thetaDelta, -maxSteer, maxSteer),
                            Mathf.Clamp(thetaDelta, -maxSteer + 180, maxSteer - 180)
                     );
-                float visualWheelDir = Mathf.Clamp(-Mathf.DeltaAngle(thetaCar, thetaInput) - 90.0f, -135.0f, -45.0f);
+                float visualWheelDir = Mathf.Clamp(-Mathf.DeltaAngle(thetaCar, thetaInput) - 90.0f, -180.0f, 0f);
                 frontLWheel.localEulerAngles = new Vector3(0, visualWheelDir, 0);
                 frontRWheel.localEulerAngles = new Vector3(0, visualWheelDir, 0);
+                steerAngle = (inputDir.x * 50 / Mathf.Max(carRB.velocity.magnitude * 50.0f, 1.0f));
                 return wheel.steerAngle = -thetaDelta;
             });
     }
