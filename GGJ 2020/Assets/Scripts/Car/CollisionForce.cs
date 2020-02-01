@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class CollisionForce : MonoBehaviour
 {
-
     [SerializeField]
-    private Vector3 bonusForce;
-    [SerializeField]
-    private float forceMultiplier;
-    [SerializeField]
-    private float minMagnitude = 5;
+    private float forceMultiplier = 50;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -24,7 +19,7 @@ public class CollisionForce : MonoBehaviour
 
             if (selfDot < otherDot)
             {
-                Vector3 oppositeForce = -selfVelocity * this.GetComponent<Rigidbody>().mass * forceMultiplier;
+                Vector3 oppositeForce = -selfVelocity  * selfVelocity.sqrMagnitude * this.GetComponent<Rigidbody>().mass * forceMultiplier;
                 oppositeForce.y = 0;
                 selfVelocity.y = 0;
                 this.GetComponent<Rigidbody>().velocity = selfVelocity;
@@ -32,8 +27,10 @@ public class CollisionForce : MonoBehaviour
             }
             else
             {
-                Vector3 appliedForce = otherVelcity * this.GetComponent<Rigidbody>().mass * forceMultiplier;
-                this.GetComponent<Rigidbody>().AddForce(appliedForce, ForceMode.Impulse);
+                Vector3 appliedForce = otherVelcity * otherVelcity.sqrMagnitude * this.GetComponent<Rigidbody>().mass * forceMultiplier;
+                Debug.Log("Why am I suffering");
+                Debug.Log(appliedForce.y);
+                this.GetComponent<Rigidbody>().AddForce(new Vector3(0, appliedForce.y, 0), ForceMode.Impulse);
             }
         }
 
