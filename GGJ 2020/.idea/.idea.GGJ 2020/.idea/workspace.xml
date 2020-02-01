@@ -4,10 +4,14 @@
     <list default="true" id="55b7a199-f117-47e8-aebb-3315ead5e7e1" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/Assets/meshes/Semicylinder.fbx" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Assets/meshes/Semicylinder.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GGJ 2020/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GGJ 2020/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GGJ 2020/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GGJ 2020/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Models/car.fbx" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/car.fbx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Car/Car.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Car/Car.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Hazards/SpikePit.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Hazards/SpikePit.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Danger.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Danger.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/TestDrive.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/TestDrive.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptableObjects/CarConfig.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptableObjects/CarConfig.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Car/CarController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Car/CarController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Input/InputController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Input/InputController.cs" afterDir="false" />
     </list>
@@ -19,7 +23,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/Car/CarController.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-23">
@@ -42,6 +46,23 @@
                 <marker date="1580590496743" expanded="true" signature="2461:3646" ph="{...}" />
                 <marker date="1580590496743" expanded="true" signature="2521:2606" ph="{...}" />
                 <marker date="1580590496743" expanded="true" signature="3699:3792" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Scripts/adhoc/ColorCorrection.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="20" column="50" selection-start-line="20" selection-start-column="50" selection-end-line="20" selection-end-column="50" />
+              <folding>
+                <marker date="1580591221906" expanded="false" signature="6:78" ph="..." />
+                <marker date="1580591221906" expanded="true" signature="124:657" ph="{...}" />
+                <marker date="1580591221906" expanded="true" signature="287:649" ph="{...}" />
+                <marker date="1580591221906" expanded="true" signature="336:643" ph="{...}" />
+                <marker date="1580591221906" expanded="true" signature="461:633" ph="{...}" />
+                <marker date="1580591221906" expanded="true" signature="532:619" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -93,11 +114,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/BoilerPlate/PlayerRef.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="32">
-              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+            <state relative-caret-position="96">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
               <folding>
                 <marker date="1580585110379" expanded="false" signature="6:104" ph="..." />
                 <marker date="1580585110379" expanded="true" signature="209:319" ph="{...}" />
@@ -111,7 +132,7 @@
         <entry file="file://$PROJECT_DIR$/Assets/BoilerPlate/PartList.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="128">
-              <caret line="9" column="67" lean-forward="true" selection-start-line="9" selection-start-column="67" selection-end-line="9" selection-end-column="67" />
+              <caret line="9" column="67" selection-start-line="9" selection-start-column="67" selection-end-line="9" selection-end-column="67" />
               <folding>
                 <marker date="1580588822334" expanded="false" signature="9:47" ph="..." />
               </folding>
@@ -167,13 +188,14 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Car/CarConfig.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Car/parts/car_parts.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BoilerPlate/PlayerRef.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Car/DownwardForce.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/adhoc/ColorCorrection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/BoilerPlate/PartList.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Input/InputController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Car/CarController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Input/PlayerControlState.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BoilerPlate/PlayerRef.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/BoilerPlate/Reference.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Car/DownwardForce.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/BoilerPlate/PartList.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -188,6 +210,7 @@
         <option value="$PROJECT_DIR$/Assets/BoilerPlate/PartList.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Car/parts/car_parts.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Car/CarController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/adhoc/ColorCorrection.cs" />
       </list>
     </option>
   </component>
@@ -262,7 +285,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22021000" />
+    <option name="totallyTimeSpent" value="22982000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -277,7 +300,7 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18322147" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18322147" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Capture Tool" order="3" />
@@ -369,22 +392,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/BoilerPlate/PlayerRef.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding>
-            <marker date="1580585110379" expanded="false" signature="6:104" ph="..." />
-            <marker date="1580585110379" expanded="true" signature="209:319" ph="{...}" />
-            <marker date="1580585110379" expanded="true" signature="241:317" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/BoilerPlate/PartList.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
-          <caret line="9" column="67" lean-forward="true" selection-start-line="9" selection-start-column="67" selection-end-line="9" selection-end-column="67" />
+          <caret line="9" column="67" selection-start-line="9" selection-start-column="67" selection-end-line="9" selection-end-column="67" />
           <folding>
             <marker date="1580588822334" expanded="false" signature="9:47" ph="..." />
           </folding>
@@ -454,6 +465,33 @@
             <marker date="1580590496743" expanded="true" signature="2461:3646" ph="{...}" />
             <marker date="1580590496743" expanded="true" signature="2521:2606" ph="{...}" />
             <marker date="1580590496743" expanded="true" signature="3699:3792" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/adhoc/ColorCorrection.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="20" column="50" selection-start-line="20" selection-start-column="50" selection-end-line="20" selection-end-column="50" />
+          <folding>
+            <marker date="1580591221906" expanded="false" signature="6:78" ph="..." />
+            <marker date="1580591221906" expanded="true" signature="124:657" ph="{...}" />
+            <marker date="1580591221906" expanded="true" signature="287:649" ph="{...}" />
+            <marker date="1580591221906" expanded="true" signature="336:643" ph="{...}" />
+            <marker date="1580591221906" expanded="true" signature="461:633" ph="{...}" />
+            <marker date="1580591221906" expanded="true" signature="532:619" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/BoilerPlate/PlayerRef.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <marker date="1580585110379" expanded="false" signature="6:104" ph="..." />
+            <marker date="1580585110379" expanded="true" signature="209:319" ph="{...}" />
+            <marker date="1580585110379" expanded="true" signature="241:317" ph="{...}" />
           </folding>
         </state>
       </provider>
