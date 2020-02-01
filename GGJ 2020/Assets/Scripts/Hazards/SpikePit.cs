@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpikePit : MonoBehaviour
+public class SpikePit : Hazard
 {
     [SerializeField] private Trapdoor trapdoor;
 
-    public void Activate()
+    override public void Activate()
     {
         trapdoor.Activate();
     }

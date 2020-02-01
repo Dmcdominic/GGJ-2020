@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turret : MonoBehaviour
+public class Turret : Hazard
 {
 #pragma warning disable 0649
     [SerializeField] private float riseSpeed;
@@ -23,7 +23,7 @@ public class Turret : MonoBehaviour
             Activate();
     }
 
-    public void Activate()
+    override public void Activate()
     {
         StartCoroutine(Routine());
     }
@@ -78,10 +78,12 @@ public class Turret : MonoBehaviour
         while (Time.time < endTime)
         {
             GameObject o = Instantiate(bullet);
+            o.transform.position = transform.position;
             o.transform.forward = transform.forward;
             if (doubleFire)
             {
                 o = Instantiate(bullet);
+                o.transform.position = transform.position;
                 o.transform.forward = transform.forward;
             }
             yield return new WaitForSeconds(1 / fireRate);
