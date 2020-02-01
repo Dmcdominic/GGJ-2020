@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f32f593851fec47b82329be27d2466, type: 3}
   m_Name: CarConfig
   m_EditorClassIdentifier: 
-  maxSteer: 0
-  gearThrottles: []
+  maxSteer: 45
+  gearThrottles:
+  - 1000
+  maxBrake: 0.01
+  downForce: 1
+  unflipSpeed: 10

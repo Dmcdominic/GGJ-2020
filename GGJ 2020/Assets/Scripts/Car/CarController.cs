@@ -41,7 +41,9 @@ public class CarController : MonoBehaviour
 
     private void Start()
     {
+        carRB.centerOfMass += Vector3.down;
         StartCoroutine(DriveNormal());
+        StartCoroutine(UnFlip());
     }
 
     IEnumerator DriveNormal()
@@ -54,12 +56,31 @@ public class CarController : MonoBehaviour
         }
     }
 
+    IEnumerator UnFlip()
+    {
+        while(true)
+        {
+            while (carRB.transform.up.y < Mathf.Sqrt(2))
+            {
+                carRB.inertiaTensorRotation = Quaternion.Euler(0, 0, carConfig.unflipSpeed);
+                yield return null;
+            }
+
+            yield return null;
+        }
+    }
+
     void ThrottleNormal()
     {
         rearWheels.Map
         (
-            wheel => wheel.motorTorque = Vector3.Dot(transform.forward,inputDir) * carConfig.gearThrottles[curGear]
-        );
+            wheel =>
+            {
+                wheel.brakeTorque = pci.handBrakePulled * carConfig.maxBrake;
+                wheel.motorTorque =
+                    pci.throttle * carConfig.gearThrottles[curGear] * 
+                    Mathf.Sign(Vector3.Dot(transform.forward, inputDir) * carConfig.gearThrottles[curGear]);
+            });
     }
 
     void SteerNormal()
@@ -73,8 +94,8 @@ public class CarController : MonoBehaviour
                 var thetaDelta = Mathf.DeltaAngle(thetaCar, thetaInput);
                 print($"0Car: {thetaCar}, 0I: {thetaInput}, 0D: {thetaDelta}");
                 thetaDelta = Mathf.Clamp(thetaDelta, -carConfig.maxSteer, carConfig.maxSteer);
-                return wheel.steerAngle = Mathf.LerpAngle(wheel.steerAngle,-thetaDelta,Time.deltaTime);
-                
+                return wheel.steerAngle = -thetaDelta;
+
             });
     }
 }
