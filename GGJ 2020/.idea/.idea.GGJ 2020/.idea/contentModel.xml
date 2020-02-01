@@ -26,6 +26,11 @@
             <e p="CarConfig.cs" t="Include" />
             <e p="CarController.cs" t="Include" />
             <e p="DownwardForce.cs" t="Include" />
+            <e p="parts" t="Include">
+              <e p="car_parts.cs" t="Include" />
+              <e p="floating_part.cs" t="Include" />
+              <e p="part_config.cs" t="Include" />
+            </e>
           </e>
           <e p="Input" t="Include">
             <e p="InputController.cs" t="Include" />

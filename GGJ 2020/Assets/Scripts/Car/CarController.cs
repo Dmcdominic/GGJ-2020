@@ -78,8 +78,9 @@ public class CarController : MonoBehaviour
             {
                 wheel.brakeTorque = pci.handBrakePulled * carConfig.maxBrake;
                 wheel.motorTorque =
-                    pci.throttle * carConfig.gearThrottles[curGear] * 
-                    Mathf.Sign(Vector3.Dot(transform.forward, inputDir) * carConfig.gearThrottles[curGear]);
+                    pci.throttle *
+                    carConfig.gearThrottles
+                        [curGear]; //Mathf.Sign(Vector3.Dot(transform.forward, inputDir) * carConfig.gearThrottles[curGear]);
             });
     }
 
@@ -97,9 +98,20 @@ public class CarController : MonoBehaviour
                 var thetaInput = Mathf.Atan2(inputDir.z, inputDir.x) * Mathf.Rad2Deg;
                 var thetaDelta = Mathf.DeltaAngle(thetaCar, thetaInput);
                 print($"0Car: {thetaCar}, 0I: {thetaInput}, 0D: {thetaDelta}");
-                thetaDelta = Mathf.Clamp(thetaDelta, -carConfig.maxSteer, carConfig.maxSteer);
+                thetaDelta = 
+                    minABS(Mathf.Clamp(thetaDelta, -carConfig.maxSteer, carConfig.maxSteer),
+                           Mathf.Clamp(thetaDelta, -carConfig.maxSteer + 180, carConfig.maxSteer - 180)
+                    );
                 return wheel.steerAngle = -thetaDelta;
 
             });
+    }
+
+
+    private float minABS(float a, float b)
+    {
+        if (Mathf.Abs(a) < Mathf.Abs(b))
+            return a;
+        return b;
     }
 }
