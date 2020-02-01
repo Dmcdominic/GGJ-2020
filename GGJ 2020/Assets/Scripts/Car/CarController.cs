@@ -89,6 +89,10 @@ public class CarController : MonoBehaviour
         (
             wheel =>
             {
+                if (inputDir.magnitude < .1f)
+                {
+                    return wheel.steerAngle = 0;
+                }
                 var thetaCar = Mathf.Atan2(groundDir.z, groundDir.x) * Mathf.Rad2Deg;
                 var thetaInput = Mathf.Atan2(inputDir.z, inputDir.x) * Mathf.Rad2Deg;
                 var thetaDelta = Mathf.DeltaAngle(thetaCar, thetaInput);

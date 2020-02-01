@@ -13,6 +13,7 @@
           <e p="FloatRef.cs" t="Include" />
           <e p="IntEvent.cs" t="Include" />
           <e p="IntRef.cs" t="Include" />
+          <e p="PlayerRef.cs" t="Include" />
           <e p="Reference.cs" t="Include" />
           <e p="Shrub.cs" t="Include" />
           <e p="Sum.cs" t="Include" />
@@ -24,6 +25,7 @@
           <e p="Car" t="Include">
             <e p="CarConfig.cs" t="Include" />
             <e p="CarController.cs" t="Include" />
+            <e p="DownwardForce.cs" t="Include" />
           </e>
           <e p="Input" t="Include">
             <e p="InputController.cs" t="Include" />
