@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerID: 0
-  my_parts: {fileID: 0}
+  my_parts: {fileID: 11400000, guid: f2b4d52f68897814fa350eaf01da7dc4, type: 2}
   partConfig: {fileID: 11400000, guid: bdef7cb8351cdf14eaaf3b751b82695d, type: 2}
 --- !u!1 &4896875803649767432
 GameObject:
