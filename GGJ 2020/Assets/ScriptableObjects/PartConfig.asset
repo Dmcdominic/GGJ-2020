@@ -17,7 +17,9 @@ MonoBehaviour:
   pickupDelay: 0.5
   flyingPartYOffset: 1.5
   flyingPartImpulseUpBoost: 0.5
-  flyingPartImpulseMult: 0.25
+  flyingPartImpulseMult: 0.05
+  dust_cloud: {fileID: 8709796931982745242, guid: 49960bb33af7766459c8c7bfb25ad786,
+    type: 3}
   partPrefabs:
   - Part: 0
     Prefab: {fileID: 7956726457308650190, guid: f160a0d3ce129014da65082110a91e77,
@@ -32,8 +34,10 @@ MonoBehaviour:
   - Part: 4
     Prefab: {fileID: 0}
   - Part: 5
-    Prefab: {fileID: 0}
+    Prefab: {fileID: 4220210661053036008, guid: 525fb5f4fdb9efc44b0efc64bb4865ce,
+      type: 3}
   - Part: 6
-    Prefab: {fileID: 0}
+    Prefab: {fileID: 7206308972685799697, guid: 925e44748aee6694a81c6f0ef9fa9c37,
+      type: 3}
   - Part: 7
     Prefab: {fileID: 0}

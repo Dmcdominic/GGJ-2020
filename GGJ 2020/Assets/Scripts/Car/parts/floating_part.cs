@@ -44,6 +44,7 @@ public class floating_part : MonoBehaviour {
         car_parts carParts = obj.GetComponentInParent<car_parts>();
         if (carParts) {
             carParts.pickup_part(this.part_type);
+            Instantiate(partConfig.dust_cloud).transform.position = transform.position;
             Destroy(gameObject);
             return;
         }
