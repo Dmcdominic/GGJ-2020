@@ -17,7 +17,9 @@ public class InputController : MonoBehaviour
     void Update()
     {
         var stick = GamePad.GetState(player).ThumbSticks.Left;
-        state.direction = new Vector3(stick.X,0,stick.Y);
-        
+        var playerControlInfo = state[(int)player];
+        playerControlInfo.direction = new Vector3(stick.X,0,stick.Y);
+        state[(int) player] = playerControlInfo;
+
     }
 }
