@@ -107,8 +107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a91a2d822351db14891cebea51c7e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  partConfig: {fileID: 0}
-  part_type: 0
+  partConfig: {fileID: 11400000, guid: bdef7cb8351cdf14eaaf3b751b82695d, type: 2}
+  part_type: 2
 --- !u!54 &604156069097532557
 Rigidbody:
   m_ObjectHideFlags: 0
