@@ -131,8 +131,8 @@ GameObject:
   m_Component:
   - component: {fileID: 173476962}
   - component: {fileID: 173476963}
-  - component: {fileID: 173476964}
   - component: {fileID: 173476965}
+  - component: {fileID: 173476964}
   m_Layer: 0
   m_Name: SlowMoTrigger
   m_TagString: SideTrigger
@@ -179,7 +179,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de8836a040eb73b478b392440623dfb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowmoDuration: 0.25
+  slowmoDuration: 1
+  slowmoscale: 0.125
+  slowmoCooldown: 10
 --- !u!54 &173476965
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -210,7 +212,7 @@ GameObject:
   - component: {fileID: 470225356}
   m_Layer: 0
   m_Name: CarTwo
-  m_TagString: Untagged
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -283,7 +285,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 470225355}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.84, y: 2.7788687, z: -4.67}
+  m_LocalPosition: {x: -5.89, y: 2.7788687, z: -5.64}
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_Children:
   - {fileID: 1986123836}
@@ -572,9 +574,11 @@ GameObject:
   - component: {fileID: 981412067}
   - component: {fileID: 981412066}
   - component: {fileID: 981412070}
+  - component: {fileID: 981412071}
+  - component: {fileID: 981412072}
   m_Layer: 0
   m_Name: CarOne
-  m_TagString: Untagged
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -647,7 +651,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 981412065}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.87, y: 2.7788687, z: -5.92}
+  m_LocalPosition: {x: -1.87, y: 2.7788687, z: -5.48}
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_Children:
   - {fileID: 173476962}
@@ -670,6 +674,34 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &981412071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981412065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca04c7c41e0dc0b4289ab2422b94b47a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 1500
+--- !u!114 &981412072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981412065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b33c2434004eaa945b01ae3eaf0f87ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sparksPrefab: {fileID: 5648123072697731417, guid: b72598fd3342b4245befc2497d425673,
+    type: 3}
+  sparksDelay: 0.2
 --- !u!1 &1986123835
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,6 +713,7 @@ GameObject:
   - component: {fileID: 1986123836}
   - component: {fileID: 1986123837}
   - component: {fileID: 1986123838}
+  - component: {fileID: 1986123839}
   m_Layer: 0
   m_Name: SlowMoTrigger
   m_TagString: SideTrigger
@@ -731,3 +764,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1986123839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986123835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de8836a040eb73b478b392440623dfb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowmoDuration: 1
+  slowmoscale: 0.125
+  slowmoCooldown: 10

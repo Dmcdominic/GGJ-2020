@@ -16,7 +16,7 @@ public class TestForce : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        rigid.AddForce(new Vector3(-force, 0, 0), ForceMode.Force);
+        rigid.AddForce(new Vector3(-force * Time.deltaTime, 0, 0), ForceMode.Force);
 
     }
 }

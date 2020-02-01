@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class SideTrigger : MonoBehaviour
 {
-    [SerializeField]
-    private float slowmoDuration = 0.25f;
-    [SerializeField]
-    private float slowmoscale = 0.5f;
+    public float slowmoDuration = 1.0f;
+    public float slowmoscale = 0.125f;
+    public float slowmoCooldown = 5f;
+    private float cooldownElapsed = 0f;
     private float scaleInverse = 2;
     private bool inSlowmo = false;
+    private bool inCooldown = false;
     private float elapsed = 0.0f;
 
 
@@ -22,6 +23,9 @@ public class SideTrigger : MonoBehaviour
     {
         if (other.tag == "SideTrigger")
         {
+            SideTrigger other_side = other.transform.GetComponent<SideTrigger>();
+            slowmoDuration = Mathf.Max(slowmoDuration, other_side.slowmoDuration);
+            slowmoscale = Mathf.Min(slowmoscale, other_side.slowmoscale);
             Time.timeScale = slowmoscale;
             inSlowmo = true;
             scaleInverse = 1 / slowmoscale;
@@ -31,7 +35,7 @@ public class SideTrigger : MonoBehaviour
 
     void Update()
     {
-        if (inSlowmo)
+        if (inSlowmo && !inCooldown)
         {
             elapsed += Time.deltaTime * scaleInverse;
             if(elapsed > slowmoDuration)
@@ -39,6 +43,17 @@ public class SideTrigger : MonoBehaviour
                 elapsed = 0;
                 Time.timeScale = 1;
                 inSlowmo = false;
+                inCooldown = true;
+            }
+        }
+
+        if (inCooldown)
+        {
+            cooldownElapsed += Time.deltaTime;
+            if(cooldownElapsed > slowmoCooldown)
+            {
+                cooldownElapsed = 0;
+                inCooldown = false;
             }
         }
     }
