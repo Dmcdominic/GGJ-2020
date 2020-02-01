@@ -7,7 +7,8 @@ using UnityEngine.Events;
 public struct PlayerControlInfo
 {
     public Vector3 direction;
-    public float handBrakePulled;
+    public float footBrake;
+    public int handBrakePulled;
     public float throttle;
     public bool horn;
     public UnityEvent shiftUp;

@@ -11,9 +11,10 @@ public class car_parts : MonoBehaviour {
     private static readonly int[] parts_init = { 4, 1, 1, 1, 1 }; // Number of parts to start with
     private static readonly int num_diff_parts = System.Enum.GetValues(typeof(part)).Length;
 
-    // Keep track of parts
-    [HideInInspector]
-    public int[] my_parts = new int[num_diff_parts];
+    [SerializeField] private int playerID;
+
+    [SerializeField] private PartList my_parts;
+    
 
     // Serialized fields
     [SerializeField]
@@ -22,12 +23,16 @@ public class car_parts : MonoBehaviour {
 
     // Init
     private void Awake() {
+        
+        // Keep track of parts
+        my_parts[playerID] = new int[num_diff_parts];
+        
         if (parts_init.Length != num_diff_parts) {
             Debug.LogError("HEY! parts_init in car_parts.cs doesn't have all the part init numbers");
         }
         
         for (int p = 0; p < num_diff_parts; p++) {
-            my_parts[p] = parts_init[p];
+            my_parts[playerID][p] = parts_init[p];
         }
     }
 
@@ -44,8 +49,8 @@ public class car_parts : MonoBehaviour {
         return;
 
         List<part> loseableParts = new List<part>();
-        for (int p = 0; p < my_parts.Length; p++) {
-            for (int i = 0; i < my_parts[p]; i++) {
+        for (int p = 0; p < my_parts[playerID].Length; p++) {
+            for (int i = 0; i < my_parts[playerID][p]; i++) {
                 loseableParts.Add((part)i);
                 // TODO - determine this instead based on how strong the impulse is?
                 // e.g. hard hit = lose more important piece
@@ -58,10 +63,10 @@ public class car_parts : MonoBehaviour {
 
     // Send a specific part flying off
     public void lose_part(part partType, Vector3 collisionImpulse) {
-        if (my_parts[(int)partType] <= 0) {
+        if (my_parts[playerID][(int)partType] <= 0) {
             Debug.LogError("Trying to lose part that you're already out of: " + partType);
         }
-        my_parts[(int)partType]--;
+        my_parts[playerID][(int)partType]--;
         foreach (part_prefab pp in partConfig.partPrefabs) {
             if (pp.Part == partType) {
                 GameObject floatingPart = Instantiate(pp.Prefab);
@@ -74,6 +79,6 @@ public class car_parts : MonoBehaviour {
 
     // Called by a floating part when you pick it up
     public void pickup_part(part partType) {
-        my_parts[(int)partType]++;
+        my_parts[playerID][(int)partType]++;
     }
 }
