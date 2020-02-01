@@ -30,7 +30,8 @@ public class InputController : MonoBehaviour
         var stick = GamePad.GetState(player).ThumbSticks.Left;
         var playerControlInfo = state[(int)player];
         playerControlInfo.direction = new Vector3(stick.X,0,stick.Y);
-        playerControlInfo.handBrakePulled = GamePad.GetState(player).Triggers.Left;
+        playerControlInfo.footBrake = GamePad.GetState(player).Triggers.Left;
+        playerControlInfo.handBrakePulled = (int)GamePad.GetState(player).Buttons.X;
         playerControlInfo.throttle = GamePad.GetState(player).Triggers.Right;
         playerControlInfo.horn = GamePad.GetState(player).Buttons.A == ButtonState.Pressed;
         state[(int) player] = playerControlInfo;

@@ -28,6 +28,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private Rigidbody carRB;
     [SerializeField] private CarConfig carConfig;
     [SerializeField] private int player;
+    [SerializeField] private PartList myParts;
     
     //                 Car State                   //
     private int curGear = 0;
@@ -76,10 +77,11 @@ public class CarController : MonoBehaviour
         (
             wheel =>
             {
-                wheel.brakeTorque = pci.handBrakePulled * carConfig.maxBrake;
+                wheel.brakeTorque = pci.footBrake * carConfig.maxBrake * Mathf.Sqrt(carRB.velocity.magnitude);
                 wheel.motorTorque =
-                    pci.throttle * carConfig.gearThrottles[curGear] * 
-                    Mathf.Sign(Vector3.Dot(transform.forward, inputDir) * carConfig.gearThrottles[curGear]);
+                    pci.throttle *
+                    carConfig.gearThrottles
+                        [curGear]; //Mathf.Sign(Vector3.Dot(transform.forward, inputDir) * carConfig.gearThrottles[curGear]);
             });
     }
 
@@ -97,9 +99,22 @@ public class CarController : MonoBehaviour
                 var thetaInput = Mathf.Atan2(inputDir.z, inputDir.x) * Mathf.Rad2Deg;
                 var thetaDelta = Mathf.DeltaAngle(thetaCar, thetaInput);
                 print($"0Car: {thetaCar}, 0I: {thetaInput}, 0D: {thetaDelta}");
-                thetaDelta = Mathf.Clamp(thetaDelta, -carConfig.maxSteer, carConfig.maxSteer);
+                var maxSteer = carConfig.minSteer + 45 * (1 / myParts[player][(int) part.steering_wheel]);
+                
+                thetaDelta = 
+                    minABS(Mathf.Clamp(thetaDelta, -maxSteer, maxSteer),
+                           Mathf.Clamp(thetaDelta, -maxSteer + 180, maxSteer - 180)
+                    );
                 return wheel.steerAngle = -thetaDelta;
 
             });
+    }
+
+
+    private float minABS(float a, float b)
+    {
+        if (Mathf.Abs(a) < Mathf.Abs(b))
+            return a;
+        return b;
     }
 }
