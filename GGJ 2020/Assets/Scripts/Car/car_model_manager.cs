@@ -21,7 +21,14 @@ public class car_model_manager : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-
+        foreach (part_ref_list pRL in partObjs) {
+            if (car_parts.parts_init[(int)pRL.Part] == 0) {
+                continue;
+            }
+            for (int i = 0; i < pRL.Refs.Count; i++) {
+                pRL.Refs[i].SetActive(my_parts[playerID].val[(int)pRL.Part] > i);
+            }
+        }
     }
 }
 
