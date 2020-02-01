@@ -295,8 +295,12 @@ MonoBehaviour:
   carRB: {fileID: 4896875803444423063}
   carConfig: {fileID: 11400000, guid: 84584a4b5b279734fa396bb3c250795b, type: 2}
   player: 0
+<<<<<<< HEAD
   frontLWheel: {fileID: 0}
   frontRWheel: {fileID: 0}
+=======
+  myParts: {fileID: 0}
+>>>>>>> 87e4337184ab2b34ecbb4e7a2eccc53d6c27b751
 --- !u!1 &4896875803444423062
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,6 +312,7 @@ GameObject:
   - component: {fileID: 4896875803444423059}
   - component: {fileID: 4896875803444423063}
   - component: {fileID: 4896875803444423052}
+  - component: {fileID: 7634585277039386806}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -362,6 +367,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carConfig: {fileID: 11400000, guid: 84584a4b5b279734fa396bb3c250795b, type: 2}
+--- !u!114 &7634585277039386806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4896875803444423062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6415ba7603c4af4cbcee76f492af92e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerID: 0
+  my_parts: {fileID: 11400000, guid: f2b4d52f68897814fa350eaf01da7dc4, type: 2}
+  partConfig: {fileID: 11400000, guid: bdef7cb8351cdf14eaaf3b751b82695d, type: 2}
 --- !u!1 &4896875803649767432
 GameObject:
   m_ObjectHideFlags: 0

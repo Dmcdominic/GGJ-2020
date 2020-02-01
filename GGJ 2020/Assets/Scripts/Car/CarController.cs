@@ -30,8 +30,8 @@ public class CarController : MonoBehaviour
     [SerializeField] private int player;
     [SerializeField] private Transform frontLWheel;
     [SerializeField] private Transform frontRWheel;
-
-    //                 Car State                   //
+    [SerializeField] private PartList myParts;
+    
     private int curGear = 0;
 
     private Vector3 groundVelocity => carRB.velocity - carRB.velocity.y * Vector3.up;
@@ -78,7 +78,7 @@ public class CarController : MonoBehaviour
         (
             wheel =>
             {
-                wheel.brakeTorque = pci.handBrakePulled * carConfig.maxBrake;
+                wheel.brakeTorque = pci.footBrake * carConfig.maxBrake * Mathf.Sqrt(carRB.velocity.magnitude);
                 wheel.motorTorque =
                     pci.throttle *
                     carConfig.gearThrottles
@@ -99,10 +99,11 @@ public class CarController : MonoBehaviour
                 var thetaCar = Mathf.Atan2(groundDir.z, groundDir.x) * Mathf.Rad2Deg;
                 var thetaInput = Mathf.Atan2(inputDir.z, inputDir.x) * Mathf.Rad2Deg;
                 var thetaDelta = Mathf.DeltaAngle(thetaCar, thetaInput);
-                //print($"0Car: {thetaCar}, 0I: {thetaInput}, 0D: {thetaDelta}");
+                print($"0Car: {thetaCar}, 0I: {thetaInput}, 0D: {thetaDelta}");
+                var maxSteer = carConfig.minSteer + 45 * (1 / myParts[player].val[(int) part.steering_wheel]);
                 thetaDelta = 
-                    minABS(Mathf.Clamp(thetaDelta, -carConfig.maxSteer, carConfig.maxSteer),
-                           Mathf.Clamp(thetaDelta, -carConfig.maxSteer + 180, carConfig.maxSteer - 180)
+                    minABS(Mathf.Clamp(thetaDelta, -maxSteer, maxSteer),
+                           Mathf.Clamp(thetaDelta, -maxSteer + 180, maxSteer - 180)
                     );
                 float visualWheelDir = Mathf.Clamp(-Mathf.DeltaAngle(thetaCar, thetaInput) - 90.0f, -135.0f, -45.0f);
                 frontLWheel.localEulerAngles = new Vector3(0, visualWheelDir, 0);

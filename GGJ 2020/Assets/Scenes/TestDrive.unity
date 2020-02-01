@@ -455,6 +455,7 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+<<<<<<< HEAD
     - target: {fileID: 1256003608955852303, guid: 25d53071bcb4b9a4a8bfa353df0a5dcc,
         type: 3}
       propertyPath: m_Enabled
@@ -475,6 +476,14 @@ PrefabInstance:
       propertyPath: frontLWheel
       value: 
       objectReference: {fileID: 1681938538}
+=======
+    - target: {fileID: 4896875802892948970, guid: 25d53071bcb4b9a4a8bfa353df0a5dcc,
+        type: 3}
+      propertyPath: myParts
+      value: 
+      objectReference: {fileID: 11400000, guid: f2b4d52f68897814fa350eaf01da7dc4,
+        type: 2}
+>>>>>>> 87e4337184ab2b34ecbb4e7a2eccc53d6c27b751
     - target: {fileID: 4896875803444423059, guid: 25d53071bcb4b9a4a8bfa353df0a5dcc,
         type: 3}
       propertyPath: m_LocalPosition.x
