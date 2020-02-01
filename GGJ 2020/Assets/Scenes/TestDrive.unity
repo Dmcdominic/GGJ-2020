@@ -172,7 +172,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a4a7f276c6cf8ed42ad81d8e80c7800a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -215,12 +215,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1114135974 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 679232346781205530, guid: 25d53071bcb4b9a4a8bfa353df0a5dcc,
-    type: 3}
-  m_PrefabInstance: {fileID: 4896875804278242524}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1351037309
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,12 +307,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!4 &1681938538 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7099744592974343468, guid: 25d53071bcb4b9a4a8bfa353df0a5dcc,
-    type: 3}
-  m_PrefabInstance: {fileID: 4896875804278242524}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1719085772
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,8 +405,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 14.81
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -455,32 +443,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1256003608955852303, guid: 25d53071bcb4b9a4a8bfa353df0a5dcc,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3076792103516681706, guid: 25d53071bcb4b9a4a8bfa353df0a5dcc,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4896875802892948970, guid: 25d53071bcb4b9a4a8bfa353df0a5dcc,
-        type: 3}
-      propertyPath: frontRWheel
-      value: 
-      objectReference: {fileID: 1114135974}
-    - target: {fileID: 4896875802892948970, guid: 25d53071bcb4b9a4a8bfa353df0a5dcc,
-        type: 3}
-      propertyPath: frontLWheel
-      value: 
-      objectReference: {fileID: 1681938538}
-    - target: {fileID: 4896875802892948970, guid: 25d53071bcb4b9a4a8bfa353df0a5dcc,
-        type: 3}
-      propertyPath: myParts
-      value: 
-      objectReference: {fileID: 11400000, guid: f2b4d52f68897814fa350eaf01da7dc4,
-        type: 2}
     - target: {fileID: 4896875803444423059, guid: 25d53071bcb4b9a4a8bfa353df0a5dcc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -540,11 +502,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Car
-      objectReference: {fileID: 0}
-    - target: {fileID: 6244480912878990886, guid: 25d53071bcb4b9a4a8bfa353df0a5dcc,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25d53071bcb4b9a4a8bfa353df0a5dcc, type: 3}
