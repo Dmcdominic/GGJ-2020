@@ -20,7 +20,10 @@ MonoBehaviour:
   flyingPartImpulseMult: 0.25
   partPrefabs:
   - Part: 0
-    Prefab: {fileID: 8853901069658469001, guid: 1e3f44c69ac3e98439becf9c064a480e,
+    Prefab: {fileID: 7956726457308650190, guid: f160a0d3ce129014da65082110a91e77,
       type: 3}
   - Part: 1
-    Prefab: {fileID: 0}
+    Prefab: {fileID: 7416830780501803916, guid: ea69b9190069f2644bced0c5ee94eaab,
+      type: 3}
+  - Part: 2
+    Prefab: {fileID: 920722567664410646, guid: 2848f571214a8e34c97fc3cb24bf864d, type: 3}
