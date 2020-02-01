@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bar : Hazard
+public class Barrier : Hazard
 {
 #pragma warning disable 0649
     [SerializeField] private float riseSpeed;
@@ -10,6 +10,8 @@ public class Bar : Hazard
     [SerializeField] private float duration;
     [SerializeField] private bool startOnEnable;
 #pragma warning restore 0649
+
+    private Coroutine routine;
 
     private void OnEnable()
     {
@@ -19,17 +21,16 @@ public class Bar : Hazard
 
     override public void Activate()
     {
-        StartCoroutine(Routine());
+        if(routine == null)
+            routine = StartCoroutine(Routine());
     }
 
     private IEnumerator Routine()
     {
-        yield return StartCoroutine(Rise());
-        yield return new WaitForSeconds(duration);
         yield return StartCoroutine(Fall());
-
-        //gameObject.SetActive(false);
-        Destroy(gameObject);
+        yield return new WaitForSeconds(duration);
+        yield return StartCoroutine(Rise());
+        routine = null;
     }
 
     private IEnumerator Rise()
@@ -54,5 +55,4 @@ public class Bar : Hazard
             yield return new WaitForFixedUpdate();
         }
     }
-
 }

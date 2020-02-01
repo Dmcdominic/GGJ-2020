@@ -21,6 +21,8 @@ public class Trapdoor : MonoBehaviour
     private Quaternion opened1 = Quaternion.Euler(0, 0, 90);
     private Quaternion opened2 = Quaternion.Euler(0, 0, -90);
 
+    private Coroutine routine;
+
     private void OnEnable()
     {
         if (startOnEnable) Activate();
@@ -28,7 +30,8 @@ public class Trapdoor : MonoBehaviour
 
     public void Activate()
     {
-        StartCoroutine(Routine());
+        if(routine == null)
+            routine = StartCoroutine(Routine());
     }
 
     private IEnumerator Routine()
@@ -36,7 +39,8 @@ public class Trapdoor : MonoBehaviour
         yield return StartCoroutine(Warning());
         StartCoroutine(Open());
         yield return new WaitForSeconds(duration);
-        StartCoroutine(Close());
+        yield return StartCoroutine(Close());
+        routine = null;
     }
 
     private IEnumerator Open()
