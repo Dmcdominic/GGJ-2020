@@ -28,8 +28,10 @@ public class CarController : MonoBehaviour
     [SerializeField] private Rigidbody carRB;
     [SerializeField] private CarConfig carConfig;
     [SerializeField] private int player;
+    [SerializeField] private Transform frontLWheel;
+    [SerializeField] private Transform frontRWheel;
+    [SerializeField] private PartList myParts;
     
-    //                 Car State                   //
     private int curGear = 0;
 
     private Vector3 groundVelocity => carRB.velocity - carRB.velocity.y * Vector3.up;
@@ -76,7 +78,7 @@ public class CarController : MonoBehaviour
         (
             wheel =>
             {
-                wheel.brakeTorque = pci.handBrakePulled * carConfig.maxBrake;
+                wheel.brakeTorque = pci.footBrake * carConfig.maxBrake * Mathf.Sqrt(carRB.velocity.magnitude);
                 wheel.motorTorque =
                     pci.throttle *
                     carConfig.gearThrottles
@@ -97,13 +99,19 @@ public class CarController : MonoBehaviour
                 var thetaCar = Mathf.Atan2(groundDir.z, groundDir.x) * Mathf.Rad2Deg;
                 var thetaInput = Mathf.Atan2(inputDir.z, inputDir.x) * Mathf.Rad2Deg;
                 var thetaDelta = Mathf.DeltaAngle(thetaCar, thetaInput);
-                print($"0Car: {thetaCar}, 0I: {thetaInput}, 0D: {thetaDelta}");
-                thetaDelta = 
-                    minABS(Mathf.Clamp(thetaDelta, -carConfig.maxSteer, carConfig.maxSteer),
-                           Mathf.Clamp(thetaDelta, -carConfig.maxSteer + 180, carConfig.maxSteer - 180)
-                    );
-                return wheel.steerAngle = -thetaDelta;
 
+                var maxSteer = carConfig.minSteer;
+                for (int i = 0; i < myParts[player].val[(int) part.steering_wheel]; i++)
+                    maxSteer += (carConfig.maxSteer - carConfig.minSteer) / Mathf.Pow(3,i);
+
+                thetaDelta = 
+                    minABS(Mathf.Clamp(thetaDelta, -maxSteer, maxSteer),
+                           Mathf.Clamp(thetaDelta, -maxSteer + 180, maxSteer - 180)
+                    );
+                float visualWheelDir = Mathf.Clamp(-Mathf.DeltaAngle(thetaCar, thetaInput) - 90.0f, -135.0f, -45.0f);
+                frontLWheel.localEulerAngles = new Vector3(0, visualWheelDir, 0);
+                frontRWheel.localEulerAngles = new Vector3(0, visualWheelDir, 0);
+                return wheel.steerAngle = -thetaDelta;
             });
     }
 
