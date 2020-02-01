@@ -4,6 +4,13 @@ using UnityEngine;
 
 public enum part { tire, steering_wheel, bumper, horn, muffler } // WHEN YOU CHANGE THIS, update parts_init
 
+[System.Serializable]
+public class SerializedParts
+{
+    public int[] val;
+} 
+
+
 public class car_parts : MonoBehaviour {
 
     // Readonly settings
@@ -27,14 +34,14 @@ public class car_parts : MonoBehaviour {
     private void Awake() {
         
         // Keep track of parts
-        my_parts[playerID] = new int[num_diff_parts];
+        my_parts[playerID].val = new int[num_diff_parts];
         
         if (parts_init.Length != num_diff_parts) {
             Debug.LogError("HEY! parts_init in car_parts.cs doesn't have all the part init numbers");
         }
         
         for (int p = 0; p < num_diff_parts; p++) {
-            my_parts[playerID][p] = parts_init[p];
+            my_parts[playerID].val[p] = parts_init[p];
         }
     }
 
@@ -61,8 +68,8 @@ public class car_parts : MonoBehaviour {
         return;
 
         List<part> loseableParts = new List<part>();
-        for (int p = 0; p < my_parts[playerID].Length; p++) {
-            for (int i = 0; i < my_parts[playerID][p]; i++) {
+        for (int p = 0; p < my_parts[playerID].val.Length; p++) {
+            for (int i = 0; i < my_parts[playerID].val[p]; i++) {
                 loseableParts.Add((part)i);
                 // TODO - determine this instead based on how strong the impulse is?
                 // e.g. hard hit = lose more important piece
@@ -82,11 +89,11 @@ public class car_parts : MonoBehaviour {
         partImpulse *= partConfig.flyingPartImpulseMult;
         partImpulse = new Vector3(partImpulse.x, Mathf.Abs(partImpulse.y), partImpulse.z);
 
-        if (my_parts[playerID][(int)partType] <= 0) {
+        if (my_parts[playerID].val[(int)partType] <= 0) {
             Debug.LogError("Trying to lose part that you're already out of: " + partType);
         }
 
-        my_parts[playerID][(int)partType]--;
+        my_parts[playerID].val[(int)partType]--;
         foreach (part_prefab pp in partConfig.partPrefabs) {
             if (pp.Part == partType) {
                 GameObject floatingPart = Instantiate(pp.Prefab);
@@ -100,6 +107,6 @@ public class car_parts : MonoBehaviour {
 
     // Called by a floating part when you pick it up
     public void pickup_part(part partType) {
-        my_parts[playerID][(int)partType]++;
+        my_parts[playerID].val[(int)partType]++;
     }
 }

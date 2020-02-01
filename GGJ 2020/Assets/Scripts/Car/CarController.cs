@@ -99,7 +99,7 @@ public class CarController : MonoBehaviour
                 var thetaInput = Mathf.Atan2(inputDir.z, inputDir.x) * Mathf.Rad2Deg;
                 var thetaDelta = Mathf.DeltaAngle(thetaCar, thetaInput);
                 print($"0Car: {thetaCar}, 0I: {thetaInput}, 0D: {thetaDelta}");
-                var maxSteer = carConfig.minSteer + 45 * (1 / myParts[player][(int) part.steering_wheel]);
+                var maxSteer = carConfig.minSteer + 45 * (1 / myParts[player].val[(int) part.steering_wheel]);
                 
                 thetaDelta = 
                     minABS(Mathf.Clamp(thetaDelta, -maxSteer, maxSteer),

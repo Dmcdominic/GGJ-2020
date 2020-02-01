@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d7f0f63531d4749824b644187219947, type: 3}
   m_Name: Car Parts
   m_EditorClassIdentifier: 
+  value:
+  - val: 
