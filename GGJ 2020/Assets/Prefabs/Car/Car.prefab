@@ -5058,8 +5058,9 @@ MonoBehaviour:
   carRB: {fileID: 4896875803444423063}
   carConfig: {fileID: 11400000, guid: 84584a4b5b279734fa396bb3c250795b, type: 2}
   player: 0
-  frontLWheel: {fileID: 0}
-  frontRWheel: {fileID: 0}
+  frontLWheel: {fileID: 7099744592974343468}
+  frontRWheel: {fileID: 679232346781205530}
+  myParts: {fileID: 11400000, guid: f2b4d52f68897814fa350eaf01da7dc4, type: 2}
 --- !u!1 &4896875803444423062
 GameObject:
   m_ObjectHideFlags: 0
@@ -5823,7 +5824,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: f39d533edb9f361428c6b9fd6df315d3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.597
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: f39d533edb9f361428c6b9fd6df315d3,
         type: 3}
@@ -5833,22 +5834,22 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: f39d533edb9f361428c6b9fd6df315d3,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.49991274
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: f39d533edb9f361428c6b9fd6df315d3,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.50008726
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: f39d533edb9f361428c6b9fd6df315d3,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.49991274
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: f39d533edb9f361428c6b9fd6df315d3,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.50008726
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: f39d533edb9f361428c6b9fd6df315d3,
         type: 3}
@@ -5858,7 +5859,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: f39d533edb9f361428c6b9fd6df315d3,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -89.98
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: f39d533edb9f361428c6b9fd6df315d3,
         type: 3}
@@ -5873,17 +5874,17 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: f39d533edb9f361428c6b9fd6df315d3,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 29.469
+      value: 0.2947126
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: f39d533edb9f361428c6b9fd6df315d3,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 58.938
+      value: 0.5894252
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: f39d533edb9f361428c6b9fd6df315d3,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 58.938
+      value: 0.5894252
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: f39d533edb9f361428c6b9fd6df315d3,
         type: 3}
