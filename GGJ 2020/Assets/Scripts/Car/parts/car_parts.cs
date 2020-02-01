@@ -17,7 +17,6 @@ public class car_parts : MonoBehaviour {
     private static readonly int[] parts_init = { 4, 1, 1, 1, 1 }; // Number of parts to start with
     private static readonly int num_diff_parts = System.Enum.GetValues(typeof(part)).Length;
 
-    [SerializeField] private int playerID;
 
     [SerializeField] private PartList my_parts;
     
@@ -27,11 +26,13 @@ public class car_parts : MonoBehaviour {
     private part_config partConfig;
 
     // Private vars
+    private int playerID;
     private float lostPartDelay = 0;
 
 
     // Init
     private void Awake() {
+        playerID = GetComponentInParent<playerID>().p;
         
         // Keep track of parts
         my_parts[playerID].val = new int[num_diff_parts];
