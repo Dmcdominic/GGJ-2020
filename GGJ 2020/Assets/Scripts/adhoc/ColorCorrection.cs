@@ -11,16 +11,18 @@ public class ColorCorrection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach (Transform t in transform)
+        foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
         {
-            var mats = t.GetComponent<MeshRenderer>().materials;
+            var mats = mr.materials;
             for (int i = 0; i < mats.Length; i++)
             {
-                if (mats[i].Equals(playerColor[player]))
+                if (mats[i].color.Equals(playerColor[0].color))
                 {
                     mats[i] = playerColor[player];
                 }
             }
+            mr.materials = mats;
+
         }
     }
 

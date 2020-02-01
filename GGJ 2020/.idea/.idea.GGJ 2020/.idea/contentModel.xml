@@ -37,8 +37,11 @@
             </e>
           </e>
           <e p="Hazards" t="Include">
+            <e p="Bar.cs" t="Include" />
             <e p="Bullet.cs" t="Include" />
+            <e p="HazardManager.cs" t="Include" />
             <e p="Spike.cs" t="Include" />
+            <e p="SpikePit.cs" t="Include" />
             <e p="Trapdoor.cs" t="Include" />
             <e p="Turret.cs" t="Include" />
           </e>

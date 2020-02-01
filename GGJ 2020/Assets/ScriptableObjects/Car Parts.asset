@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Car Parts
   m_EditorClassIdentifier: 
   value:
-  - val: 
+  - val: 0400000001000000010000000100000001000000
+  - val: 0400000001000000010000000100000001000000

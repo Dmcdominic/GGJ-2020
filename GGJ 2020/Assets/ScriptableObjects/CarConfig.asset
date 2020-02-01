@@ -19,3 +19,4 @@ MonoBehaviour:
   maxBrake: 200000
   downForce: 5
   unflipSpeed: 10
+  reverseSpeed: 100000

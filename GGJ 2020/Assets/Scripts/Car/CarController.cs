@@ -78,11 +78,15 @@ public class CarController : MonoBehaviour
         (
             wheel =>
             {
-                wheel.brakeTorque = pci.footBrake * carConfig.maxBrake * Mathf.Sqrt(carRB.velocity.magnitude);
-                wheel.motorTorque =
-                    pci.throttle *
-                    carConfig.gearThrottles
-                        [curGear]; //Mathf.Sign(Vector3.Dot(transform.forward, inputDir) * carConfig.gearThrottles[curGear]);
+                if ((Vector3.Dot(carRB.velocity,transform.forward) < 0 || carRB.velocity.magnitude < 1) && pci.footBrake > .8f)
+                {
+                    wheel.motorTorque = -carConfig.reverseSpeed;
+                }
+                else
+                {
+                    wheel.brakeTorque = pci.footBrake * carConfig.maxBrake * Mathf.Sqrt(carRB.velocity.magnitude);
+                    wheel.motorTorque = pci.throttle * carConfig.gearThrottles[curGear];
+                }
             });
     }
 
