@@ -49,6 +49,7 @@
             <e p="InputController.cs" t="Include" />
             <e p="PlayerControlState.cs" t="Include" />
           </e>
+          <e p="playerID.cs" t="Include" />
         </e>
         <e p="XInputDotNet" t="Include">
           <e p="Docs.txt" t="Include" />

@@ -37,8 +37,8 @@ public class CarController : MonoBehaviour
     private Vector3 groundVelocity => carRB.velocity - carRB.velocity.y * Vector3.up;
     
     private PlayerControlInfo pci => input[player];
-    private Vector3 inputDir => pci.direction;
-    private Vector3 groundDir => transform.forward - transform.forward.y * Vector3.up;
+    private Vector3 inputDir => pci.direction.normalized;
+    private Vector3 groundDir => (transform.forward - transform.forward.y * Vector3.up).normalized;
     
 
     private void Start()
@@ -77,16 +77,24 @@ public class CarController : MonoBehaviour
         rearWheels.Map
         (
             wheel =>
-            {
+            {/*
                 if ((Vector3.Dot(carRB.velocity,transform.forward) < 0 || carRB.velocity.magnitude < 1) && pci.footBrake > .8f)
                 {
                     wheel.motorTorque = -carConfig.reverseSpeed;
-                }
-                else
-                {
+                return;
+                }*/
                     wheel.brakeTorque = pci.footBrake * carConfig.maxBrake * Mathf.Sqrt(carRB.velocity.magnitude);
-                    wheel.motorTorque = pci.throttle * carConfig.gearThrottles[curGear];
-                }
+                    float dot = Vector3.Dot(inputDir, groundDir) * carConfig.gearThrottles[curGear];
+                    if (dot < 0)
+                    {
+                        if (dot < -.5f)
+                            dot *= .5f;
+                        else
+                            dot = 0;
+                    }
+                    wheel.motorTorque = dot;
+
+
             });
     }
 
