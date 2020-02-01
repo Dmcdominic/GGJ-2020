@@ -12,16 +12,15 @@ public class InputController : MonoBehaviour
     [SerializeField]
     bool usingKeyboard;
 
-    [SerializeField]
     XInputDotNetPure.PlayerIndex player;
 
 
     private bool leftshoulderpressed;
     private bool rightshoulderpressed;
 
-    private void Start()
+    private void Awake()
     {
-        
+        player = (PlayerIndex)GetComponentInParent<playerID>().p;
         var playerControlInfo = state[(int)player];
         state[(int) player] = playerControlInfo;
         

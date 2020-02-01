@@ -27,7 +27,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private PlayerControlState input;
     [SerializeField] private Rigidbody carRB;
     [SerializeField] private CarConfig carConfig;
-    [SerializeField] private int player;
+    private int player;
     [SerializeField] private Transform frontLWheel;
     [SerializeField] private Transform frontRWheel;
     [SerializeField] private PartList myParts;
@@ -39,10 +39,12 @@ public class CarController : MonoBehaviour
     private PlayerControlInfo pci => input[player];
     private Vector3 inputDir => pci.direction.normalized;
     private Vector3 groundDir => (transform.forward - transform.forward.y * Vector3.up).normalized;
+    private int[] parts => myParts[player].val;
     
 
-    private void Start()
+    private void Awake()
     {
+        player = GetComponentInParent<playerID>().p;
         carRB.centerOfMass += Vector3.down;
         StartCoroutine(DriveNormal());
         StartCoroutine(UnFlip());
@@ -54,6 +56,17 @@ public class CarController : MonoBehaviour
         {
             ThrottleNormal();
             SteerNormal();
+            rearWheels.Map(wheel =>
+            {
+                var wheelForwardFriction = wheel.forwardFriction;    
+                wheelForwardFriction.stiffness =
+                    carConfig.tireForwardStiffness.Evaluate(1 - 1 / Mathf.Pow(2, parts[(int) part.tire]));
+                var wheelSideFriction = wheel.sidewaysFriction;    
+                wheelSideFriction.stiffness =
+                    carConfig.tireSideStiffness.Evaluate(1 - 1 / Mathf.Pow(2, parts[(int) part.tire]));
+                wheel.forwardFriction = wheelForwardFriction;
+                wheel.sidewaysFriction = wheelSideFriction;
+            });
             yield return null;
         }
     }
@@ -93,6 +106,7 @@ public class CarController : MonoBehaviour
                             dot = 0;
                     }
                     wheel.motorTorque = dot;
+                    
 
 
             });

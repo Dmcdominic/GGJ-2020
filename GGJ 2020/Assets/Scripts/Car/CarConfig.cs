@@ -11,5 +11,6 @@ public class CarConfig : ScriptableObject
     public float downForce = 10;
     public float unflipSpeed = 10;
     public float reverseSpeed = 1000;
-
+    public AnimationCurve tireForwardStiffness;
+    public AnimationCurve tireSideStiffness;
 }

@@ -27,8 +27,10 @@
             <e p="ColorCorrection.cs" t="Include" />
           </e>
           <e p="Car" t="Include">
+            <e p="car_model_manager.cs" t="Include" />
             <e p="CarConfig.cs" t="Include" />
             <e p="CarController.cs" t="Include" />
+            <e p="CollisionForce.cs" t="Include" />
             <e p="DownwardForce.cs" t="Include" />
             <e p="parts" t="Include">
               <e p="car_parts.cs" t="Include" />
@@ -38,8 +40,11 @@
           </e>
           <e p="Hazards" t="Include">
             <e p="Bar.cs" t="Include" />
+            <e p="Barrier.cs" t="Include" />
             <e p="Bullet.cs" t="Include" />
+            <e p="Hazard.cs" t="Include" />
             <e p="HazardManager.cs" t="Include" />
+            <e p="HazardRandomizer.cs" t="Include" />
             <e p="Spike.cs" t="Include" />
             <e p="SpikePit.cs" t="Include" />
             <e p="Trapdoor.cs" t="Include" />
