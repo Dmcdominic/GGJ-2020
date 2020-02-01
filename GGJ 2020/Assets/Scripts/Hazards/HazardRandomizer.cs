@@ -8,7 +8,7 @@ public class HazardRandomizer : Hazard
 
     private void Start()
     {
-        hazards = GetComponentsInChildren<Hazard>();
+        hazards = GetComponentsInChildren<Hazard>(true);
     }
 
     override public void Activate()

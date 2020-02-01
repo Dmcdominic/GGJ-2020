@@ -17,6 +17,8 @@ public class Turret : Hazard
 
     private Coroutine rot;
 
+    private Coroutine routine;
+
     private void OnEnable()
     {
         if(startOnEnable)
@@ -25,7 +27,8 @@ public class Turret : Hazard
 
     override public void Activate()
     {
-        StartCoroutine(Routine());
+        if(routine == null)
+            routine = StartCoroutine(Routine());
     }
 
     private IEnumerator Routine()
@@ -36,7 +39,10 @@ public class Turret : Hazard
         StopCoroutine(Rotate());
         yield return StartCoroutine(Fall());
 
-        gameObject.SetActive(false);
+        routine = null;
+        Destroy(gameObject);
+
+        //gameObject.SetActive(false);
     }
 
     private IEnumerator Rise()
