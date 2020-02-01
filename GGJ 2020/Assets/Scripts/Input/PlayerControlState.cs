@@ -7,9 +7,12 @@ using UnityEngine.Events;
 public struct PlayerControlInfo
 {
     public Vector3 direction;
-    public bool handBrakePulled;
-    public Event shiftUp;
-    public Event shiftDown;
+    public float footBrake;
+    public int handBrakePulled;
+    public float throttle;
+    public bool horn;
+    public UnityEvent shiftUp;
+    public UnityEvent shiftDown;
 }
 
 public class PCSEvent : UnityEvent<PlayerControlInfo[]> {}

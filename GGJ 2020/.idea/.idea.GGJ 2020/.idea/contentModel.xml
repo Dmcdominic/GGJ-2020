@@ -13,6 +13,7 @@
           <e p="FloatRef.cs" t="Include" />
           <e p="IntEvent.cs" t="Include" />
           <e p="IntRef.cs" t="Include" />
+          <e p="PartList.cs" t="Include" />
           <e p="PlayerRef.cs" t="Include" />
           <e p="Reference.cs" t="Include" />
           <e p="Shrub.cs" t="Include" />
@@ -22,9 +23,24 @@
           <e p="Vector3Ref.cs" t="Include" />
         </e>
         <e p="Scripts" t="Include">
+          <e p="adhoc" t="Include">
+            <e p="ColorCorrection.cs" t="Include" />
+          </e>
           <e p="Car" t="Include">
             <e p="CarConfig.cs" t="Include" />
             <e p="CarController.cs" t="Include" />
+            <e p="DownwardForce.cs" t="Include" />
+            <e p="parts" t="Include">
+              <e p="car_parts.cs" t="Include" />
+              <e p="floating_part.cs" t="Include" />
+              <e p="part_config.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Hazards" t="Include">
+            <e p="Bullet.cs" t="Include" />
+            <e p="Spike.cs" t="Include" />
+            <e p="Trapdoor.cs" t="Include" />
+            <e p="Turret.cs" t="Include" />
           </e>
           <e p="Input" t="Include">
             <e p="InputController.cs" t="Include" />

@@ -9,8 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9dc931da64b74c439ba03054f5164e7, type: 3}
-  m_Name: player1Input
+  m_Script: {fileID: 11500000, guid: a2f32f593851fec47b82329be27d2466, type: 3}
+  m_Name: TCarConfig
   m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0, z: 0}
-  handBrakePulled: 0
+  minSteer: 8.5
+  maxSteer: 45
+  gearThrottles:
+  - 1e+9
+  maxBrake: 0
+  downForce: 10
+  unflipSpeed: 10
