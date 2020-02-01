@@ -99,8 +99,11 @@ public class CarController : MonoBehaviour
                 var thetaCar = Mathf.Atan2(groundDir.z, groundDir.x) * Mathf.Rad2Deg;
                 var thetaInput = Mathf.Atan2(inputDir.z, inputDir.x) * Mathf.Rad2Deg;
                 var thetaDelta = Mathf.DeltaAngle(thetaCar, thetaInput);
-                print($"0Car: {thetaCar}, 0I: {thetaInput}, 0D: {thetaDelta}");
-                var maxSteer = carConfig.minSteer + 45 * (1 / myParts[player].val[(int) part.steering_wheel]);
+
+                var maxSteer = carConfig.minSteer;
+                for (int i = 0; i < myParts[player].val[(int) part.steering_wheel]; i++)
+                    maxSteer += (carConfig.maxSteer - carConfig.minSteer) / Mathf.Pow(3,i);
+
                 thetaDelta = 
                     minABS(Mathf.Clamp(thetaDelta, -maxSteer, maxSteer),
                            Mathf.Clamp(thetaDelta, -maxSteer + 180, maxSteer - 180)
@@ -109,7 +112,6 @@ public class CarController : MonoBehaviour
                 frontLWheel.localEulerAngles = new Vector3(0, visualWheelDir, 0);
                 frontRWheel.localEulerAngles = new Vector3(0, visualWheelDir, 0);
                 return wheel.steerAngle = -thetaDelta;
-
             });
     }
 
