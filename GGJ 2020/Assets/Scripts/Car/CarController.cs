@@ -59,6 +59,20 @@ public class CarController : MonoBehaviour
             yield return null;
         }
     }
+    //help
+    IEnumerator UnFlip()
+    {
+        while(true)
+        {
+            while (carRB.transform.up.y < Mathf.Sqrt(2))
+            {
+                carRB.inertiaTensorRotation = Quaternion.Euler(0, 0, carConfig.unflipSpeed);
+                yield return null;
+            }
+
+            yield return null;
+        }
+    }
 
     IEnumerator UnFlip()
     {
