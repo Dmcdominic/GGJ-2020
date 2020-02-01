@@ -227,6 +227,13 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338264856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9193ca247afb1b74aa2fa38dceb6df26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceMultiplier: 100
   serializedVersion: 6
   m_Component:
   - component: {fileID: 583830570}
