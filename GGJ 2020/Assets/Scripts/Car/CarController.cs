@@ -27,18 +27,23 @@ public class CarController : MonoBehaviour
     [SerializeField] private PlayerControlState input;
     [SerializeField] private Rigidbody carRB;
     [SerializeField] private CarConfig carConfig;
+    [SerializeField] private int player;
     
     //                 Car State                   //
     private int curGear = 0;
 
     private Vector3 groundVelocity => carRB.velocity - carRB.velocity.y * Vector3.up;
-    private Vector3 inputDir => input.direction;
+    
+    private PlayerControlInfo pci => input[player];
+    private Vector3 inputDir => pci.direction;
     private Vector3 groundDir => transform.forward - transform.forward.y * Vector3.up;
     
 
     private void Start()
     {
+        carRB.centerOfMass += Vector3.down;
         StartCoroutine(DriveNormal());
+        StartCoroutine(UnFlip());
     }
 
     IEnumerator DriveNormal()
@@ -51,12 +56,31 @@ public class CarController : MonoBehaviour
         }
     }
 
+    IEnumerator UnFlip()
+    {
+        while(true)
+        {
+            while (carRB.transform.up.y < Mathf.Sqrt(2))
+            {
+                carRB.inertiaTensorRotation = Quaternion.Euler(0, 0, carConfig.unflipSpeed);
+                yield return null;
+            }
+
+            yield return null;
+        }
+    }
+
     void ThrottleNormal()
     {
         rearWheels.Map
         (
-            wheel => wheel.motorTorque = Vector3.Dot(transform.forward,inputDir) * carConfig.gearThrottles[curGear]
-        );
+            wheel =>
+            {
+                wheel.brakeTorque = pci.handBrakePulled * carConfig.maxBrake;
+                wheel.motorTorque =
+                    pci.throttle * carConfig.gearThrottles[curGear] * 
+                    Mathf.Sign(Vector3.Dot(transform.forward, inputDir) * carConfig.gearThrottles[curGear]);
+            });
     }
 
     void SteerNormal()
@@ -65,12 +89,13 @@ public class CarController : MonoBehaviour
         (
             wheel =>
             {
-                var relativeDir = inputDir - groundDir;
-                var theta = Mathf.Atan2(relativeDir.y,relativeDir.x) * Mathf.Rad2Deg;
-                theta = Mathf.Clamp(theta, carConfig.maxSteer, carConfig.maxSteer);
-                
-                return wheel.steerAngle = Mathf.LerpAngle(wheel.steerAngle,theta * Time.deltaTime,Time.deltaTime);
-                
+                var thetaCar = Mathf.Atan2(groundDir.z, groundDir.x) * Mathf.Rad2Deg;
+                var thetaInput = Mathf.Atan2(inputDir.z, inputDir.x) * Mathf.Rad2Deg;
+                var thetaDelta = Mathf.DeltaAngle(thetaCar, thetaInput);
+                print($"0Car: {thetaCar}, 0I: {thetaInput}, 0D: {thetaDelta}");
+                thetaDelta = Mathf.Clamp(thetaDelta, -carConfig.maxSteer, carConfig.maxSteer);
+                return wheel.steerAngle = -thetaDelta;
+
             });
     }
 }
