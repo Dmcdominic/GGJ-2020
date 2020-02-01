@@ -24,5 +24,13 @@ public class Bullet : MonoBehaviour
     {
         //Check if is car
         //Knock off part if so
+        if(collision.collider.tag == "Car")
+        {
+
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

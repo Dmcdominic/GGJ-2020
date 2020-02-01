@@ -434,6 +434,7 @@ GameObject:
   - component: {fileID: 84350209}
   - component: {fileID: 84350213}
   - component: {fileID: 84350212}
+  - component: {fileID: 84350214}
   m_Layer: 0
   m_Name: CurvedWall (3)
   m_TagString: Untagged
@@ -532,6 +533,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5495902117074765545, guid: b221944d676f387448092ca77800a1b6, type: 3}
+--- !u!114 &84350214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84350208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda6321b0d017094a8f32beb82fed3ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  riseSpeed: 0.1
+  riseHeight: 1
+  duration: 10
+  startOnEnable: 0
 --- !u!1001 &93210062
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1099,6 +1116,7 @@ GameObject:
   - component: {fileID: 145159070}
   - component: {fileID: 145159069}
   - component: {fileID: 145159073}
+  - component: {fileID: 145159074}
   m_Layer: 0
   m_Name: Wall (1)
   m_TagString: Untagged
@@ -1196,6 +1214,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 0
+--- !u!114 &145159074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145159068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda6321b0d017094a8f32beb82fed3ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  riseSpeed: 0.1
+  riseHeight: 1
+  duration: 10
+  startOnEnable: 0
 --- !u!1001 &159802211
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1359,6 +1393,7 @@ GameObject:
   - component: {fileID: 170604105}
   - component: {fileID: 170604109}
   - component: {fileID: 170604108}
+  - component: {fileID: 170604110}
   m_Layer: 0
   m_Name: CurvedWall (2)
   m_TagString: Untagged
@@ -1457,6 +1492,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5495902117074765545, guid: b221944d676f387448092ca77800a1b6, type: 3}
+--- !u!114 &170604110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170604104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda6321b0d017094a8f32beb82fed3ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  riseSpeed: 0.1
+  riseHeight: 1
+  duration: 10
+  startOnEnable: 0
 --- !u!1001 &180301159
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4569,6 +4620,7 @@ GameObject:
   - component: {fileID: 883973604}
   - component: {fileID: 883973603}
   - component: {fileID: 883973607}
+  - component: {fileID: 883973608}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -4666,6 +4718,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 0
+--- !u!114 &883973608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883973602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda6321b0d017094a8f32beb82fed3ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  riseSpeed: 0.1
+  riseHeight: 1
+  duration: 10
+  startOnEnable: 0
 --- !u!1001 &920237071
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5501,6 +5569,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1053644974}
   - component: {fileID: 1053644973}
+  - component: {fileID: 1053644975}
   m_Layer: 0
   m_Name: Traps
   m_TagString: Untagged
@@ -5638,6 +5707,18 @@ Transform:
   m_Father: {fileID: 134040653}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1053644975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053644972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 002191723d691f4409e77502247ba868, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1066959428
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5876,6 +5957,7 @@ GameObject:
   - component: {fileID: 1106641213}
   - component: {fileID: 1106641216}
   - component: {fileID: 1106641215}
+  - component: {fileID: 1106641218}
   m_Layer: 0
   m_Name: CurvedWall
   m_TagString: Untagged
@@ -5974,6 +6056,22 @@ Transform:
   m_Father: {fileID: 1853825531}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1106641218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106641212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda6321b0d017094a8f32beb82fed3ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  riseSpeed: 0.1
+  riseHeight: 1
+  duration: 10
+  startOnEnable: 0
 --- !u!1001 &1113115357
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6848,6 +6946,7 @@ GameObject:
   - component: {fileID: 1239057416}
   - component: {fileID: 1239057420}
   - component: {fileID: 1239057419}
+  - component: {fileID: 1239057421}
   m_Layer: 0
   m_Name: CurvedWall (1)
   m_TagString: Untagged
@@ -6946,6 +7045,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5495902117074765545, guid: b221944d676f387448092ca77800a1b6, type: 3}
+--- !u!114 &1239057421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239057415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda6321b0d017094a8f32beb82fed3ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  riseSpeed: 0.1
+  riseHeight: 1
+  duration: 10
+  startOnEnable: 0
 --- !u!1001 &1281250039
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8062,6 +8177,112 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1644788247}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1675027398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1675027400}
+  - component: {fileID: 1675027399}
+  m_Layer: 0
+  m_Name: HazardManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1675027399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675027398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77efb6e326866d418a0f6a52d09c51c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trapFreq:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.05
+      value: 0
+      inSlope: -0
+      outSlope: 0.15283884
+      tangentMode: 5
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.10964913
+    - serializedVersion: 3
+      time: 1
+      value: 0.2
+      inSlope: 0.00066409516
+      outSlope: 0.10526316
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0.45226148
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  hazardParent: {fileID: 1361390940}
+  turret: {fileID: 4282729198441385891, guid: 762e2141a35796541978e2f62fea4e16, type: 3}
+  trap: {fileID: 1053644975}
+  bar: {fileID: 5183061113390133859, guid: 0c6d6c96ab632c243be9b6d5105edae0, type: 3}
+  barrier: {fileID: 1853825532}
+  barrierFreq:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.2
+      inSlope: 0.3
+      outSlope: 0.3
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0.5
+      inSlope: 0.3
+      outSlope: 0.3
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  maxTime: 180
+--- !u!4 &1675027400
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675027398}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1682245322
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8706,6 +8927,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1853825531}
+  - component: {fileID: 1853825532}
   m_Layer: 0
   m_Name: Walls
   m_TagString: Untagged
@@ -8733,6 +8955,18 @@ Transform:
   m_Father: {fileID: 134040653}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1853825532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853825530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 002191723d691f4409e77502247ba868, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1863061486
 PrefabInstance:
   m_ObjectHideFlags: 0
