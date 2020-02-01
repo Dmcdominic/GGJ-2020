@@ -5058,9 +5058,8 @@ MonoBehaviour:
   carRB: {fileID: 4896875803444423063}
   carConfig: {fileID: 11400000, guid: 84584a4b5b279734fa396bb3c250795b, type: 2}
   player: 0
-  frontLWheel: {fileID: 7099744592974343468}
-  frontRWheel: {fileID: 679232346781205530}
-  myParts: {fileID: 11400000, guid: f2b4d52f68897814fa350eaf01da7dc4, type: 2}
+  frontLWheel: {fileID: 0}
+  frontRWheel: {fileID: 0}
 --- !u!1 &4896875803444423062
 GameObject:
   m_ObjectHideFlags: 0
