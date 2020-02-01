@@ -10,6 +10,9 @@ public class InputController : MonoBehaviour
     PlayerControlState state;
 
     [SerializeField]
+    bool usingKeyboard;
+
+    [SerializeField]
     XInputDotNetPure.PlayerIndex player;
 
 
@@ -54,7 +57,5 @@ public class InputController : MonoBehaviour
         {
             rightshoulderpressed = false;
         }
-       
-
     }
 }
