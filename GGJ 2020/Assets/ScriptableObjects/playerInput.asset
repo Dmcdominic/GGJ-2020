@@ -14,7 +14,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value:
   - direction: {x: 0, y: 0, z: 0}
-    handBrakePulled: 0
+    footBrake: 0
+    handBrakePulled: 1
+    throttle: 0
+    horn: 0
+    shiftUp:
+      m_PersistentCalls:
+        m_Calls: []
+    shiftDown:
+      m_PersistentCalls:
+        m_Calls: []
+  - direction: {x: 0, y: 0, z: 0}
+    footBrake: 0
+    handBrakePulled: 1
+    throttle: 0
+    horn: 0
+    shiftUp:
+      m_PersistentCalls:
+        m_Calls: []
+    shiftDown:
+      m_PersistentCalls:
+        m_Calls: []
+  - direction: {x: 0, y: 0, z: 0}
+    footBrake: 0
+    handBrakePulled: 1
     throttle: 0
     horn: 0
     shiftUp:

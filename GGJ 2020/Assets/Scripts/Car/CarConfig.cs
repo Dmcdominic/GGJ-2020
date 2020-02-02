@@ -10,5 +10,8 @@ public class CarConfig : ScriptableObject
     public float maxBrake;
     public float downForce = 10;
     public float unflipSpeed = 10;
-
+    public float reverseSpeed = 1000;
+    public AnimationCurve tireForwardStiffness;
+    public AnimationCurve tireSideStiffness;
+    public float rearForceConstant = 10000;
 }

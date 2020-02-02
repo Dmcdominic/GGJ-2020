@@ -27,22 +27,25 @@ public class CarController : MonoBehaviour
     [SerializeField] private PlayerControlState input;
     [SerializeField] private Rigidbody carRB;
     [SerializeField] private CarConfig carConfig;
-    [SerializeField] private int player;
+    private int player;
     [SerializeField] private Transform frontLWheel;
     [SerializeField] private Transform frontRWheel;
     [SerializeField] private PartList myParts;
+    private float steerAngle = 0;
     
     private int curGear = 0;
 
     private Vector3 groundVelocity => carRB.velocity - carRB.velocity.y * Vector3.up;
     
     private PlayerControlInfo pci => input[player];
-    private Vector3 inputDir => pci.direction;
-    private Vector3 groundDir => transform.forward - transform.forward.y * Vector3.up;
+    private Vector3 inputDir => pci.direction.normalized;
+    private Vector3 groundDir => (transform.forward - transform.forward.y * Vector3.up).normalized;
+    private int[] parts => myParts[player].val;
     
 
-    private void Start()
+    private void Awake()
     {
+        player = GetComponentInParent<playerID>().p;
         carRB.centerOfMass += Vector3.down;
         StartCoroutine(DriveNormal());
         StartCoroutine(UnFlip());
@@ -54,8 +57,22 @@ public class CarController : MonoBehaviour
         {
             ThrottleNormal();
             SteerNormal();
+            rearWheels.Map(SetStiffness);
+            frontWheels.Map(SetStiffness);
             yield return null;
         }
+    }
+
+    private void SetStiffness(WheelCollider wheel)
+    {
+        var wheelForwardFriction = wheel.forwardFriction;    
+        wheelForwardFriction.stiffness =
+            carConfig.tireForwardStiffness.Evaluate(1 - 1 / Mathf.Pow(2, parts[(int) part.tire] - 1));
+        var wheelSideFriction = wheel.sidewaysFriction;    
+        wheelSideFriction.stiffness =
+            carConfig.tireSideStiffness.Evaluate(1 - 1 / Mathf.Pow(2, parts[(int) part.tire] - 1));
+        wheel.forwardFriction = wheelForwardFriction;
+        wheel.sidewaysFriction = wheelSideFriction;
     }
 
     IEnumerator UnFlip()
@@ -74,16 +91,45 @@ public class CarController : MonoBehaviour
 
     void ThrottleNormal()
     {
+
         rearWheels.Map
         (
             wheel =>
             {
-                wheel.brakeTorque = pci.footBrake * carConfig.maxBrake * Mathf.Sqrt(carRB.velocity.magnitude);
-                wheel.motorTorque =
-                    pci.throttle *
-                    carConfig.gearThrottles
-                        [curGear]; //Mathf.Sign(Vector3.Dot(transform.forward, inputDir) * carConfig.gearThrottles[curGear]);
+                if ((Vector3.Dot(carRB.velocity,transform.forward) < 0 || carRB.velocity.magnitude < 100) && pci.footBrake > .1f)
+                {
+                    wheel.motorTorque = -carConfig.reverseSpeed * pci.footBrake;
+                return;
+                }
+                    wheel.brakeTorque = pci.footBrake * carConfig.maxBrake * Mathf.Sqrt(carRB.velocity.magnitude);
+                    float dot = Vector3.Dot(inputDir, groundDir) * carConfig.gearThrottles[curGear];
+
+                    
+                    if (dot < 0) dot *= 0;
+                    wheel.motorTorque = dot * (pci.throttle + 1);
+
             });
+    }
+
+    private void FixedUpdate()
+    {
+        var rocketBoost = pci.throttle * carConfig.rearForceConstant *
+                          (Quaternion.AngleAxis(steerAngle, transform.up)
+                           * carRB.transform.forward);
+        rocketBoost = new Vector3(rocketBoost.x,Mathf.Sqrt(Mathf.Abs(rocketBoost.y)),rocketBoost.z);
+        bool canBoost = true;
+        rearWheels.Map(wheel => canBoost &= wheel.isGrounded);
+        frontWheels.Map(wheel => canBoost &= wheel.isGrounded);
+        if(canBoost)
+            carRB.AddForceAtPosition(rocketBoost, carRB.transform.position);
+        if(pci.throttle < 0.1f && pci.direction.sqrMagnitude < .6f)
+        {
+            carRB.drag = carRB.velocity.magnitude *  0.3f;
+        }
+        else
+        {
+            carRB.drag = 1;
+        }
     }
 
     void SteerNormal()
@@ -106,11 +152,11 @@ public class CarController : MonoBehaviour
 
                 thetaDelta = 
                     minABS(Mathf.Clamp(thetaDelta, -maxSteer, maxSteer),
-                           Mathf.Clamp(thetaDelta, -maxSteer + 180, maxSteer - 180)
-                    );
-                float visualWheelDir = Mathf.Clamp(-Mathf.DeltaAngle(thetaCar, thetaInput) - 90.0f, -135.0f, -45.0f);
+                           Mathf.Clamp(thetaDelta, -maxSteer + 180, maxSteer - 180));
+                float visualWheelDir = Mathf.Clamp(-Mathf.DeltaAngle(thetaCar, thetaInput) - 90.0f, -180.0f, 0f);
                 frontLWheel.localEulerAngles = new Vector3(0, visualWheelDir, 0);
                 frontRWheel.localEulerAngles = new Vector3(0, visualWheelDir, 0);
+                steerAngle = (inputDir.x * 50 / Mathf.Max(carRB.velocity.magnitude * 50.0f, 1.0f));
                 return wheel.steerAngle = -thetaDelta;
             });
     }

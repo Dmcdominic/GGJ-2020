@@ -12,6 +12,10 @@ public class part_config : ScriptableObject {
     public float flyingPartImpulseUpBoost;
     public float flyingPartImpulseMult;
 
+
+    // Dust cloud particle effects prefab
+    public GameObject dust_cloud;
+
     // Floating part prefabs
     public List<part_prefab> partPrefabs;
 }

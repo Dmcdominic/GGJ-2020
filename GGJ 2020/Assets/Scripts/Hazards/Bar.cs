@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bar : MonoBehaviour
+public class Bar : Hazard
 {
 #pragma warning disable 0649
     [SerializeField] private float riseSpeed;
@@ -17,7 +17,7 @@ public class Bar : MonoBehaviour
             Activate();
     }
 
-    public void Activate()
+    override public void Activate()
     {
         StartCoroutine(Routine());
     }
@@ -28,7 +28,8 @@ public class Bar : MonoBehaviour
         yield return new WaitForSeconds(duration);
         yield return StartCoroutine(Fall());
 
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 
     private IEnumerator Rise()

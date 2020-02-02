@@ -7,20 +7,23 @@ public class ColorCorrection : MonoBehaviour
     [SerializeField]
     Material[] playerColor;
 
-    [SerializeField] private int player;
+    private int player;
     // Start is called before the first frame update
     void Start()
     {
-        foreach (Transform t in transform)
+        player = GetComponentInParent<playerID>().p;
+        foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
         {
-            var mats = t.GetComponent<MeshRenderer>().materials;
+            var mats = mr.materials;
             for (int i = 0; i < mats.Length; i++)
             {
-                if (mats[i].Equals(playerColor[player]))
+                if (mats[i].color.Equals(playerColor[0].color))
                 {
                     mats[i] = playerColor[player];
                 }
             }
+            mr.materials = mats;
+
         }
     }
 

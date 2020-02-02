@@ -22,13 +22,18 @@
           <e p="UnitEvent.cs" t="Include" />
           <e p="Vector3Ref.cs" t="Include" />
         </e>
+        <e p="Dragger.cs" t="Include" />
+        <e p="KillSelf.cs" t="Include" />
+        <e p="MusicManager.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="adhoc" t="Include">
             <e p="ColorCorrection.cs" t="Include" />
           </e>
           <e p="Car" t="Include">
+            <e p="car_model_manager.cs" t="Include" />
             <e p="CarConfig.cs" t="Include" />
             <e p="CarController.cs" t="Include" />
+            <e p="CollisionForce.cs" t="Include" />
             <e p="DownwardForce.cs" t="Include" />
             <e p="parts" t="Include">
               <e p="car_parts.cs" t="Include" />
@@ -37,8 +42,15 @@
             </e>
           </e>
           <e p="Hazards" t="Include">
+            <e p="Bar.cs" t="Include" />
+            <e p="Barrier.cs" t="Include" />
+            <e p="Bulldozer.cs" t="Include" />
             <e p="Bullet.cs" t="Include" />
+            <e p="Hazard.cs" t="Include" />
+            <e p="HazardManager.cs" t="Include" />
+            <e p="HazardRandomizer.cs" t="Include" />
             <e p="Spike.cs" t="Include" />
+            <e p="SpikePit.cs" t="Include" />
             <e p="Trapdoor.cs" t="Include" />
             <e p="Turret.cs" t="Include" />
           </e>
@@ -46,6 +58,15 @@
             <e p="InputController.cs" t="Include" />
             <e p="PlayerControlState.cs" t="Include" />
           </e>
+          <e p="playerID.cs" t="Include" />
+          <e p="SideTrigger.cs" t="Include" />
+          <e p="SoundManager.cs" t="Include" />
+          <e p="SparksGenerator.cs" t="Include" />
+          <e p="TestForce.cs" t="Include" />
+        </e>
+        <e p="SqrtDrag.cs" t="Include" />
+        <e p="Textures" t="Include">
+          <e p="License (Read before using).txt" t="Include" />
         </e>
         <e p="XInputDotNet" t="Include">
           <e p="Docs.txt" t="Include" />

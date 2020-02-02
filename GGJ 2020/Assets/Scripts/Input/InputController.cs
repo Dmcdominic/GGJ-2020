@@ -13,10 +13,10 @@ public class InputController : MonoBehaviour
     PlayerControlState state;
 
     [SerializeField]
+
     bool usingKeyboard;
 
 #if UNITY_STANDALONE_WIN
-    [SerializeField]
     XInputDotNetPure.PlayerIndex player;
 #endif
 
@@ -24,8 +24,9 @@ public class InputController : MonoBehaviour
     private bool leftshoulderpressed;
     private bool rightshoulderpressed;
 
-    private void Start()
+    private void Awake()
     {
+        player = (PlayerIndex)GetComponentInParent<playerID>().p;
 #if UNITY_STANDALONE_WIN
         var playerControlInfo = state[(int)player];
         state[(int) player] = playerControlInfo;
