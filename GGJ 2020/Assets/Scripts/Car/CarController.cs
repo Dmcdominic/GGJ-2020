@@ -63,7 +63,6 @@ public class CarController : MonoBehaviour
             var newWeight = carConfig.defaultWeight + parts
                                 .Select(((val, index) =>
                                 {
-                                    print($"index {index}");
                                     return val * partConfig.part_weights[index];
                                 }))
                                 .Aggregate((l,r) => l + r);
