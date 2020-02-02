@@ -19,7 +19,7 @@ MonoBehaviour:
   maxBrake: 150000
   downForce: 5
   unflipSpeed: 5
-  reverseSpeed: 7000
+  reverseSpeed: 5000
   tireForwardStiffness:
     serializedVersion: 2
     m_Curve:
@@ -104,5 +104,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  rearForceConstant: 50500
+  rearForceConstant: 60500
   defaultWeight: 500

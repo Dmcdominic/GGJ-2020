@@ -15,6 +15,6 @@ public class FadeSlower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        tr.time += Time.deltaTime * .6f;
+        tr.time += Time.deltaTime * .499f;
     }
 }

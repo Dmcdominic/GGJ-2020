@@ -36,6 +36,7 @@
         <e p="FadeSlower.cs" t="Include" />
         <e p="FrontCollision.cs" t="Include" />
         <e p="PlayerLight.cs" t="Include" />
+        <e p="quit.cs" t="Include" />
         <e p="ScriptableObjects" t="Include">
           <e p="CameraShakeScript.cs" t="Include" />
         </e>
