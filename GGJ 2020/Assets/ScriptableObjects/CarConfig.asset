@@ -16,10 +16,10 @@ MonoBehaviour:
   maxSteer: 45
   gearThrottles:
   - 40000
-  maxBrake: 200000
-  downForce: 12
-  unflipSpeed: 0
-  reverseSpeed: 3000
+  maxBrake: 150000
+  downForce: 20
+  unflipSpeed: 10
+  reverseSpeed: 3500
   tireForwardStiffness:
     serializedVersion: 2
     m_Curve:
@@ -104,5 +104,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  rearForceConstant: 40000
+  rearForceConstant: 40500
   defaultWeight: 500

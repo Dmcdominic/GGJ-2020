@@ -10,6 +10,7 @@ public class HazardManager : MonoBehaviour
     [SerializeField] private Hazard turret;
     [SerializeField] private Hazard trap;
     [SerializeField] private Hazard bar;
+    [SerializeField] private Hazard ramp;
     [SerializeField] private Hazard bulldozer;
 
     [SerializeField] private Hazard barrier;
@@ -45,7 +46,7 @@ public class HazardManager : MonoBehaviour
                     case 0:
                         //turret.Activate();
                         o = Instantiate(turret.gameObject, hazardParent.transform);
-                        o.transform.position = new Vector3(Random.Range(-5, 5), o.transform.position.y, Random.Range(-3, 3));
+                        o.transform.position = new Vector3(Random.Range(-25, 25), o.transform.position.y, Random.Range(-15, 15));
                         if (timer / maxTime > 0.6f) o.GetComponent<Turret>().HardModeActivate();
                         else o.GetComponent<Hazard>().Activate();
                         break;
@@ -53,8 +54,9 @@ public class HazardManager : MonoBehaviour
                         trap.Activate();
                         break;
                     case 2:
-                        o = Instantiate(bar.gameObject, hazardParent.transform);
-                        o.transform.position = new Vector3(Random.Range(-5, 5), o.transform.position.y, Random.Range(-3, 3));
+                        if (Random.value < 0.5f) o = Instantiate(ramp.gameObject, hazardParent.transform);
+                        else o = Instantiate(bar.gameObject, hazardParent.transform);
+                        o.transform.position = new Vector3(Random.Range(-25, 25), o.transform.position.y, Random.Range(-15, 15));
                         o.transform.rotation = Quaternion.Euler(o.transform.rotation.eulerAngles.x, Random.Range(0, 360), o.transform.rotation.eulerAngles.z);
                         o.GetComponent<Hazard>().Activate();
                         break;
