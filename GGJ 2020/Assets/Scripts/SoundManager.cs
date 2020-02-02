@@ -36,10 +36,10 @@ public class SoundManager : MonoBehaviour
         
     }
 
-    public void StartLoop(AudioClip clip,string carID, float volume = 1f)
+    public GameObject StartLoop(AudioClip clip,string carID, float volume = 1f)
     {
         //If already playing, don't do it again you stupid
-        if (myLoops.ContainsKey(clip.ToString() + carID)) return; 
+        if (myLoops.ContainsKey(clip.ToString() + carID)) return null; 
         GameObject newPlayer = Instantiate(AudioPlayer);
         newPlayer.transform.SetParent(transform);
         AudioSource newSrc = newPlayer.GetComponent<AudioSource>();
@@ -49,6 +49,7 @@ public class SoundManager : MonoBehaviour
         newPlayer.name = clip.ToString() + carID;
         newSrc.Play();
         myLoops.Add(newPlayer.name, newPlayer);
+        return newPlayer;
     }
     
 
@@ -64,8 +65,12 @@ public class SoundManager : MonoBehaviour
         
     }
 
-    public void PlayOnce(AudioClip clip,float volume = 1f)
+    public void PlayOnce(AudioClip clip ,float volume = 1f, bool random = false)
     {
-        GetComponent<AudioSource>().PlayOneShot(clip,volume);
+        if (random)
+            OneShotPlayer.GetComponent<AudioSource>().pitch = 1f + UnityEngine.Random.Range(-0.1f, 0.1f);
+        else
+            OneShotPlayer.GetComponent<AudioSource>().pitch = 1f;
+        OneShotPlayer.GetComponent<AudioSource>().PlayOneShot(clip,volume);
     }
 }

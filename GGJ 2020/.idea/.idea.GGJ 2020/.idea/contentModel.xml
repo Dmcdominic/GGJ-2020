@@ -30,6 +30,7 @@
           <e p="uGUITools.cs" t="Include" />
         </e>
         <e p="EffectManager.cs" t="Include" />
+        <e p="FadeSlower.cs" t="Include" />
         <e p="FrontCollision.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="adhoc" t="Include">
@@ -85,6 +86,11 @@
         </e>
         <e p="Shaders" t="Include">
           <e p="Outline.shader" t="Include" />
+        </e>
+        <e p="SimpleFX" t="Include">
+          <e p="Materials" t="Include">
+            <e p="UnlitVertexColour_Alpha.shader" t="Include" />
+          </e>
         </e>
         <e p="SmokeUnderTheHood.cs" t="Include" />
         <e p="SqrtDrag.cs" t="Include" />
