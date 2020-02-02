@@ -16,9 +16,9 @@ MonoBehaviour:
   impulseToLosePartNonPlayer: 6000
   delayBetweenLosingParts: 0.5
   pickupDelay: 0.5
-  flyingPartYOffset: 1.5
-  flyingPartImpulseUpBoost: 1.5
-  flyingPartImpulseMult: 0.04
+  flyingPartYOffset: 1.3
+  flyingPartImpulseUpBoost: 1.3
+  flyingPartImpulseMult: 0.035
   dust_cloud: {fileID: 8709796931982745242, guid: 49960bb33af7766459c8c7bfb25ad786,
     type: 3}
   partPrefabs:

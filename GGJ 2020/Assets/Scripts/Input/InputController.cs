@@ -92,7 +92,7 @@ public class InputController : MonoBehaviour
             {
                 if (audioClip.length.Equals(audioConfig.horns[0].length))
                 {
-                    SoundManager.instance.PlayOnce(audioClip);
+                    SoundManager.instance.PlayOnce(audioClip, 0.35f);
                 }
                 else
                 {

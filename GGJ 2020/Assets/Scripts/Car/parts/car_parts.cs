@@ -99,7 +99,11 @@ public class car_parts : MonoBehaviour {
             const float dotThreshold = 0.5f;
             const float veloThreshold = 9f;
             if (selfDot < dotThreshold || selfVelocity.magnitude < veloThreshold) { // always lose a part if your dot or velo is under a threshold
-                lose_random_part(collision.impulse);
+                const int maxPartsLost = 3;
+                int partsLost = Random.Range(1, maxPartsLost + 1);
+                for (int i=0; i < partsLost; i++) {
+                    lose_random_part(collision.impulse);
+                }
             } else {
                 int protects = my_parts[playerID].val[(int)part.bumper] + 1;
                 for (int i=0; i < protects; i++) {
@@ -129,7 +133,7 @@ public class car_parts : MonoBehaviour {
                 // e.g. hard hit = lose more important piece
             }
         }
-        if (loseableParts.Count > 0) {
+        if (loseableParts.Count > 2) {
             lose_part(loseableParts[Random.Range(0, loseableParts.Count)], collisionImpulse);
         } else {
             lose_part(part.engine, collisionImpulse);
@@ -157,7 +161,7 @@ public class car_parts : MonoBehaviour {
                     return;
                 }
                 GameObject floatingPart = Instantiate(pp.Prefab);
-                floatingPart.transform.position = transform.position + Vector3.up * partConfig.flyingPartYOffset;
+                floatingPart.transform.position = transform.position + Vector3.up * partConfig.flyingPartYOffset * Random.Range(1f, 3f);
                 floatingPart.GetComponent<Rigidbody>().AddForce(partImpulse, ForceMode.Impulse);
                 floatingPart.GetComponent<playerID>().p = playerID;
                 return;

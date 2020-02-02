@@ -7,6 +7,10 @@ public class CrashSound : MonoBehaviour
     [SerializeField] private IntEvent shake;
     private void OnCollisionEnter(Collision other)
     {
+        if (transform.root == other.gameObject.transform.root || other.gameObject.CompareTag("ground")) {
+            return;
+        }
+
         playSound(.5f);
         if (gameObject.CompareTag(other.gameObject.tag))
         {
