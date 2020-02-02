@@ -10,6 +10,7 @@ public class MusicManager : MonoBehaviour
 
     private void Awake()
     {
+        MusicSource = GetComponent<AudioSource>();
         if (instance != null)
         {
             Destroy(gameObject);
@@ -23,7 +24,7 @@ public class MusicManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        MusicSource = GetComponent<AudioSource>();
+       
     }
 
     // Update is called once per frame
