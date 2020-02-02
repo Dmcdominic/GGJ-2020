@@ -287,4 +287,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   intro: {fileID: 8300000, guid: 3b3c197010f8a417ab30c14887cdfde0, type: 3}
   loop: {fileID: 8300000, guid: ec0cc7fb9c43945aaae9c9c396945a8a, type: 3}
-  volumeControl: 0.6
+  volumeControl: 0.8

@@ -122,14 +122,18 @@ public class car_parts : MonoBehaviour {
         List<part> loseableParts = new List<part>();
         for (int p = 0; p < my_parts[playerID].val.Length; p++) {
             for (int i = 0; i < my_parts[playerID].val[p]; i++) {
-                loseableParts.Add((part)p);
+                if ((part)p != part.engine) {
+                    loseableParts.Add((part)p);
+                }
                 // TODO - determine this instead based on how strong the impulse is?
                 // e.g. hard hit = lose more important piece
             }
         }
         if (loseableParts.Count > 0) {
             lose_part(loseableParts[Random.Range(0, loseableParts.Count)], collisionImpulse);
-        } // TODO - if you're out of parts?? default part to keep losing weight? explode?
+        } else {
+            lose_part(part.engine, collisionImpulse);
+        }
     }
 
     // Send a specific part flying off
