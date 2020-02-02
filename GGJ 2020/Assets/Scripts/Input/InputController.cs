@@ -36,10 +36,10 @@ public class InputController : MonoBehaviour
     private bool rightshoulderpressed;
 
     private float vibration = 0;
-    private float vibration_standby = 0.05f;
-    private float vibration_move = 0.1f;
-    private float vibration_boost = 0.5f;
-    private float vibration_break = 0.3f;
+    private float vibration_standby = 0.00f;
+    private float vibration_move = 0.001f;
+    private float vibration_boost = 0.02f;
+    private float vibration_break = 0.05f;
 
     private void Awake()
     {

@@ -76,6 +76,9 @@
           <e p="SparksGenerator.cs" t="Include" />
           <e p="TestForce.cs" t="Include" />
         </e>
+        <e p="Shaders" t="Include">
+          <e p="Outline.shader" t="Include" />
+        </e>
         <e p="SqrtDrag.cs" t="Include" />
         <e p="Textures" t="Include">
           <e p="License (Read before using).txt" t="Include" />
