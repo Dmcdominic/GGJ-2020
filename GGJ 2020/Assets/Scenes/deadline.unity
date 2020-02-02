@@ -673,12 +673,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1249465896208886169, guid: f99f8c34658d0d045b562b4260f0f950,
-        type: 3}
-      propertyPath: myParts
-      value: 
-      objectReference: {fileID: 11400000, guid: f2b4d52f68897814fa350eaf01da7dc4,
-        type: 2}
     - target: {fileID: 4330175022390586937, guid: f99f8c34658d0d045b562b4260f0f950,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -734,24 +728,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5932900666655074455, guid: f99f8c34658d0d045b562b4260f0f950,
-        type: 3}
-      propertyPath: myParts
-      value: 
-      objectReference: {fileID: 11400000, guid: f2b4d52f68897814fa350eaf01da7dc4,
-        type: 2}
-    - target: {fileID: 7335646732876918067, guid: f99f8c34658d0d045b562b4260f0f950,
-        type: 3}
-      propertyPath: myParts
-      value: 
-      objectReference: {fileID: 11400000, guid: f2b4d52f68897814fa350eaf01da7dc4,
-        type: 2}
-    - target: {fileID: 8057437589216206036, guid: f99f8c34658d0d045b562b4260f0f950,
-        type: 3}
-      propertyPath: myParts
-      value: 
-      objectReference: {fileID: 11400000, guid: f2b4d52f68897814fa350eaf01da7dc4,
-        type: 2}
     - target: {fileID: 8502912941316756042, guid: f99f8c34658d0d045b562b4260f0f950,
         type: 3}
       propertyPath: m_Name
