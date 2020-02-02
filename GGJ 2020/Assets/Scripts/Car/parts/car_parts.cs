@@ -14,12 +14,13 @@ public class SerializedParts
 public class car_parts : MonoBehaviour {
 
     // Readonly settings
-    public static readonly int[] parts_init = {0, 0, 0, 0, 0, 0, 0, 0,1};//{ 4, 1, 2, 0, 0, 2, 2, 1, 1}; // Number of parts to start with
+    public static readonly int[] parts_init = { 4, 1, 2, 0, 0, 2, 2, 1, 1}; // Number of parts to start with
     public static readonly int num_diff_parts = System.Enum.GetValues(typeof(part)).Length; //icky
     [SerializeField] private AudioClip pick_up_sound;
 
 
     [SerializeField] private PartList my_parts;
+    [SerializeField] private PartList pickup_player_ids;
 
     public int partCount(int player, part p) => my_parts[player].val[(int)p];
     
@@ -38,13 +39,15 @@ public class car_parts : MonoBehaviour {
         
         // Keep track of parts
         my_parts[playerID].val = new int[num_diff_parts];
-        
+        pickup_player_ids[playerID].val = new int[num_diff_parts];
+
         if (parts_init.Length != num_diff_parts) {
             Debug.LogError("HEY! parts_init in car_parts.cs doesn't have all the part init numbers");
         }
         
         for (int p = 0; p < num_diff_parts; p++) {
             my_parts[playerID].val[p] = parts_init[p];
+            pickup_player_ids[playerID].val[p] = p;
         }
     }
 
@@ -94,6 +97,7 @@ public class car_parts : MonoBehaviour {
             }
             else //you suffer
             {
+                // TODO - THEY suffer
                 //lose_random_part(collision.impulse);
             }
         }
@@ -147,7 +151,11 @@ public class car_parts : MonoBehaviour {
     // Called by a floating part when you pick it up
     public void pickup_part(part partType, int p) {
         my_parts[playerID].val[(int)partType]++;
+
         SoundManager.instance.PlayOnce(pick_up_sound);
-        Debug.Log("Car now has " + (my_parts[playerID].val[(int)partType]) + " " + partType + "(s)");
+       
+        pickup_player_ids[playerID].val[(int)partType] = p;
+        //Debug.Log("Car now has " + (my_parts[playerID].val[(int)partType]) + " " + partType + "(s)");
+
     }
 }

@@ -9727,6 +9727,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   my_parts: {fileID: 11400000, guid: f2b4d52f68897814fa350eaf01da7dc4, type: 2}
+  pickup_player_ids: {fileID: 11400000, guid: 83d064d453f3af041bd93b79db6b0a09, type: 2}
   partObjs:
   - Part: 0
     Refs:
@@ -19742,6 +19743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pick_up_sound: {fileID: 8300000, guid: 56ddbdb5865c74f97ac442ca24a04adc, type: 3}
   my_parts: {fileID: 11400000, guid: f2b4d52f68897814fa350eaf01da7dc4, type: 2}
+  pickup_player_ids: {fileID: 11400000, guid: 83d064d453f3af041bd93b79db6b0a09, type: 2}
   partConfig: {fileID: 11400000, guid: bdef7cb8351cdf14eaaf3b751b82695d, type: 2}
   lostPartDelay: 0
 --- !u!114 &2430613937558349611

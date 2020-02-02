@@ -112,7 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   riseSpeed: 0.05
   riseHeight: 5
-  duration: 10
+  duration: 20
   whirrSFX: {fileID: 8300000, guid: a1f46256a74fe41dc912636dc2a15886, type: 3}
   startOnEnable: 0
 --- !u!64 &4369662824392996987

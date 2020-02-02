@@ -17,6 +17,7 @@ public class InputController : MonoBehaviour
 
     // Horn sound
     public AudioConfig audioConfig;
+    [SerializeField] private AudioClip EngineRun;
     // Whether this horn is supposed to loop or not
     public bool isHornLooping;
 
@@ -30,6 +31,7 @@ public class InputController : MonoBehaviour
     private bool leftshoulderpressed;
     private bool rightshoulderpressed;
     private bool startPressed;
+    private bool hornPressed;
     private float vibration = 0;
     private float vibration_standby = 0.000f;
     private float vibration_move = 0.01f;
@@ -39,12 +41,18 @@ public class InputController : MonoBehaviour
     private void Awake()
     {
         p = GetComponentInParent<playerID>().p;
+        isHornLooping = !(p == 0);
 #if UNITY_STANDALONE_WIN
         player = (PlayerIndex)p;
 
         var playerControlInfo = state[(int)player];
         state[(int)player] = playerControlInfo;
 #endif
+    }
+
+    private void Start()
+    {
+        StartCoroutine(EngineMonitor(state[(int)player]));
     }
     // Update is called once per frame
     void Update()
@@ -57,6 +65,7 @@ public class InputController : MonoBehaviour
         playerControlInfo.handBrakePulled = (int)GamePad.GetState(player).Buttons.X;
         playerControlInfo.throttle = GamePad.GetState(player).Triggers.Right;
         playerControlInfo.horn = GamePad.GetState(player).Buttons.A == ButtonState.Pressed;
+        playerControlInfo.hornNo = GamePad.GetState(player).Buttons.A == ButtonState.Released;
         state[(int)player] = playerControlInfo;
 
         
@@ -73,7 +82,22 @@ public class InputController : MonoBehaviour
             startPressed = false;
         }
 
-        if (!leftshoulderpressed && GamePad.GetState(player).Triggers.Left > 0)
+        if (!hornPressed && playerControlInfo.horn)
+        {
+            hornPressed = true;
+            if (isHornLooping)
+                SoundManager.instance.StartLoop(getHorn(), p.ToString());
+            else
+                SoundManager.instance.PlayOnce(getHorn());
+        }
+        if (hornPressed && playerControlInfo.hornNo)
+        {
+            if (isHornLooping) SoundManager.instance.StopLoop(getHorn(), p.ToString());
+            hornPressed = false;
+        }
+
+
+        /*if (!leftshoulderpressed && GamePad.GetState(player).Triggers.Left > 0)
             if (playerControlInfo.horn)
             {
                 if (isHornLooping)
@@ -85,20 +109,7 @@ public class InputController : MonoBehaviour
             {
                 if (isHornLooping)
                     SoundManager.instance.StopLoop(getHorn(), p.ToString());
-            }
-
-        if (playerControlInfo.horn)
-        {
-            if (isHornLooping)
-                SoundManager.instance.StartLoop(getHorn(), p.ToString());
-            else
-                SoundManager.instance.PlayOnce(getHorn());
-        }
-        else if (!playerControlInfo.horn)
-        {
-            if (isHornLooping)
-                SoundManager.instance.StopLoop(getHorn(), p.ToString());
-        }
+            }*/
 
         if (!leftshoulderpressed && GamePad.GetState(player).Triggers.Left > 0)
         {
@@ -117,7 +128,6 @@ public class InputController : MonoBehaviour
         if (rightshoulderpressed && GamePad.GetState(player).Triggers.Right == 0)
         {
             rightshoulderpressed = false;
-
         }
 
         if (leftshoulderpressed)
@@ -138,6 +148,7 @@ public class InputController : MonoBehaviour
         }
 #endif
     }
+
     private AudioClip getHorn()
     {
         return audioConfig.horns[p % audioConfig.horns.Count];
@@ -146,6 +157,20 @@ public class InputController : MonoBehaviour
     {
         return audioConfig.revs[p % audioConfig.revs.Count];
     }
+
+    private IEnumerator EngineMonitor(PlayerControlInfo playerControlInfo)
+    {
+        while(true)
+        {
+            GameObject MySound;
+            yield return new WaitUntil(() => playerControlInfo.direction != Vector3.zero);
+            MySound = SoundManager.instance.StartLoop(EngineRun, p.ToString(), 0.1f);
+            MySound.GetComponent<AudioSource>().pitch = 1f + playerControlInfo.direction.magnitude;
+            yield return new WaitUntil(() => playerControlInfo.direction == Vector3.zero);
+            SoundManager.instance.StopLoop(EngineRun, p.ToString());
+        }
+    }
+
 #if UNITY_STANDALONE_WIN
     private void OnDestroy()
     {

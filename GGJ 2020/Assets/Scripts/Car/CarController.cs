@@ -146,13 +146,14 @@ public class CarController : MonoBehaviour
                     wheel.motorTorque = -carConfig.reverseSpeed * pci.footBrake * (parts[(int)part.brake] + .2f);
                 return;
                 }
-
+#if UNITY_STANDALONE_WIN
                 if (pci.handBrakePulled == (int)XInputDotNetPure.ButtonState.Pressed && parts[(int)part.brake] > 0)
                 {
                     wheel.brakeTorque = Mathf.Pow(2,32);
                     return;
                 }
-                    wheel.brakeTorque = pci.footBrake * carConfig.maxBrake * Mathf.Sqrt(carRB.velocity.magnitude);
+#endif
+                wheel.brakeTorque = pci.footBrake * carConfig.maxBrake * Mathf.Sqrt(carRB.velocity.magnitude);
                     if (wheel.brakeTorque > 0) return;
                     float dot = Vector3.Dot(inputDir, groundDir);
 
