@@ -44,17 +44,14 @@ public class InputController : MonoBehaviour
     private void Awake()
     {
 #if UNITY_STANDALONE_WIN
-    private void Awake()
-    {
         player = (PlayerIndex)GetComponentInParent<playerID>().p;
 
         var playerControlInfo = state[(int)player];
-        state[(int) player] = playerControlInfo;
-#endif
+        state[(int)player] = playerControlInfo;
 
-    }
+    
 #endif
-
+}
     // Update is called once per frame
     void Update()
     {
