@@ -77,6 +77,7 @@ MonoBehaviour:
   state: {fileID: 11400000, guid: 381b57a0c3b89bd4296219bc23273dd0, type: 2}
   usingKeyboard: 0
   audioConfig: {fileID: 11400000, guid: 7f5dafacfdb0e214893918b4854c5604, type: 2}
+  EngineRun: {fileID: 8300000, guid: 354bcc37a981748639ca0c478b1bfbe9, type: 3}
   isHornLooping: 0
 --- !u!114 &3684976111592868045
 MonoBehaviour:
@@ -168,6 +169,7 @@ MonoBehaviour:
   state: {fileID: 11400000, guid: 381b57a0c3b89bd4296219bc23273dd0, type: 2}
   usingKeyboard: 0
   audioConfig: {fileID: 11400000, guid: 7f5dafacfdb0e214893918b4854c5604, type: 2}
+  EngineRun: {fileID: 8300000, guid: 354bcc37a981748639ca0c478b1bfbe9, type: 3}
   isHornLooping: 0
 --- !u!114 &4394396820655919474
 MonoBehaviour:
@@ -289,6 +291,7 @@ MonoBehaviour:
   state: {fileID: 11400000, guid: 381b57a0c3b89bd4296219bc23273dd0, type: 2}
   usingKeyboard: 0
   audioConfig: {fileID: 11400000, guid: 7f5dafacfdb0e214893918b4854c5604, type: 2}
+  EngineRun: {fileID: 8300000, guid: 354bcc37a981748639ca0c478b1bfbe9, type: 3}
   isHornLooping: 0
 --- !u!114 &2995815452545685256
 MonoBehaviour:
@@ -350,6 +353,7 @@ MonoBehaviour:
   state: {fileID: 11400000, guid: 381b57a0c3b89bd4296219bc23273dd0, type: 2}
   usingKeyboard: 0
   audioConfig: {fileID: 11400000, guid: 7f5dafacfdb0e214893918b4854c5604, type: 2}
+  EngineRun: {fileID: 8300000, guid: 354bcc37a981748639ca0c478b1bfbe9, type: 3}
   isHornLooping: 0
 --- !u!114 &6563759663343859675
 MonoBehaviour:
@@ -482,7 +486,9 @@ MonoBehaviour:
   - {fileID: 2419445227157511071}
   - {fileID: 3472381115448973263}
   - {fileID: 274690978580937844}
+  carObjects: []
   carPrefab: {fileID: 2430613937558349611, guid: d888e97c81479eb4eb531979ce296b25,
     type: 3}
   playerDied: {fileID: 11400000, guid: 1c97506cb208ce542b2f4ce950e03acb, type: 2}
   playerLives: {fileID: 11400000, guid: d9753f3867d2b6c4bbe4792baa041769, type: 2}
+  inGame: 
