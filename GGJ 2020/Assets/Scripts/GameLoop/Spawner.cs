@@ -20,21 +20,17 @@ public class Spawner : MonoBehaviour {
 
     // Init
     private void Awake() {
+        playerDied.AddListener(onPlayerDied);
         // TODO - whenever a player drops in, initialize their lives. For now, 4 players always
         for(int p = 0; p < numPlayers; p++) {
             // initialize lives (TODO)
         }
     }
 
-    // Start is called before the first frame update
-    void Start() {
-
-    }
-
     // Called whenever a player dies
     private void onPlayerDied(int player) {
         // TODO - check if lives > 0, then decrement
-        spawnCarDelayed(player, spawn_delay);
+        StartCoroutine(spawnCarDelayed(player, spawn_delay));
     }
 
     IEnumerator spawnCarDelayed(int player, float delay) {

@@ -14669,6 +14669,7 @@ GameObject:
   - component: {fileID: 3852221497060727823}
   - component: {fileID: 2502773953085368981}
   - component: {fileID: 2852088633277925598}
+  - component: {fileID: 8602039778836129853}
   m_Layer: 10
   m_Name: Car 2.0
   m_TagString: car
@@ -14810,6 +14811,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orthoCam: {fileID: 466622285970230287}
+--- !u!114 &8602039778836129853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8539077316296231845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8f5eab091a4d6540973f252f03a981e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerDied: {fileID: 11400000, guid: 1c97506cb208ce542b2f4ce950e03acb, type: 2}
 --- !u!1 &8539077316814288859
 GameObject:
   m_ObjectHideFlags: 0

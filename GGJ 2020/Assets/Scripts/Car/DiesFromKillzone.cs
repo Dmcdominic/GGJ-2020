@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class DiesFromKillzone : MonoBehaviour {
 
+    public IntEvent playerDied;
 
 
     private void OnTriggerEnter(Collider collider) {
+        Debug.Log(collider);
         if (collider.gameObject.tag == "killzone") {
-            // TODO - send playerDied event (to spawner)
-            // TODO - DIE. EXPLODE
+            playerDied.Invoke(GetComponentInParent<playerID>().p);
+            Destroy(gameObject);
+            // TODO - EXPLODE
         }
     }
 }
