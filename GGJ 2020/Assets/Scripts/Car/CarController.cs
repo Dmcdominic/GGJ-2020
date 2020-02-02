@@ -67,7 +67,7 @@ public class CarController : MonoBehaviour
                                     return val * partConfig.part_weights[index];
                                 }))
                                 .Aggregate((l,r) => l + r);
-            carRB.mass = Mathf.LerpUnclamped(carRB.mass, newWeight, .5f);
+            carRB.mass = Mathf.Lerp(carRB.mass, newWeight, .5f);
             yield return new WaitForSeconds(1);
         }
     }
@@ -80,7 +80,7 @@ public class CarController : MonoBehaviour
             SteerNormal();
             rearWheels.Map(SetStiffness);
             frontWheels.Map(SetStiffness);
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
     }
 
