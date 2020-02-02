@@ -45,12 +45,10 @@ MonoBehaviour:
   - Part: 7
     Prefab: {fileID: 0}
   part_weights:
-  - 10
+  - 9
   - 15
   - 100
   - 15
   - 30
   - 60
   - 50
-  - 150
-  - 10

@@ -53,6 +53,7 @@ public class CarController : MonoBehaviour
         carRB.centerOfMass += -carRB.transform.up + -carRB.transform.forward;
         StartCoroutine(DriveNormal());
         StartCoroutine(UnFlip());
+        StartCoroutine(ControlWeight());
     }
 
     IEnumerator ControlWeight()
@@ -122,18 +123,24 @@ public class CarController : MonoBehaviour
                     wheel.motorTorque = -carConfig.reverseSpeed * pci.footBrake * parts[(int)part.brake];
                 return;
                 }
+
+                if (pci.handBrakePulled == (int)XInputDotNetPure.ButtonState.Pressed)
+                {
+                    wheel.brakeTorque = Mathf.Pow(2,32);
+                    return;
+                }
                     wheel.brakeTorque = pci.footBrake * carConfig.maxBrake * Mathf.Sqrt(carRB.velocity.magnitude);
                     if (wheel.brakeTorque > 0) return;
                     float dot = Vector3.Dot(inputDir, groundDir);
 
 
-                    if (dot < 0) //IF TODO boost reduce effect
+                    if (dot < 0 && throttle < .15f) //IF TODO boost reduce effect
                     {
                         wheel.motorTorque *= (1 - Mathf.Pow(dot,2)) * Time.deltaTime;
                     }
                     else
                     {
-                        wheel.motorTorque = Mathf.SmoothDamp( wheel.motorTorque, carConfig.gearThrottles[curGear] * pci.direction.magnitude * (throttle + 1),ref acceleration,.01f);
+                        wheel.motorTorque = Mathf.SmoothDamp( wheel.motorTorque, carConfig.gearThrottles[curGear] * (pci.direction.magnitude + pci.throttle) * (throttle + 1),ref acceleration,.01f);
                     }
 
             });
@@ -141,7 +148,7 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+
         var rocketBoost = pci.throttle * carConfig.rearForceConstant * transform.forward * Mathf.Clamp01(2 - 1 / Mathf.Pow(2,parts[(int)part.engine] - 1));
           
         rocketBoost = new Vector3(rocketBoost.x,Mathf.Sqrt(Mathf.Abs(rocketBoost.y)),rocketBoost.z);
@@ -181,7 +188,7 @@ public class CarController : MonoBehaviour
                     maxSteer += (carConfig.maxSteer - maxSteer) / Mathf.Pow(3,i);
 
 
-                if (carRB.velocity.magnitude < 5)
+                if (carRB.velocity.magnitude < 5 && pci.throttle < .1f)
                 {
                     maxSteer *= Mathf.Lerp(1,1.7f,6 - carRB.velocity.magnitude);
                 }
