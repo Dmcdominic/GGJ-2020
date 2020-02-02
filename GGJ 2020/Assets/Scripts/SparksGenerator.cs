@@ -22,7 +22,7 @@ public class SparksGenerator : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.transform.tag == "Car")
+        if(collision.transform.tag == "car")
         {
             collidedWith = collision.gameObject;
             closestPoint = collision.collider.ClosestPointOnBounds(this.transform.position);
@@ -33,7 +33,7 @@ public class SparksGenerator : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.transform.tag == "Car")
+        if (collision.transform.tag == "car")
         {
             StopCoroutine("FireSparks");
             Destroy(instantiatedSparks);
