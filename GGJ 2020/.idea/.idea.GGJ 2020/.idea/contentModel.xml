@@ -23,6 +23,8 @@
           <e p="Vector3Ref.cs" t="Include" />
         </e>
         <e p="Dragger.cs" t="Include" />
+        <e p="KillSelf.cs" t="Include" />
+        <e p="MusicManager.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="adhoc" t="Include">
             <e p="ColorCorrection.cs" t="Include" />
@@ -57,6 +59,7 @@
             <e p="PlayerControlState.cs" t="Include" />
           </e>
           <e p="playerID.cs" t="Include" />
+          <e p="SoundManager.cs" t="Include" />
         </e>
         <e p="SqrtDrag.cs" t="Include" />
         <e p="XInputDotNet" t="Include">

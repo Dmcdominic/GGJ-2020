@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_STANDALONE_WIN
 using XInputDotNetPure;
+#endif
+
 
 public class InputController : MonoBehaviour
 {
@@ -10,9 +13,12 @@ public class InputController : MonoBehaviour
     PlayerControlState state;
 
     [SerializeField]
+
     bool usingKeyboard;
 
+#if UNITY_STANDALONE_WIN
     XInputDotNetPure.PlayerIndex player;
+#endif
 
 
     private bool leftshoulderpressed;
@@ -21,14 +27,17 @@ public class InputController : MonoBehaviour
     private void Awake()
     {
         player = (PlayerIndex)GetComponentInParent<playerID>().p;
+#if UNITY_STANDALONE_WIN
         var playerControlInfo = state[(int)player];
         state[(int) player] = playerControlInfo;
-        
+#endif
+
     }
 
     // Update is called once per frame
     void Update()
     {
+#if UNITY_STANDALONE_WIN
         var stick = GamePad.GetState(player).ThumbSticks.Left;
         var playerControlInfo = state[(int)player];
         playerControlInfo.direction = new Vector3(stick.X,0,stick.Y);
@@ -56,5 +65,6 @@ public class InputController : MonoBehaviour
         {
             rightshoulderpressed = false;
         }
+#endif
     }
 }
