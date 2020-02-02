@@ -12,6 +12,8 @@ public class Bulldozer : Hazard
 
 #pragma warning restore 0649
 
+    public AudioClip movesound;
+
     private Vector3 orig;
     private Coroutine routine;
 
@@ -28,6 +30,8 @@ public class Bulldozer : Hazard
 
     private IEnumerator Routine()
     {
+        string r = "Bulldoze" + Random.value.ToString();
+        SoundManager.instance.StartLoop(movesound, r,0.3f);
         while (transform.position.x != targetX)
         {
             transform.position = new Vector3(Mathf.MoveTowards(transform.position.x, targetX, moveSpeed), transform.position.y, transform.position.z);
@@ -36,16 +40,22 @@ public class Bulldozer : Hazard
         yield return StartCoroutine(Fall());
         transform.position = orig;
         routine = null;
+        SoundManager.instance.StopLoop(movesound, r);
     }
 
     private IEnumerator Fall()
     {
         Vector3 target = new Vector3(transform.position.x, transform.position.y - riseHeight, transform.position.z);
 
+        string r = "Bulldoze" + Random.value.ToString();
+        SoundManager.instance.StartLoop(movesound, r, 0.3f);
+
         while (transform.position != target)
         {
             transform.position = Vector3.MoveTowards(transform.position, target, riseSpeed);
             yield return new WaitForFixedUpdate();
         }
+
+        SoundManager.instance.StopLoop(movesound, r);
     }
 }

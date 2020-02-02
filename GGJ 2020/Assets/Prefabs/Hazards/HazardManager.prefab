@@ -80,6 +80,8 @@ MonoBehaviour:
   turret: {fileID: 4282729198441385891, guid: 762e2141a35796541978e2f62fea4e16, type: 3}
   trap: {fileID: 0}
   bar: {fileID: 5183061113390133859, guid: 0c6d6c96ab632c243be9b6d5105edae0, type: 3}
+  ramp: {fileID: 3047335768493123198, guid: 39cf99cd054e5db439a1f49612878646, type: 3}
+  bulldozer: {fileID: 0}
   barrier: {fileID: 0}
   barrierFreq:
     serializedVersion: 2

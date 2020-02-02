@@ -14,7 +14,7 @@ public class SerializedParts
 public class car_parts : MonoBehaviour {
 
     // Readonly settings
-    public static readonly int[] parts_init = { 4, 1, 2, 0, 0, 2, 2, 1, 0}; // Number of parts to start with
+    public static readonly int[] parts_init = { 4, 1, 2, 0, 0, 2, 2, 1, 1}; // Number of parts to start with
     public static readonly int num_diff_parts = System.Enum.GetValues(typeof(part)).Length; //icky
 
 
@@ -28,7 +28,6 @@ public class car_parts : MonoBehaviour {
     // Private vars
     private int playerID;
     private float lostPartDelay = 0;
-
 
     // Init
     private void Awake() {
@@ -69,8 +68,27 @@ public class car_parts : MonoBehaviour {
         }
 
         //Debug.Log("car_parts collision impulse: " + collision.impulse.magnitude);
-        if (collision.impulse.magnitude > partConfig.impulseToLosePart) {
-            lose_random_part(collision.impulse);
+        if (collision.impulse.magnitude > partConfig.impulseToLosePart)
+        {
+            Vector3 selfVelocity = this.GetComponent<Rigidbody>().velocity;
+            Vector3 otherVelcity = collision.gameObject.GetComponent<Rigidbody>().velocity;
+            Vector3 impulse = collision.impulse;
+            float selfDot = Mathf.Abs(Vector3.Dot(selfVelocity.normalized, impulse));
+            float otherDot = Mathf.Abs(Vector3.Dot(otherVelcity.normalized, impulse));
+
+            if (selfDot > otherDot) //other car suffers
+            {
+                float upper_bound = Mathf.Pow(0.5f, my_parts[playerID].val[(int)part.bumper]);
+                float random_roll = Random.Range(0, 1);
+                if(random_roll < upper_bound)
+                {
+                    lose_random_part(collision.impulse);
+                }
+            }
+            else //you suffer
+            {
+                lose_random_part(collision.impulse);
+            }
         }
     }
 

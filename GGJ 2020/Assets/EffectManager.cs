@@ -9,6 +9,7 @@ public class EffectManager : MonoBehaviour
     private PlayerControlInfo pci => input[player];
     [SerializeField] private ParticleSystem leftBurst;
     [SerializeField] private ParticleSystem rightBurst;
+    [SerializeField] private PartList carParts;
     bool playing = false;
     // Start is called before the first frame update
     void Start()
@@ -19,7 +20,7 @@ public class EffectManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(pci.throttle > 0.1f && !playing)
+        if(pci.throttle > 0.1f && !playing && carParts[player].val[(int)part.engine] > 0)
         {
             leftBurst.Play();
             rightBurst.Play();
