@@ -34,6 +34,17 @@ public class DiesFromKillzone : MonoBehaviour
             playerDied.Invoke(GetComponentInParent<playerID>().p);
             diedThisFrame = true;
             Destroy(gameObject);
+            carModel.transform.parent = null;
+            foreach (MeshRenderer meshRenderer in carModel.GetComponentsInChildren<MeshRenderer>())
+            {
+                var rb = meshRenderer.gameObject.AddComponent<Rigidbody>();
+                rb.AddExplosionForce(1500, transform.position, 20);
+            }
+
+            foreach (TrailRenderer trail in carModel.GetComponentsInChildren<TrailRenderer>())
+            {
+                StartCoroutine(fadeTrail(trail));
+            }
         }
     }
 
@@ -43,6 +54,9 @@ public class DiesFromKillzone : MonoBehaviour
             return;
         }
         if (collider.gameObject.tag == "killzone") {
+            SoundManager.instance.PlayOnce(dieClip, 1);
+            GameObject expl = GameObject.Instantiate(explosionEffect);
+            expl.transform.position = gameObject.transform.position;
             playerDied.Invoke(GetComponentInParent<playerID>().p);
             diedThisFrame = true;
             Destroy(gameObject);
@@ -50,8 +64,9 @@ public class DiesFromKillzone : MonoBehaviour
             carModel.transform.parent = null;
             foreach (MeshRenderer meshRenderer in carModel.GetComponentsInChildren<MeshRenderer>())
             {
+                //meshRenderer.gameObject.AddComponent<Rigidbody>();
                 var rb = meshRenderer.gameObject.AddComponent<Rigidbody>();
-                rb.AddExplosionForce(5,transform.position,20);
+                rb.AddExplosionForce(1500,transform.position,20);
             }
 
             foreach (TrailRenderer trail in carModel.GetComponentsInChildren<TrailRenderer>())

@@ -13,7 +13,7 @@ public class HazardRandomizer : Hazard
 
     override public void Activate()
     {
-        int rng = Mathf.FloorToInt(Random.Range(0, hazards.Length));
+        int rng = Random.Range(0, hazards.Length);
         hazards[rng].Activate();
     }
 }
