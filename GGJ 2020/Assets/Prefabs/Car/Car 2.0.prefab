@@ -19874,6 +19874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81dfabd01b22a5349b9a9678a7544242, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shake: {fileID: 11400000, guid: 0bdbeffc5fa5d0a4bb8bf50691e2e5ce, type: 2}
 --- !u!114 &1621373533
 MonoBehaviour:
   m_ObjectHideFlags: 0

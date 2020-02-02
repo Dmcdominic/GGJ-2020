@@ -10,6 +10,7 @@
         <e p="BoilerPlate" t="Include">
           <e p="BoolEvent.cs" t="Include" />
           <e p="BoolRef.cs" t="Include" />
+          <e p="camerashake.cs" t="Include" />
           <e p="EventObject.cs" t="Include" />
           <e p="FloatRef.cs" t="Include" />
           <e p="IntEvent.cs" t="Include" />
@@ -34,6 +35,9 @@
         <e p="EffectManager.cs" t="Include" />
         <e p="FadeSlower.cs" t="Include" />
         <e p="FrontCollision.cs" t="Include" />
+        <e p="ScriptableObjects" t="Include">
+          <e p="CameraShakeScript.cs" t="Include" />
+        </e>
         <e p="Scripts" t="Include">
           <e p="adhoc" t="Include">
             <e p="ColorCorrection.cs" t="Include" />

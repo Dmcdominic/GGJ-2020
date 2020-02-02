@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(playerID))]
 public class CrashSound : MonoBehaviour
 {
+    [SerializeField] private IntEvent shake;
     private void OnCollisionEnter(Collision other)
     {
         playSound(.5f);
@@ -18,6 +19,7 @@ public class CrashSound : MonoBehaviour
 
     void playSound(float k)
     {
+        shake.Invoke(1);
         SoundManager.instance
             .PlayOnce(SoundManager.instance.config
                     .crashes[(int)(Random.value * SoundManager.instance.config.crashes.Count)],
