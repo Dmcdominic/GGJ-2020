@@ -51,7 +51,7 @@ public class InputController : MonoBehaviour
 #endif
     }
         // Update is called once per frame
-        void Update()
+        void Update() 
         {
 #if UNITY_STANDALONE_WIN
             var stick = GamePad.GetState(player).ThumbSticks.Left;

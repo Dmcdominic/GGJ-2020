@@ -10,7 +10,7 @@ ModelImporter:
       name: PlayerColor
     second: {fileID: 2100000, guid: d632ed2c9af91cd47909e7fba6f336fb, type: 2}
   materials:
-    materialImportMode: 1
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
