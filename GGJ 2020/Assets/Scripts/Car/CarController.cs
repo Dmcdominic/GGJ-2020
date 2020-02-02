@@ -97,22 +97,22 @@ public class CarController : MonoBehaviour
 
     IEnumerator UnFlip()
     {
-        yield return  new WaitForSeconds(5);
+        yield return new WaitForSeconds(5);
         while(true)
         {
-            bool mustFlip = true;
-            rearWheels.Map(wheel => mustFlip &= wheel.isGrounded);
-            frontWheels.Map(wheel => mustFlip &= wheel.isGrounded);
-            while (carRB.transform.up.y < Mathf.Sqrt(2) || !mustFlip)
+            bool mustFlip = false;
+            rearWheels.Map(wheel => mustFlip |= wheel.isGrounded);
+            frontWheels.Map(wheel => mustFlip |= wheel.isGrounded);
+            while (carRB.transform.up.y < Mathf.Sqrt(2) || mustFlip)
             {
-                mustFlip = true;
+                mustFlip = false;
                 rearWheels.Map(wheel => mustFlip |= wheel.isGrounded);
                 frontWheels.Map(wheel => mustFlip |= wheel.isGrounded);
-                if (!mustFlip)
+                if (mustFlip)
                 {
-                    yield return new WaitForSeconds(1);
+                    yield return new WaitForSeconds(2);
                 }
-                carRB.AddForce(Vector3.up * carConfig.unflipSpeed,ForceMode.VelocityChange);
+                //carRB.AddForce(Vector3.up * carConfig.unflipSpeed,ForceMode.VelocityChange);
                 yield return null;
             }
 
