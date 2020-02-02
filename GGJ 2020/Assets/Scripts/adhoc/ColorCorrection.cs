@@ -5,7 +5,7 @@ using UnityEngine;
 public class ColorCorrection : MonoBehaviour
 {
     [SerializeField]
-    ColorConfig colorConfig;
+    Material[] playerColor;
 
     private int player;
     // Start is called before the first frame update
@@ -15,9 +15,11 @@ public class ColorCorrection : MonoBehaviour
         foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
         {
             var mats = mr.materials;
-            for (int i = 0; i < mats.Length; i++) {
-                if (mats[i].color.Equals(colorConfig.playerColor[0].color)) {
-                    mats[i] = colorConfig.playerColor[player];
+            for (int i = 0; i < mats.Length; i++)
+            {
+                if (mats[i].color.Equals(playerColor[0].color))
+                {
+                    mats[i] = playerColor[player];
                 }
             }
             mr.materials = mats;
