@@ -29,7 +29,6 @@ public class car_parts : MonoBehaviour {
     private int playerID;
     private float lostPartDelay = 0;
 
-
     // Init
     private void Awake() {
         playerID = GetComponentInParent<playerID>().p;
@@ -69,8 +68,27 @@ public class car_parts : MonoBehaviour {
         }
 
         //Debug.Log("car_parts collision impulse: " + collision.impulse.magnitude);
-        if (collision.impulse.magnitude > partConfig.impulseToLosePart) {
-            lose_random_part(collision.impulse);
+        if (collision.impulse.magnitude > partConfig.impulseToLosePart)
+        {
+            Vector3 selfVelocity = this.GetComponent<Rigidbody>().velocity;
+            Vector3 otherVelcity = collision.gameObject.GetComponent<Rigidbody>().velocity;
+            Vector3 impulse = collision.impulse;
+            float selfDot = Mathf.Abs(Vector3.Dot(selfVelocity.normalized, impulse));
+            float otherDot = Mathf.Abs(Vector3.Dot(otherVelcity.normalized, impulse));
+
+            if (selfDot > otherDot) //other car suffers
+            {
+                float upper_bound = Mathf.Pow(2, my_parts[playerID].val[(int)part.bumper]);
+                float random_roll = Random.Range(0, 1);
+                if(random_roll < upper_bound)
+                {
+                    lose_random_part(collision.impulse);
+                }
+            }
+            else //you suffer
+            {
+                lose_random_part(collision.impulse);
+            }
         }
     }
 

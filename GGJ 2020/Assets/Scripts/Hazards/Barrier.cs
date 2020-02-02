@@ -8,6 +8,7 @@ public class Barrier : Hazard
     [SerializeField] private float riseSpeed;
     [SerializeField] private float riseHeight;
     [SerializeField] private float duration;
+    [SerializeField] private AudioClip whirrSFX;
     [SerializeField] private bool startOnEnable;
 #pragma warning restore 0649
 
@@ -49,11 +50,15 @@ public class Barrier : Hazard
     {
         Vector3 target = new Vector3(transform.position.x, transform.position.y + riseHeight, transform.position.z);
 
+        string id = "Barrier" + Random.value.ToString();
+        SoundManager.instance.StartLoop(whirrSFX, id, 0.3f);
+
         while (transform.position != target)
         {
             transform.position = Vector3.MoveTowards(transform.position, target, riseSpeed);
             yield return new WaitForFixedUpdate();
         }
+        SoundManager.instance.StopLoop(whirrSFX, id);
 
     }
 
@@ -61,10 +66,15 @@ public class Barrier : Hazard
     {
         Vector3 target = new Vector3(transform.position.x, transform.position.y - riseHeight, transform.position.z);
 
+        string id = "Barrier" + Random.value.ToString();
+        SoundManager.instance.StartLoop(whirrSFX, id, 0.3f);
+
         while (transform.position != target)
         {
             transform.position = Vector3.MoveTowards(transform.position, target, riseSpeed);
             yield return new WaitForFixedUpdate();
         }
+        SoundManager.instance.StopLoop(whirrSFX, id);
+
     }
 }

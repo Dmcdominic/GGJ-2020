@@ -26,8 +26,9 @@ public class InputController : MonoBehaviour
 
     private void Awake()
     {
-        player = (PlayerIndex)GetComponentInParent<playerID>().p;
 #if UNITY_STANDALONE_WIN
+        player = (PlayerIndex)GetComponentInParent<playerID>().p;
+
         var playerControlInfo = state[(int)player];
         state[(int) player] = playerControlInfo;
 #endif
