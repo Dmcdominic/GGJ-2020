@@ -109,7 +109,7 @@ public class CarController : MonoBehaviour
             while (mustFlip)
             {
                 Vector3 pos = transform.position;
-                yield return new WaitForSeconds(.66f);
+                yield return new WaitForSeconds(.5f);
                 
                 mustFlip = true;
                 rearWheels.Map(wheel => mustFlip &= !wheel.isGrounded);
@@ -120,9 +120,9 @@ public class CarController : MonoBehaviour
                 {
                     for (float dur = 0; dur < 1; dur += Time.deltaTime * 2)
                     {
-                        carRB.transform.position += (Vector3.up * 5 + Vector3.forward * (UnityEngine.Random.value - .5f) + Vector3.right * (UnityEngine.Random.value - .5f)) * Time.deltaTime;
-                        carRB.transform.rotation = Quaternion.Lerp(carRB.rotation,Quaternion.identity, Time.deltaTime * 3);
-                        carRB.velocity = Vector3.zero;
+                        carRB.transform.position += Vector3.up * .5f * Time.deltaTime;
+                        carRB.transform.rotation = Quaternion.Lerp(carRB.rotation,Quaternion.identity, Time.deltaTime / 2);
+                        carRB.velocity = inputDir * 3;
                         yield return null;
                     }
                 }
@@ -143,11 +143,11 @@ public class CarController : MonoBehaviour
                 
                 if ((Vector3.Dot(carRB.velocity,transform.forward) < 0 || carRB.velocity.magnitude < 100) && pci.footBrake > .1f)
                 {
-                    wheel.motorTorque = -carConfig.reverseSpeed * pci.footBrake * (parts[(int)part.brake] + .5f);
+                    wheel.motorTorque = -carConfig.reverseSpeed * pci.footBrake * (parts[(int)part.brake] + .2f);
                 return;
                 }
 
-                if (pci.handBrakePulled == (int)XInputDotNetPure.ButtonState.Pressed)
+                if (pci.handBrakePulled == (int)XInputDotNetPure.ButtonState.Pressed && parts[(int)part.brake] > 0)
                 {
                     wheel.brakeTorque = Mathf.Pow(2,32);
                     return;
@@ -157,18 +157,18 @@ public class CarController : MonoBehaviour
                     float dot = Vector3.Dot(inputDir, groundDir);
 
 
-                    if (dot < 0 && throttle < .15f) //IF TODO boost reduce effect
+                    if (dot < 0 && throttle < .15f && parts[(int)part.brake] > 0) //IF TODO boost reduce effect
                     {
                         wheel.motorTorque *= (1 - Mathf.Pow(dot,2)) * Time.deltaTime;
                     }
                     else
                     {
-                        wheel.motorTorque = Mathf.SmoothDamp( wheel.motorTorque, carConfig.gearThrottles[curGear] * (pci.direction.magnitude + pci.throttle) * (throttle + 1),ref acceleration,.01f);
+                        wheel.motorTorque = Mathf.SmoothDamp( wheel.motorTorque, carConfig.gearThrottles[curGear] * (pci.direction.magnitude + pci.throttle) * (throttle + 1),ref acceleration,parts[(int)part.brake] > 0 ? .01f : Mathf.Infinity);
                     }
 
-                    if (myParts[player].val[(int) part.brake] < 0)
+                    if (myParts[player].val[(int) part.brake] <= 0)
                     {
-                        wheel.motorTorque = Mathf.Clamp(wheel.motorTorque, carConfig.gearThrottles[curGear] * .75f,
+                        wheel.motorTorque = Mathf.Clamp(wheel.motorTorque, carConfig.gearThrottles[curGear] * .5f,
                             wheel.motorTorque);
                     }
 

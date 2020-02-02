@@ -20,3 +20,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5f3063eaafa79448784047b668efebfd, type: 3}
   - {fileID: 8300000, guid: 36a2847c4f3284ee4b268b3ce0899cfc, type: 3}
   - {fileID: 8300000, guid: 9dbcf22133a4c4614adaa3cbb7220885, type: 3}
+  crashes:
+  - {fileID: 8300000, guid: f976f94ecc288458faba38db3bf9a87f, type: 3}
+  - {fileID: 8300000, guid: c17188fb1526349c095f3c1e20e33f69, type: 3}

@@ -62,14 +62,6 @@ public class IconManager : MonoBehaviour
                     SteerFlash = Sum<FlashImage,Unit>.Inl(Instantiate(X_mark.gameObject,SteeringWheelImage.transform).GetComponent<FlashImage>());
                 return new Unit();
             });
-        if (partList[id].val[(int) part.steering_wheel] < 1)
-            Instantiate(X_mark.gameObject, SteeringWheelImage.transform);
-        else
-        {
-            foreach (var flashImage in SteeringWheelImage.GetComponents<FlashImage>())
-            {
-                Destroy(flashImage);
-            }
-        }
+
     }
 }
