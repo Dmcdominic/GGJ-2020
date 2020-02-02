@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 1076597182}
   m_Layer: 0
   m_Name: RightBulldozer
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -218,8 +218,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0.1
   targetX: 0
-  riseSpeed: 0.1
-  riseHeight: 4
+  riseSpeed: 0.5
+  riseHeight: 20
 --- !u!1 &1426141916
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,7 +236,7 @@ GameObject:
   - component: {fileID: 1426141918}
   m_Layer: 0
   m_Name: LeftBulldozer
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -345,8 +345,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0.1
   targetX: 0
-  riseSpeed: 0.1
-  riseHeight: 4
+  riseSpeed: 0.5
+  riseHeight: 20
 --- !u!1 &1588347979
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,7 +550,7 @@ GameObject:
   - component: {fileID: 6307678078867402054}
   m_Layer: 0
   m_Name: CurvedWall (1)
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -659,7 +659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   riseSpeed: 0.1
-  riseHeight: 1
+  riseHeight: 4.72
   duration: 10
   startOnEnable: 0
 --- !u!1 &6307678078999226487
@@ -678,7 +678,7 @@ GameObject:
   - component: {fileID: 6307678078999226377}
   m_Layer: 0
   m_Name: CurvedWall
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -787,7 +787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   riseSpeed: 0.1
-  riseHeight: 1
+  riseHeight: 4.72
   duration: 10
   startOnEnable: 0
 --- !u!1 &6307678079070584998
@@ -1408,7 +1408,7 @@ GameObject:
   - component: {fileID: 6307678079952394985}
   m_Layer: 0
   m_Name: Wall (1)
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1516,7 +1516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   riseSpeed: 0.1
-  riseHeight: 1
+  riseHeight: 4.72
   duration: 10
   startOnEnable: 0
 --- !u!1 &6307678079994650371
@@ -1535,7 +1535,7 @@ GameObject:
   - component: {fileID: 6307678079994650373}
   m_Layer: 0
   m_Name: CurvedWall (2)
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1644,7 +1644,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   riseSpeed: 0.1
-  riseHeight: 1
+  riseHeight: 4.72
   duration: 10
   startOnEnable: 0
 --- !u!1 &6307678080147487819
@@ -1663,7 +1663,7 @@ GameObject:
   - component: {fileID: 6307678080147487821}
   m_Layer: 0
   m_Name: CurvedWall (3)
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1772,7 +1772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   riseSpeed: 0.1
-  riseHeight: 1
+  riseHeight: 4.72
   duration: 10
   startOnEnable: 0
 --- !u!1 &6307678080172572157
@@ -1910,7 +1910,7 @@ Transform:
   m_GameObject: {fileID: 6307678080174335239}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 6307678078736221206}
   - {fileID: 6307678080328479205}
@@ -2206,7 +2206,7 @@ GameObject:
   - component: {fileID: 6307678080420951203}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2314,7 +2314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   riseSpeed: 0.1
-  riseHeight: 1
+  riseHeight: 4.72
   duration: 10
   startOnEnable: 0
 --- !u!1 &6307678080500397328
