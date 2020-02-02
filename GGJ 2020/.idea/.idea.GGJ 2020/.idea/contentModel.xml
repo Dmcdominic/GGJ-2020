@@ -26,6 +26,7 @@
         </e>
         <e p="CameraAdjuster.cs" t="Include" />
         <e p="CrashSound.cs" t="Include" />
+        <e p="DieAfterTime.cs" t="Include" />
         <e p="Dragger.cs" t="Include" />
         <e p="Editor" t="Include">
           <e p="uGUITools.cs" t="Include" />

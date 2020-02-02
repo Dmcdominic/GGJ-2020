@@ -106,26 +106,11 @@ public class InputController : MonoBehaviour
             {
                 if (!audioClip.length.Equals(audioConfig.horns[0].length))
                 {
-                    SoundManager.instance.StartLoop(audioClip, p.ToString());
+                    SoundManager.instance.StopLoop(audioClip, p.ToString());
                 }
             }
             hornPressed = false;
         }
-
-
-        /*if (!leftshoulderpressed && GamePad.GetState(player).Triggers.Left > 0)
-            if (playerControlInfo.horn)
-            {
-                if (isHornLooping)
-                    SoundManager.instance.StartLoop(getHorn(), p.ToString());
-                else
-                    SoundManager.instance.PlayOnce(getHorn());
-            }
-            else if (!playerControlInfo.horn)
-            {
-                if (isHornLooping)
-                    SoundManager.instance.StopLoop(getHorn(), p.ToString());
-            }*/
 
         if (!leftshoulderpressed && GamePad.GetState(player).Triggers.Left > 0)
         {
@@ -144,7 +129,7 @@ public class InputController : MonoBehaviour
         }
         if (rightshoulderpressed && GamePad.GetState(player).Triggers.Right == 0)
         {
-            SoundManager.instance.StartLoop(Fire, p.ToString());
+            SoundManager.instance.StopLoop(Fire, p.ToString());
             rightshoulderpressed = false;
         }
 

@@ -14,9 +14,10 @@ public class SerializedParts
 public class car_parts : MonoBehaviour {
 
     // Readonly settings
-    public static readonly int[] parts_init = { 4, 1, 2, 12, 1, 2, 2, 1, 1}; // Number of parts to start with
+    public static readonly int[] parts_init = { 4, 1, 2, 1, 1, 2, 2, 1, 1}; // Number of parts to start with
     public static readonly int num_diff_parts = System.Enum.GetValues(typeof(part)).Length; //icky
     [SerializeField] private AudioClip pick_up_sound;
+    [SerializeField] private PlayerBoolRef alive;
 
 
     [SerializeField] private PartList my_parts;
@@ -49,6 +50,17 @@ public class car_parts : MonoBehaviour {
             my_parts[playerID].val[p] = parts_init[p];
             pickup_player_ids[playerID].val[p] = p;
         }
+    }
+
+    private void Start()
+    {
+        
+        alive[playerID] = true;
+    }
+
+    private void OnDestroy()
+    {
+        alive[playerID] = false;
     }
 
     // Called every frame

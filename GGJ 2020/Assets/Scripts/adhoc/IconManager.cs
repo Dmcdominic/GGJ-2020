@@ -18,12 +18,23 @@ public class IconManager : MonoBehaviour
 
     private Sum<FlashImage, Unit> BrakeFlash;
     private Sum<FlashImage, Unit> SteerFlash;
+
+    [SerializeField] private PlayerBoolRef alive;
+    
     
     private int id;
+    private CanvasGroup _canvasGroup;
+
+    private void Awake()
+    {
+        id = GetComponent<playerID>().p;
+        alive[id] = false;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        id = GetComponent<playerID>().p;
+        _canvasGroup = GetComponent<CanvasGroup>();
         BrakeFlash = Sum<FlashImage, Unit>.Inr(new Unit());
         SteerFlash = Sum<FlashImage, Unit>.Inr(new Unit());
     }
@@ -31,9 +42,9 @@ public class IconManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (true)
+        if (alive[id])
         {
-            
+            _canvasGroup.alpha = 1;
             BrakeFlash.Match<Unit>(f =>
                 {
                     if (partList[id].val[(int) part.brake] > 0)
@@ -68,8 +79,7 @@ public class IconManager : MonoBehaviour
         }
         else
         {
-            SteeringWheelImage.color = new Color(0,0,0,1);
-            BrakeImage.color = new Color(0,0,0,1);
+            _canvasGroup.alpha = 0;
         }
 
     }
