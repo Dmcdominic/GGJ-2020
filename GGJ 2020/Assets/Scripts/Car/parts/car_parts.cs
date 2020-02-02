@@ -78,7 +78,7 @@ public class car_parts : MonoBehaviour {
 
             if (selfDot > otherDot) //other car suffers
             {
-                float upper_bound = Mathf.Pow(2, my_parts[playerID].val[(int)part.bumper]);
+                float upper_bound = Mathf.Pow(0.5f, my_parts[playerID].val[(int)part.bumper]);
                 float random_roll = Random.Range(0, 1);
                 if(random_roll < upper_bound)
                 {
