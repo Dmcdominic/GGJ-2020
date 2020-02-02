@@ -10,6 +10,7 @@ TagManager:
   - ground
   - obstacle
   - killzone
+  - floatingPart
   layers:
   - Default
   - TransparentFX

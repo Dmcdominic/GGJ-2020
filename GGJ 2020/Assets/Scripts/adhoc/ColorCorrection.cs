@@ -14,6 +14,7 @@ public class ColorCorrection : MonoBehaviour
         player = GetComponentInParent<playerID>().p;
         foreach (MeshRenderer mr in GetComponentsInChildren<MeshRenderer>())
         {
+            // TODO - check if mr.gameObject itself already has a playerID, to override player
             var mats = mr.materials;
             for (int i = 0; i < mats.Length; i++)
             {
