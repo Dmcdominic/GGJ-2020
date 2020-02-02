@@ -115,6 +115,8 @@ MonoBehaviour:
   fireRate: 2
   bullet: {fileID: 1994883473727156137, guid: 8068d3b525175aa4eae20e49b754f8f0, type: 3}
   doubleFire: 0
+  whirrSFX: {fileID: 8300000, guid: a1f46256a74fe41dc912636dc2a15886, type: 3}
+  shootSFX: {fileID: 8300000, guid: 47fa13cf5780a44c8afd20356f45baed, type: 3}
   startOnEnable: 0
 --- !u!54 &4282729198441385895
 Rigidbody:

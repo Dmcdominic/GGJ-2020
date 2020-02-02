@@ -712,6 +712,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2677573954624739601, guid: d40a1d3646c0a604bb0c0f3af74508d2,
         type: 3}
+      propertyPath: trapFreq.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2677573954624739601, guid: d40a1d3646c0a604bb0c0f3af74508d2,
+        type: 3}
       propertyPath: hazardParent
       value: 
       objectReference: {fileID: 1361390940}
@@ -730,6 +735,66 @@ PrefabInstance:
       propertyPath: bulldozer
       value: 
       objectReference: {fileID: 1588347981}
+    - target: {fileID: 2677573954624739601, guid: d40a1d3646c0a604bb0c0f3af74508d2,
+        type: 3}
+      propertyPath: trapFreq.m_Curve.Array.data[0].inSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2677573954624739601, guid: d40a1d3646c0a604bb0c0f3af74508d2,
+        type: 3}
+      propertyPath: trapFreq.m_Curve.Array.data[0].outSlope
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2677573954624739601, guid: d40a1d3646c0a604bb0c0f3af74508d2,
+        type: 3}
+      propertyPath: trapFreq.m_Curve.Array.data[0].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2677573954624739601, guid: d40a1d3646c0a604bb0c0f3af74508d2,
+        type: 3}
+      propertyPath: trapFreq.m_Curve.Array.data[0].outWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2677573954624739601, guid: d40a1d3646c0a604bb0c0f3af74508d2,
+        type: 3}
+      propertyPath: trapFreq.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2677573954624739601, guid: d40a1d3646c0a604bb0c0f3af74508d2,
+        type: 3}
+      propertyPath: trapFreq.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2677573954624739601, guid: d40a1d3646c0a604bb0c0f3af74508d2,
+        type: 3}
+      propertyPath: trapFreq.m_Curve.Array.data[1].inSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2677573954624739601, guid: d40a1d3646c0a604bb0c0f3af74508d2,
+        type: 3}
+      propertyPath: trapFreq.m_Curve.Array.data[1].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2677573954624739601, guid: d40a1d3646c0a604bb0c0f3af74508d2,
+        type: 3}
+      propertyPath: trapFreq.m_Curve.Array.data[1].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2677573954624739601, guid: d40a1d3646c0a604bb0c0f3af74508d2,
+        type: 3}
+      propertyPath: trapFreq.m_Curve.Array.data[1].inWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2677573954624739601, guid: d40a1d3646c0a604bb0c0f3af74508d2,
+        type: 3}
+      propertyPath: trapFreq.m_Curve.Array.data[1].outWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2677573954624739601, guid: d40a1d3646c0a604bb0c0f3af74508d2,
+        type: 3}
+      propertyPath: trapFreq.m_Curve.Array.data[0].value
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2677573954624739614, guid: d40a1d3646c0a604bb0c0f3af74508d2,
         type: 3}
       propertyPath: m_LocalPosition.x

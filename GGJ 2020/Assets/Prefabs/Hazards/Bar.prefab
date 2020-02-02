@@ -126,4 +126,5 @@ MonoBehaviour:
   riseSpeed: 0.05
   riseHeight: 5
   duration: 10
+  whirrSFX: {fileID: 8300000, guid: a1f46256a74fe41dc912636dc2a15886, type: 3}
   startOnEnable: 0

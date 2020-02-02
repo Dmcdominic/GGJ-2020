@@ -663,6 +663,7 @@ MonoBehaviour:
   riseSpeed: 0.1
   riseHeight: 4.72
   duration: 10
+  whirrSFX: {fileID: 8300000, guid: a1f46256a74fe41dc912636dc2a15886, type: 3}
   startOnEnable: 0
 --- !u!1 &6307678078999226487
 GameObject:
@@ -791,6 +792,7 @@ MonoBehaviour:
   riseSpeed: 0.1
   riseHeight: 4.72
   duration: 10
+  whirrSFX: {fileID: 8300000, guid: a1f46256a74fe41dc912636dc2a15886, type: 3}
   startOnEnable: 0
 --- !u!1 &6307678079070584998
 GameObject:
@@ -1520,6 +1522,7 @@ MonoBehaviour:
   riseSpeed: 0.1
   riseHeight: 4.72
   duration: 10
+  whirrSFX: {fileID: 8300000, guid: a1f46256a74fe41dc912636dc2a15886, type: 3}
   startOnEnable: 0
 --- !u!1 &6307678079994650371
 GameObject:
@@ -1648,6 +1651,7 @@ MonoBehaviour:
   riseSpeed: 0.1
   riseHeight: 4.72
   duration: 10
+  whirrSFX: {fileID: 8300000, guid: a1f46256a74fe41dc912636dc2a15886, type: 3}
   startOnEnable: 0
 --- !u!1 &6307678080147487819
 GameObject:
@@ -1776,6 +1780,7 @@ MonoBehaviour:
   riseSpeed: 0.1
   riseHeight: 4.72
   duration: 10
+  whirrSFX: {fileID: 8300000, guid: a1f46256a74fe41dc912636dc2a15886, type: 3}
   startOnEnable: 0
 --- !u!1 &6307678080172572157
 GameObject:
@@ -2318,6 +2323,7 @@ MonoBehaviour:
   riseSpeed: 0.1
   riseHeight: 4.72
   duration: 10
+  whirrSFX: {fileID: 8300000, guid: a1f46256a74fe41dc912636dc2a15886, type: 3}
   startOnEnable: 0
 --- !u!1 &6307678080500397328
 GameObject:

@@ -9,6 +9,7 @@ TagManager:
   - SideTrigger
   - ground
   - obstacle
+  - killzone
   layers:
   - Default
   - TransparentFX
