@@ -112,6 +112,7 @@ public class car_parts : MonoBehaviour {
                 GameObject floatingPart = Instantiate(pp.Prefab);
                 floatingPart.transform.position = transform.position + Vector3.up * partConfig.flyingPartYOffset;
                 floatingPart.GetComponent<Rigidbody>().AddForce(partImpulse, ForceMode.Impulse);
+                floatingPart.GetComponent<playerID>().p = playerID;
                 return;
             }
         }
