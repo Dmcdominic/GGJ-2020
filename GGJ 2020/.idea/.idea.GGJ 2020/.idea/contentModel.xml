@@ -38,6 +38,7 @@
             <e p="CarConfig.cs" t="Include" />
             <e p="CarController.cs" t="Include" />
             <e p="CollisionForce.cs" t="Include" />
+            <e p="DiesFromKillzone.cs" t="Include" />
             <e p="DownwardForce.cs" t="Include" />
             <e p="parts" t="Include">
               <e p="car_parts.cs" t="Include" />
@@ -47,6 +48,7 @@
           </e>
           <e p="ColorConfig.cs" t="Include" />
           <e p="GameLoop" t="Include">
+            <e p="LivesList.cs" t="Include" />
             <e p="Spawner.cs" t="Include" />
           </e>
           <e p="Hazards" t="Include">

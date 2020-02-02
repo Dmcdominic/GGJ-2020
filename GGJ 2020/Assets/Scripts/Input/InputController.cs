@@ -59,32 +59,32 @@ public class InputController : MonoBehaviour
         playerControlInfo.horn = GamePad.GetState(player).Buttons.A == ButtonState.Pressed;
         state[(int) player] = playerControlInfo;
 
-        if (playerControlInfo.horn == ButtonState.Pressed)
+        if (playerControlInfo.horn)
         {
             if (isHornLooping)
                 SoundManager.instance.StartLoop(honk, carId);
             else
                 SoundManager.instance.PlayOnce(honk);
         }
-        else if (playerControlInfo.horn == ButtonState.Released)
+        else if (!playerControlInfo.horn)
         {
             if (isHornLooping)
                 SoundManager.instance.StopLoop(honk, carId);
         }
 
-        if (playerControlInfo.throttle == ButtonState.Pressed) 
+        if (playerControlInfo.throttle > 0) 
         {
             SoundManager.instance.PlayOnce(revSound);
         }
 
-        if (playerControlInfo.horn == ButtonState.Pressed)
+        if (playerControlInfo.horn )
         {
             if (isHornLooping)
                 SoundManager.instance.StartLoop(honk, carId);
             else
                 SoundManager.instance.PlayOnce(honk);
         }
-        else if (playerControlInfo.horn == ButtonState.Released)
+        else if (!playerControlInfo.horn )
         {
             if (isHornLooping)
                 SoundManager.instance.StopLoop(honk, carId);

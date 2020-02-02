@@ -97,15 +97,25 @@ public class CarController : MonoBehaviour
 
     IEnumerator UnFlip()
     {
+        yield return  new WaitForSeconds(5);
         while(true)
         {
-            while (carRB.transform.up.y < Mathf.Sqrt(2))
+            bool mustFlip = true;
+            rearWheels.Map(wheel => mustFlip &= wheel.isGrounded);
+            frontWheels.Map(wheel => mustFlip &= wheel.isGrounded);
+            while (carRB.transform.up.y < Mathf.Sqrt(2) || !mustFlip)
             {
-                carRB.inertiaTensorRotation = Quaternion.Euler(0, 0, carConfig.unflipSpeed);
+                mustFlip = true;
+                rearWheels.Map(wheel => mustFlip |= wheel.isGrounded);
+                frontWheels.Map(wheel => mustFlip |= wheel.isGrounded);
+                if (!mustFlip)
+                {
+                    yield return new WaitForSeconds(1);
+                }
+                carRB.AddForce(Vector3.up * carConfig.unflipSpeed,ForceMode.VelocityChange);
                 yield return null;
             }
 
-            yield return null;
         }
     }
 
@@ -119,7 +129,7 @@ public class CarController : MonoBehaviour
                 var throttle = pci.throttle * parts[(int) part.engine] - .1f;
                 if ((Vector3.Dot(carRB.velocity,transform.forward) < 0 || carRB.velocity.magnitude < 100) && pci.footBrake > .1f)
                 {
-                    wheel.motorTorque = -carConfig.reverseSpeed * pci.footBrake * parts[(int)part.brake];
+                    wheel.motorTorque = -carConfig.reverseSpeed * pci.footBrake * (parts[(int)part.brake] + .1f);
                 return;
                 }
 
@@ -151,9 +161,9 @@ public class CarController : MonoBehaviour
         var rocketBoost = pci.throttle * carConfig.rearForceConstant * transform.forward * Mathf.Clamp01(2 - 1 / Mathf.Pow(2,parts[(int)part.engine] - 1));
           
         rocketBoost = new Vector3(rocketBoost.x,Mathf.Sqrt(Mathf.Abs(rocketBoost.y)),rocketBoost.z);
-        bool canBoost = true;
-        rearWheels.Map(wheel => canBoost &= wheel.isGrounded);
-        frontWheels.Map(wheel => canBoost &= wheel.isGrounded);
+        bool canBoost = false;
+        rearWheels.Map(wheel => canBoost |= wheel.isGrounded);
+        frontWheels.Map(wheel => canBoost |= wheel.isGrounded);
         if(canBoost)
             carRB.AddForceAtPosition(rocketBoost, carRB.transform.position);
         if(pci.throttle < 0.1f && pci.direction.sqrMagnitude < .6f)
