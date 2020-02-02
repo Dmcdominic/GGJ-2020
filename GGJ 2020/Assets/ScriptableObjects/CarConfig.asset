@@ -15,11 +15,11 @@ MonoBehaviour:
   minSteer: 13
   maxSteer: 45
   gearThrottles:
-  - 20000
+  - 10000
   maxBrake: 150000
   downForce: 20
   unflipSpeed: 5
-  reverseSpeed: 3500
+  reverseSpeed: 7000
   tireForwardStiffness:
     serializedVersion: 2
     m_Curve:

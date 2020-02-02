@@ -168,7 +168,10 @@ public class CarController : MonoBehaviour
     {
 
         var rocketBoost = pci.throttle * carConfig.rearForceConstant * transform.forward * Mathf.Clamp01(2 - 1 / Mathf.Pow(2,parts[(int)part.engine] - 1));
-          
+        Vector3 inputVec = new Vector3(inputDir.x, 0, inputDir.z);
+        Vector3 dir = new Vector3(carRB.transform.forward.x, 0, carRB.transform.forward.z);
+        carRB.AddTorque(5f * Vector3.Cross(dir.normalized, inputVec.normalized), ForceMode.Acceleration);
+        
         rocketBoost = new Vector3(rocketBoost.x,Mathf.Sqrt(Mathf.Abs(rocketBoost.y)),rocketBoost.z);
         bool canBoost = false;
         rearWheels.Map(wheel => canBoost |= wheel.isGrounded);
