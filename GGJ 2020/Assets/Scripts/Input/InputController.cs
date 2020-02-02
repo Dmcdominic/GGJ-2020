@@ -29,14 +29,12 @@ public class InputController : MonoBehaviour
 
     private bool leftshoulderpressed;
     private bool rightshoulderpressed;
-    private bool startPressed = false;
+    private bool startPressed;
     private float vibration = 0;
     private float vibration_standby = 0.00f;
     private float vibration_move = 0.002f;
     private float vibration_boost = 0.04f;
     private float vibration_break = 0.1f;
-
-    Spawner spawner;
 
     private void Awake()
     {
@@ -46,12 +44,10 @@ public class InputController : MonoBehaviour
 
         var playerControlInfo = state[(int)player];
         state[(int)player] = playerControlInfo;
-        spawner = FindObjectOfType<Spawner>();
-
 #endif
     }
     // Update is called once per frame
-    void Update() 
+    void Update()
     {
 #if UNITY_STANDALONE_WIN
         var stick = GamePad.GetState(player).ThumbSticks.Left;
@@ -63,9 +59,7 @@ public class InputController : MonoBehaviour
         playerControlInfo.horn = GamePad.GetState(player).Buttons.A == ButtonState.Pressed;
         state[(int)player] = playerControlInfo;
 
-        if(spawner == null) { spawner = FindObjectOfType<Spawner>(); }
-            
-        if(!startPressed && GamePad.GetState(player).Buttons.Start == ButtonState.Pressed)
+        if (!startPressed && GamePad.GetState(player).Buttons.Start == ButtonState.Pressed)
         {
             playerControlInfo.inGame = !playerControlInfo.inGame;
             //spawner.changeState((int)player);
@@ -76,14 +70,6 @@ public class InputController : MonoBehaviour
         {
             startPressed = false;
         }
-            var stick = GamePad.GetState(player).ThumbSticks.Left;
-            var playerControlInfo = state[(int)player];
-            playerControlInfo.direction = new Vector3(stick.X, 0, stick.Y);
-            playerControlInfo.footBrake = GamePad.GetState(player).Triggers.Left;
-            playerControlInfo.handBrakePulled = (int)GamePad.GetState(player).Buttons.X;
-            playerControlInfo.throttle = GamePad.GetState(player).Triggers.Right;
-            playerControlInfo.horn = GamePad.GetState(player).Buttons.A == ButtonState.Pressed;
-            state[(int)player] = playerControlInfo;
 
         if (!leftshoulderpressed && GamePad.GetState(player).Triggers.Left > 0)
             if (playerControlInfo.horn)
@@ -101,20 +87,20 @@ public class InputController : MonoBehaviour
 
         if (playerControlInfo.throttle > 0)
         {
-            SoundManager.instance.PlayOnce(revSound);
+            SoundManager.instance.PlayOnce(getRev());
         }
 
         if (playerControlInfo.horn)
         {
             if (isHornLooping)
-                SoundManager.instance.StartLoop(honk, carId);
+                SoundManager.instance.StartLoop(getHorn(), p.ToString());
             else
-                SoundManager.instance.PlayOnce(honk);
+                SoundManager.instance.PlayOnce(getHorn());
         }
         else if (!playerControlInfo.horn)
         {
             if (isHornLooping)
-                SoundManager.instance.StopLoop(honk, carId);
+                SoundManager.instance.StopLoop(getHorn(), p.ToString());
         }
 
         if (!leftshoulderpressed && GamePad.GetState(player).Buttons.LeftShoulder == ButtonState.Pressed)
@@ -136,6 +122,8 @@ public class InputController : MonoBehaviour
         {
             rightshoulderpressed = false;
 
+        }
+
         if (leftshoulderpressed)
         {
             XInputDotNetPure.GamePad.SetVibration(player, vibration_break * Random.value, 0);
@@ -153,12 +141,14 @@ public class InputController : MonoBehaviour
             XInputDotNetPure.GamePad.SetVibration(player, vibration_standby * Random.value, vibration_standby * Random.value);
         }
 
-        }
+    }
 
-    private AudioClip getHorn() {
+    private AudioClip getHorn()
+    {
         return audioConfig.horns[p % audioConfig.horns.Count];
     }
-    private AudioClip getRev() {
+    private AudioClip getRev()
+    {
         return audioConfig.revs[p % audioConfig.revs.Count];
     }
 
