@@ -14,13 +14,13 @@ public class CollisionForce : MonoBehaviour
             Vector3 selfVelocity = this.GetComponent<Rigidbody>().velocity;
             Vector3 otherVelcity = collision.gameObject.GetComponent<Rigidbody>().velocity;
             Vector3 impulse = collision.impulse;
-            float selfDot = Mathf.Abs(Vector3.Dot(selfVelocity, impulse));
-            float otherDot = Mathf.Abs(Vector3.Dot(otherVelcity, impulse));
+            float selfDot = Mathf.Abs(Vector3.Dot(selfVelocity.normalized, impulse));
+            float otherDot = Mathf.Abs(Vector3.Dot(otherVelcity.normalized, impulse));
 
             if (selfDot > otherDot)
             {
                 float boostForce = Mathf.Sqrt(selfVelocity.sqrMagnitude * this.GetComponent<Rigidbody>().mass * 0.5f);
-                this.GetComponent<Rigidbody>().AddForce(boostForce * selfVelocity.normalized, ForceMode.Impulse);
+                this.GetComponent<Rigidbody>().AddForceAtPosition(-boostForce * selfVelocity.normalized, collision.collider.ClosestPointOnBounds(this.transform.position), ForceMode.Impulse);
             }
             else
             {
