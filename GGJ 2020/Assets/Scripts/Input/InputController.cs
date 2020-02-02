@@ -162,8 +162,10 @@ public class InputController : MonoBehaviour
     {
         while(true)
         {
+            GameObject MySound;
             yield return new WaitUntil(() => playerControlInfo.direction != Vector3.zero);
-            SoundManager.instance.StartLoop(EngineRun, p.ToString(), 0.1f);
+            MySound = SoundManager.instance.StartLoop(EngineRun, p.ToString(), 0.1f);
+            MySound.GetComponent<AudioSource>().pitch = 1f + playerControlInfo.direction.magnitude;
             yield return new WaitUntil(() => playerControlInfo.direction == Vector3.zero);
             SoundManager.instance.StopLoop(EngineRun, p.ToString());
         }
