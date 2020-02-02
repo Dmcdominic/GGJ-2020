@@ -121,7 +121,7 @@ public class CarController : MonoBehaviour
                     for (float dur = 0; dur < 1; dur += Time.deltaTime * 2)
                     {
                         carRB.transform.position += (Vector3.up * 5 + Vector3.forward * (UnityEngine.Random.value - .5f) + Vector3.right * (UnityEngine.Random.value - .5f)) * Time.deltaTime;
-                        carRB.transform.rotation = Quaternion.identity;
+                        carRB.transform.rotation = Quaternion.Lerp(carRB.rotation,Quaternion.identity, Time.deltaTime * 3);
                         carRB.velocity = Vector3.zero;
                         yield return null;
                     }
@@ -143,7 +143,7 @@ public class CarController : MonoBehaviour
                 
                 if ((Vector3.Dot(carRB.velocity,transform.forward) < 0 || carRB.velocity.magnitude < 100) && pci.footBrake > .1f)
                 {
-                    wheel.motorTorque = -carConfig.reverseSpeed * pci.footBrake * (parts[(int)part.brake] + .3f);
+                    wheel.motorTorque = -carConfig.reverseSpeed * pci.footBrake * (parts[(int)part.brake] + .5f);
                 return;
                 }
 
