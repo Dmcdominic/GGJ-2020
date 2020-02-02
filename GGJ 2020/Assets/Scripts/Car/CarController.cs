@@ -113,9 +113,7 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        var rocketBoost = pci.throttle * carConfig.rearForceConstant *
-                          (Quaternion.AngleAxis(steerAngle, transform.up)
-                           * carRB.transform.forward);
+        var rocketBoost = pci.throttle * carConfig.rearForceConstant * new Vector3(inputDir.x, 0, inputDir.z);
         rocketBoost = new Vector3(rocketBoost.x,Mathf.Sqrt(Mathf.Abs(rocketBoost.y)),rocketBoost.z);
         bool canBoost = true;
         rearWheels.Map(wheel => canBoost &= wheel.isGrounded);
@@ -156,7 +154,7 @@ public class CarController : MonoBehaviour
                 float visualWheelDir = Mathf.Clamp(-Mathf.DeltaAngle(thetaCar, thetaInput) - 90.0f, -180.0f, 0f);
                 frontLWheel.localEulerAngles = new Vector3(0, visualWheelDir, 0);
                 frontRWheel.localEulerAngles = new Vector3(0, visualWheelDir, 0);
-                steerAngle = (inputDir.x * 50 / Mathf.Max(carRB.velocity.magnitude * 50.0f, 1.0f));
+                steerAngle = (thetaInput);
                 return wheel.steerAngle = -thetaDelta;
             });
     }
