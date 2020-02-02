@@ -10,12 +10,14 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private CanvasGroup main;
     [SerializeField] private float fadeTime;
     [SerializeField] private Rigidbody collisionCar;
+    [SerializeField] private Animator cameraAnim;
 
     [SerializeField] private Button startGame;
     [SerializeField] private Button credits;
 #pragma warning restore 0649
 
     private Coroutine running;
+    private bool inCredits = false;
 
     private void Start()
     {
@@ -61,7 +63,31 @@ public class MainMenu : MonoBehaviour
 
     public void Credits()
     {
+        if (!inCredits)
+        {
+            cameraAnim.SetBool("zoom", true);
+            if(running == null) running = StartCoroutine(imbad());
+        }
 
+    }
+
+    private IEnumerator imbad()
+    {
+        yield return new WaitForSeconds(0.1f);
+        inCredits = true;
+        running = null;
+    }
+
+    private void Update()
+    {
+        if (inCredits)
+        {
+            if(Input.anyKeyDown || Input.GetButtonDown("Submit") || Input.GetButtonDown("Cancel") || Input.GetAxis("Vertical")!= 0)
+            {
+                cameraAnim.SetBool("zoom", false);
+                inCredits = false;
+            }
+        }
     }
 
     public void Quit()

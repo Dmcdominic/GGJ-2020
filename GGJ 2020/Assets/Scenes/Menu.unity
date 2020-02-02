@@ -1965,7 +1965,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 987268830}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 443dc7ea442cf294cb89aecefcad653e, type: 2}
   m_CullingMode: 0
@@ -2515,6 +2515,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1471540172 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7920745126781544280, guid: b08d3bb6ea47fc24f93742f77877860d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1676262657}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1650555693
 GameObject:
   m_ObjectHideFlags: 0
@@ -2630,8 +2642,9 @@ MonoBehaviour:
   main: {fileID: 2087994076}
   fadeTime: 1
   collisionCar: {fileID: 644978508}
+  cameraAnim: {fileID: 987268834}
   startGame: {fileID: 1195995169}
-  credits: {fileID: 0}
+  credits: {fileID: 1471540172}
 --- !u!1001 &1676262657
 PrefabInstance:
   m_ObjectHideFlags: 0
