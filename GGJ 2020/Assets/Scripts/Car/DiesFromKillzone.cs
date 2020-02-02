@@ -11,6 +11,13 @@ public class DiesFromKillzone : MonoBehaviour
 
     private bool diedThisFrame = false;
 
+    private float creationTime;
+
+    private void Start()
+    {
+        creationTime = Time.time;
+    }
+
 
     private void OnTriggerEnter(Collider collider) {
         if (diedThisFrame) {
@@ -41,7 +48,7 @@ public class DiesFromKillzone : MonoBehaviour
         while (true)
         {
             trail.widthMultiplier *= (1 - Time.deltaTime);
-            trail.time = Time.time + 1;
+            trail.time = Time.time - creationTime + 2;
             yield return null;
         }
     }
