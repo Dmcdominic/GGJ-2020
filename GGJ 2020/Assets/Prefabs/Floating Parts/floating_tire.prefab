@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 1495034826894047944}
   - component: {fileID: 6303391538431116434}
   - component: {fileID: 437249093090804467}
+  - component: {fileID: -6084354844462762754}
+  - component: {fileID: -2751354729447390023}
   m_Layer: 0
   m_Name: floating_tire
   m_TagString: Untagged
@@ -62,7 +64,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: -7805965318761107941, guid: 9a97f690671cf5a4db0f28c5c836221f, type: 3}
-  - {fileID: 8182101616850083958, guid: 9a97f690671cf5a4db0f28c5c836221f, type: 3}
+  - {fileID: 2100000, guid: baee85c9fbe2a0e46b81269c56c89851, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -127,3 +129,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-6084354844462762754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7956726457308650190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26fe2d8050200c74e9001bbf5da1b9ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorConfig: {fileID: 11400000, guid: 0211a7aad4d6c374cbc83c813623aab0, type: 2}
+--- !u!114 &-2751354729447390023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7956726457308650190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d9a929640096d745802cdd4aa698157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p: 0

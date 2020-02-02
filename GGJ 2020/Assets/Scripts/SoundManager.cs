@@ -4,10 +4,24 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    public static SoundManager instance;
+
     public GameObject AudioPlayer;
     public GameObject OneShotPlayer;
 
     private Dictionary<string, GameObject> myLoops = new Dictionary<string, GameObject>();
+
+    private void Awake()
+    {
+        if(instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {

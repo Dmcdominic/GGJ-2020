@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91e63d3bfb004034d8a4d33712f00a41, type: 3}
   m_Name: PartConfig
   m_EditorClassIdentifier: 
-  impulseToLosePart: 2500
+  impulseToLosePart: 3500
+  impulseToLosePartNonPlayer: 6000
   delayBetweenLosingParts: 0.5
   pickupDelay: 0.5
   flyingPartYOffset: 1.5
-  flyingPartImpulseUpBoost: 0.5
-  flyingPartImpulseMult: 0.07
+  flyingPartImpulseUpBoost: 1.5
+  flyingPartImpulseMult: 0.04
   dust_cloud: {fileID: 8709796931982745242, guid: 49960bb33af7766459c8c7bfb25ad786,
     type: 3}
   partPrefabs:

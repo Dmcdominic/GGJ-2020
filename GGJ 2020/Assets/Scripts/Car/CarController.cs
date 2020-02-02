@@ -41,7 +41,9 @@ public class CarController : MonoBehaviour
     private Vector3 inputDir => pci.direction.normalized;
     private Vector3 groundDir => (transform.forward - transform.forward.y * Vector3.up).normalized;
     private int[] parts => myParts[player].val;
-    
+
+
+    private float acceleration = 1;
 
     private void Awake()
     {
@@ -102,20 +104,20 @@ public class CarController : MonoBehaviour
                 return;
                 }
                     wheel.brakeTorque = pci.footBrake * carConfig.maxBrake * Mathf.Sqrt(carRB.velocity.magnitude);
-                    float dot = Vector3.Dot(inputDir, groundDir) * carConfig.gearThrottles[curGear];
+                    float dot = Vector3.Dot(inputDir, groundDir);
 
                     
-                    if (dot < 0) dot *= 0;
-                    wheel.motorTorque = dot * (pci.throttle + 1);
-
+                    if (-.75f < dot && dot < 0) dot *= 0;
+                    dot *= carConfig.gearThrottles[curGear];
+                    wheel.motorTorque = Mathf.SmoothDamp( wheel.motorTorque, dot * (pci.throttle + 1),ref acceleration,.01f);
+                    print($"motor torque {wheel.motorTorque}");
             });
     }
 
     private void FixedUpdate()
     {
-        var rocketBoost = pci.throttle * carConfig.rearForceConstant *
-                          (Quaternion.AngleAxis(steerAngle, transform.up)
-                           * carRB.transform.forward);
+        var rocketBoost = pci.throttle * carConfig.rearForceConstant * transform.forward;
+          
         rocketBoost = new Vector3(rocketBoost.x,Mathf.Sqrt(Mathf.Abs(rocketBoost.y)),rocketBoost.z);
         bool canBoost = true;
         rearWheels.Map(wheel => canBoost &= wheel.isGrounded);
@@ -124,11 +126,11 @@ public class CarController : MonoBehaviour
             carRB.AddForceAtPosition(rocketBoost, carRB.transform.position);
         if(pci.throttle < 0.1f && pci.direction.sqrMagnitude < .6f)
         {
-            carRB.drag = carRB.velocity.magnitude *  0.3f;
+            //carRB.drag = carRB.velocity.magnitude *  0.3f;
         }
         else
         {
-            carRB.drag = 1;
+            //carRB.drag = 1;
         }
     }
 
@@ -138,26 +140,31 @@ public class CarController : MonoBehaviour
         (
             wheel =>
             {
-                if (inputDir.magnitude < .1f)
+                if (pci.direction.magnitude < .05f)
                 {
-                    return wheel.steerAngle = 0;
+                    wheel.steerAngle = 0;
+                    return;
                 }
+                
                 var thetaCar = Mathf.Atan2(groundDir.z, groundDir.x) * Mathf.Rad2Deg;
                 var thetaInput = Mathf.Atan2(inputDir.z, inputDir.x) * Mathf.Rad2Deg;
                 var thetaDelta = Mathf.DeltaAngle(thetaCar, thetaInput);
 
                 var maxSteer = carConfig.minSteer;
                 for (int i = 0; i < myParts[player].val[(int) part.steering_wheel]; i++)
-                    maxSteer += (carConfig.maxSteer - carConfig.minSteer) / Mathf.Pow(3,i);
+                    maxSteer += (carConfig.maxSteer - maxSteer) / Mathf.Pow(3,i);
 
+                
                 thetaDelta = 
                     minABS(Mathf.Clamp(thetaDelta, -maxSteer, maxSteer),
                            Mathf.Clamp(thetaDelta, -maxSteer + 180, maxSteer - 180));
+                
+                
                 float visualWheelDir = Mathf.Clamp(-Mathf.DeltaAngle(thetaCar, thetaInput) - 90.0f, -180.0f, 0f);
-                frontLWheel.localEulerAngles = new Vector3(0, visualWheelDir, 0);
-                frontRWheel.localEulerAngles = new Vector3(0, visualWheelDir, 0);
-                steerAngle = (inputDir.x * 50 / Mathf.Max(carRB.velocity.magnitude * 50.0f, 1.0f));
-                return wheel.steerAngle = -thetaDelta;
+                frontLWheel.localEulerAngles = new Vector3(0, 90 + visualWheelDir, 0);
+                frontRWheel.localEulerAngles = new Vector3(0, 90 + visualWheelDir, 0);
+                //steerAngle = (inputDir.x * 50 / Mathf.Max(carRB.velocity.magnitude * 50.0f, 1.0f));
+                wheel.steerAngle = -thetaDelta;
             });
     }
 

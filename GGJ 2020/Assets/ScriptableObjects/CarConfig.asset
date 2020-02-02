@@ -17,17 +17,17 @@ MonoBehaviour:
   gearThrottles:
   - 40000
   maxBrake: 200000
-  downForce: 2
-  unflipSpeed: 5
+  downForce: 12
+  unflipSpeed: 0
   reverseSpeed: 500
   tireForwardStiffness:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: -0.014297524
-      value: 8.29385
-      inSlope: -2.0337179
-      outSlope: -2.0337179
+      time: -0.032699622
+      value: 8.462276
+      inSlope: -2.3650362
+      outSlope: -2.3650362
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
@@ -66,46 +66,37 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 2.5694432
-      inSlope: -0.66719025
-      outSlope: -0.66719025
-      tangentMode: 34
+      time: -0.02096542
+      value: 3.0907886
+      inSlope: -0.5277005
+      outSlope: -0.5277005
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.33333334
+      outWeight: 0.44654796
     - serializedVersion: 3
-      time: 0.37971357
-      value: 2.316102
-      inSlope: -0.2148896
-      outSlope: -0.2148896
+      time: 0.4921715
+      value: 2.6472602
+      inSlope: -1.0430398
+      outSlope: -1.0430398
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.4988891
+      outWeight: 0.3377078
     - serializedVersion: 3
-      time: 0.5725367
-      value: 2.167385
-      inSlope: -1.6327609
-      outSlope: -1.6327609
+      time: 0.937283
+      value: 1.9132437
+      inSlope: -2.7914994
+      outSlope: -2.7914994
       tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.8146882
-      value: 1.9034842
-      inSlope: -2.523988
-      outSlope: -2.523988
-      tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1.0088501
       value: 1.1349607
-      inSlope: -3.9581587
-      outSlope: -3.9581587
+      inSlope: -10.874868
+      outSlope: -10.874868
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
