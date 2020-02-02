@@ -19,6 +19,8 @@ public class car_parts : MonoBehaviour {
 
 
     [SerializeField] private PartList my_parts;
+
+    public int partCount(int player, part p) => my_parts[player].val[(int)p];
     
 
     // Serialized fields

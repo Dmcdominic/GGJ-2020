@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: -5620514934521454555}
   m_Layer: 0
   m_Name: engine
-  m_TagString: floatingPart
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,8 +63,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4771666104256868416, guid: b260c1614c318c44d8d9a241b9345e1c, type: 3}
-  - {fileID: 8182101616850083958, guid: 9ed88403e188e9747afece7a719e2a56, type: 3}
+  - {fileID: 2100000, guid: 3cf2cc1720e3a2342aeab8503a3203ec, type: 2}
+  - {fileID: 2100000, guid: baee85c9fbe2a0e46b81269c56c89851, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
