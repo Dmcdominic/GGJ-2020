@@ -170,7 +170,7 @@ public class InputController : MonoBehaviour
     private List<AudioClip> getHorns()
     {
         var restult = new List<AudioClip>();
-        for (int i = p; (i % audioConfig.horns.Count) < myParts[p].val[(int) part.horn] + p; i++)
+        for (int i = p; i < myParts[p].val[(int) part.horn] + p; i++)
         {
             restult.Add(audioConfig.horns[i % audioConfig.horns.Count]);
         }
