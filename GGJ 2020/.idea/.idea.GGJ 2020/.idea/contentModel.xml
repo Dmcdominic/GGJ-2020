@@ -15,6 +15,7 @@
           <e p="IntEvent.cs" t="Include" />
           <e p="IntRef.cs" t="Include" />
           <e p="PartList.cs" t="Include" />
+          <e p="PlayerBoolRef.cs" t="Include" />
           <e p="PlayerRef.cs" t="Include" />
           <e p="Reference.cs" t="Include" />
           <e p="Shrub.cs" t="Include" />
