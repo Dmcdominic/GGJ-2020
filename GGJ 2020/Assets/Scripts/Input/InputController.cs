@@ -52,7 +52,7 @@ public class InputController : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(EngineMonitor());
+        StartCoroutine(EngineMonitor(state[(int)player]));
     }
     // Update is called once per frame
     void Update()
@@ -127,7 +127,6 @@ public class InputController : MonoBehaviour
         }
         if (rightshoulderpressed && GamePad.GetState(player).Triggers.Right == 0)
         {
-            SoundManager.instance.StopLoop(EngineRun,p.ToString());
             rightshoulderpressed = false;
         }
 
@@ -159,7 +158,7 @@ public class InputController : MonoBehaviour
         return audioConfig.revs[p % audioConfig.revs.Count];
     }
 
-    private IEnumerator EngineMonitor()
+    private IEnumerator EngineMonitor(PlayerControlInfo playerControlInfo)
     {
         while(true)
         {
