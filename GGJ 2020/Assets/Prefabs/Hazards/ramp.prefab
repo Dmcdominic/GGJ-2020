@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3807805998511995948}
   - component: {fileID: 4782941273929290617}
   - component: {fileID: 3047335768493123198}
+  - component: {fileID: 4369662824392996987}
   m_Layer: 0
   m_Name: ramp
   m_TagString: Untagged
@@ -114,3 +115,17 @@ MonoBehaviour:
   duration: 10
   whirrSFX: {fileID: 8300000, guid: a1f46256a74fe41dc912636dc2a15886, type: 3}
   startOnEnable: 0
+--- !u!64 &4369662824392996987
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3234953893645027568}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5495902117074765545, guid: 0a0a51e668fce9748ae371856720a151, type: 3}

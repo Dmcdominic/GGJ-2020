@@ -16,7 +16,7 @@ public class DownwardForce : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.AddForceAtPosition(Vector3.down * carConfig.downForce,transform.position + transform.forward,ForceMode.Force);
-        rb.AddForceAtPosition(Vector3.down * carConfig.downForce,transform.position - transform.forward,ForceMode.Force);
+        rb.AddForceAtPosition(Vector3.down * carConfig.downForce,transform.position + transform.forward,ForceMode.Acceleration);
+        rb.AddForceAtPosition(Vector3.down * carConfig.downForce,transform.position - transform.forward,ForceMode.Acceleration);
     }
 }

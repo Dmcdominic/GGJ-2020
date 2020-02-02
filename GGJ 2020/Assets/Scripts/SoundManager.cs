@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class SoundManager : MonoBehaviour
 
     public GameObject AudioPlayer;
     public GameObject OneShotPlayer;
+    public AudioConfig config;
 
     private Dictionary<string, GameObject> myLoops = new Dictionary<string, GameObject>();
 
@@ -55,6 +57,11 @@ public class SoundManager : MonoBehaviour
         string search = clip.ToString() + carID;
         Destroy(myLoops[search]);
         myLoops.Remove(search);
+    }
+
+    public void PlayWhile(Func<bool> f)
+    {
+        
     }
 
     public void PlayOnce(AudioClip clip,float volume = 1f)

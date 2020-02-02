@@ -19,6 +19,8 @@ public class car_parts : MonoBehaviour {
 
 
     [SerializeField] private PartList my_parts;
+
+    public int partCount(int player, part p) => my_parts[player].val[(int)p];
     
 
     // Serialized fields
@@ -27,7 +29,7 @@ public class car_parts : MonoBehaviour {
 
     // Private vars
     private int playerID;
-    private float lostPartDelay = 0;
+    public float lostPartDelay = 0;
 
     // Init
     private void Awake() {
@@ -55,6 +57,10 @@ public class car_parts : MonoBehaviour {
             return;
         }
 
+        if (collision.gameObject.GetComponent<floating_part>()) {
+            return;
+        }
+
         playerID pID = collision.gameObject.GetComponentInParent<playerID>();
         if (!pID) {
             if (collision.gameObject.tag != "ground" && (collision.impulse.magnitude > partConfig.impulseToLosePartNonPlayer)) {
@@ -73,21 +79,21 @@ public class car_parts : MonoBehaviour {
             Vector3 selfVelocity = this.GetComponent<Rigidbody>().velocity;
             Vector3 otherVelcity = collision.gameObject.GetComponent<Rigidbody>().velocity;
             Vector3 impulse = collision.impulse;
-            float selfDot = Mathf.Abs(Vector3.Dot(selfVelocity.normalized, impulse));
-            float otherDot = Mathf.Abs(Vector3.Dot(otherVelcity.normalized, impulse));
+            float selfDot = Vector3.Dot(selfVelocity.normalized, impulse);
+            float otherDot = Vector3.Dot(otherVelcity.normalized, impulse);
 
-            if (selfDot > otherDot) //other car suffers
+            if (selfDot < otherDot) //other car suffers
             {
                 float upper_bound = Mathf.Pow(0.5f, my_parts[playerID].val[(int)part.bumper]);
                 float random_roll = Random.Range(0, 1);
                 if(random_roll < upper_bound)
                 {
-                    lose_random_part(collision.impulse);
+                    collision.gameObject.GetComponentInParent<car_parts>().lose_random_part(collision.impulse);
                 }
             }
             else //you suffer
             {
-                lose_random_part(collision.impulse);
+                //lose_random_part(collision.impulse);
             }
         }
     }
@@ -138,7 +144,7 @@ public class car_parts : MonoBehaviour {
     }
 
     // Called by a floating part when you pick it up
-    public void pickup_part(part partType) {
+    public void pickup_part(part partType, int p) {
         my_parts[playerID].val[(int)partType]++;
         Debug.Log("Car now has " + (my_parts[playerID].val[(int)partType]) + " " + partType + "(s)");
     }

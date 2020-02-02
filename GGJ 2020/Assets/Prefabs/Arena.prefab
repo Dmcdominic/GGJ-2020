@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 171135120}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -4, z: 0}
-  m_LocalScale: {x: 50, y: 1, z: 30}
+  m_LocalScale: {x: 1000, y: 1, z: 1000}
   m_Children: []
   m_Father: {fileID: 6307678080174335238}
   m_RootOrder: 4
@@ -661,7 +661,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   riseSpeed: 0.1
-  riseHeight: 4.72
+  riseHeight: 5
   duration: 10
   whirrSFX: {fileID: 8300000, guid: a1f46256a74fe41dc912636dc2a15886, type: 3}
   startOnEnable: 0
@@ -790,7 +790,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   riseSpeed: 0.1
-  riseHeight: 4.72
+  riseHeight: 5
   duration: 10
   whirrSFX: {fileID: 8300000, guid: a1f46256a74fe41dc912636dc2a15886, type: 3}
   startOnEnable: 0
@@ -1520,7 +1520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   riseSpeed: 0.1
-  riseHeight: 4.72
+  riseHeight: 5
   duration: 10
   whirrSFX: {fileID: 8300000, guid: a1f46256a74fe41dc912636dc2a15886, type: 3}
   startOnEnable: 0
@@ -1649,7 +1649,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   riseSpeed: 0.1
-  riseHeight: 4.72
+  riseHeight: 5
   duration: 10
   whirrSFX: {fileID: 8300000, guid: a1f46256a74fe41dc912636dc2a15886, type: 3}
   startOnEnable: 0
@@ -1778,7 +1778,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   riseSpeed: 0.1
-  riseHeight: 4.72
+  riseHeight: 5
   duration: 10
   whirrSFX: {fileID: 8300000, guid: a1f46256a74fe41dc912636dc2a15886, type: 3}
   startOnEnable: 0
@@ -2321,7 +2321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   riseSpeed: 0.1
-  riseHeight: 4.72
+  riseHeight: 5
   duration: 10
   whirrSFX: {fileID: 8300000, guid: a1f46256a74fe41dc912636dc2a15886, type: 3}
   startOnEnable: 0

@@ -49,6 +49,7 @@ MonoBehaviour:
     type: 3}
   OneShotPlayer: {fileID: 3797242621487411666, guid: bbc6caeddd9374081beab8eeb821465a,
     type: 3}
+  config: {fileID: 11400000, guid: 7f5dafacfdb0e214893918b4854c5604, type: 2}
 --- !u!82 &6642022940387846325
 AudioSource:
   m_ObjectHideFlags: 0

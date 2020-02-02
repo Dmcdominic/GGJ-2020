@@ -24,20 +24,28 @@
           <e p="Vector3Ref.cs" t="Include" />
         </e>
         <e p="CameraAdjuster.cs" t="Include" />
+        <e p="CrashSound.cs" t="Include" />
         <e p="Dragger.cs" t="Include" />
         <e p="Editor" t="Include">
           <e p="uGUITools.cs" t="Include" />
         </e>
         <e p="EffectManager.cs" t="Include" />
+        <e p="FrontCollision.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="adhoc" t="Include">
             <e p="ColorCorrection.cs" t="Include" />
+            <e p="FlashImage.cs" t="Include" />
+            <e p="IconManager.cs" t="Include" />
+          </e>
+          <e p="Audio" t="Include">
+            <e p="AudioConfig.cs" t="Include" />
           </e>
           <e p="Car" t="Include">
             <e p="car_model_manager.cs" t="Include" />
             <e p="CarConfig.cs" t="Include" />
             <e p="CarController.cs" t="Include" />
             <e p="CollisionForce.cs" t="Include" />
+            <e p="DiesFromKillzone.cs" t="Include" />
             <e p="DownwardForce.cs" t="Include" />
             <e p="parts" t="Include">
               <e p="car_parts.cs" t="Include" />
@@ -47,6 +55,7 @@
           </e>
           <e p="ColorConfig.cs" t="Include" />
           <e p="GameLoop" t="Include">
+            <e p="LivesList.cs" t="Include" />
             <e p="Spawner.cs" t="Include" />
           </e>
           <e p="Hazards" t="Include">
@@ -74,6 +83,10 @@
           <e p="SparksGenerator.cs" t="Include" />
           <e p="TestForce.cs" t="Include" />
         </e>
+        <e p="Shaders" t="Include">
+          <e p="Outline.shader" t="Include" />
+        </e>
+        <e p="SmokeUnderTheHood.cs" t="Include" />
         <e p="SqrtDrag.cs" t="Include" />
         <e p="Textures" t="Include">
           <e p="License (Read before using).txt" t="Include" />
