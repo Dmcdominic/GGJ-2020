@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Derby/Part Config")]
 public class part_config : ScriptableObject {
     public float impulseToLosePart;
+    public float impulseToLosePartNonPlayer;
     public float delayBetweenLosingParts;
 
     public float pickupDelay;
