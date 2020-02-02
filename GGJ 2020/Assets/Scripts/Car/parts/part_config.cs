@@ -19,6 +19,8 @@ public class part_config : ScriptableObject {
 
     // Floating part prefabs
     public List<part_prefab> partPrefabs;
+
+    public float[] part_weights;
 }
 
 
