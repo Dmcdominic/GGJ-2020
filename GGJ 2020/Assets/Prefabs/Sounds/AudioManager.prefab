@@ -158,3 +158,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c1d55f32ce4d4295a8c9b67ae13270e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  intro: {fileID: 8300000, guid: 3b3c197010f8a417ab30c14887cdfde0, type: 3}
+  loop: {fileID: 8300000, guid: ec0cc7fb9c43945aaae9c9c396945a8a, type: 3}
+  volumeControl: 0.6

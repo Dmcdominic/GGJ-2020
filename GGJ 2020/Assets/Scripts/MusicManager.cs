@@ -8,10 +8,13 @@ public class MusicManager : MonoBehaviour
 
     private AudioSource MusicSource;
 
+    public AudioClip intro;
+    public AudioClip loop;
+    public float volumeControl = 0.6f;
+
     private void Awake()
     {
         MusicSource = GetComponent<AudioSource>();
-        MusicSource.volume = 0.60f;
         if (instance != null)
         {
             Destroy(gameObject);
@@ -25,7 +28,8 @@ public class MusicManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        MusicSource.volume = volumeControl;
+        StartMusic(intro, loop);
     }
 
     // Update is called once per frame
@@ -53,6 +57,7 @@ public class MusicManager : MonoBehaviour
 
     private IEnumerator StartM (AudioClip intro, AudioClip main)
     {
+
         if(intro == null)
         {
             MusicSource.loop = true;
