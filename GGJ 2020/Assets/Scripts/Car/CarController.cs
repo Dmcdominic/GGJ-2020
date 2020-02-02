@@ -53,6 +53,7 @@ public class CarController : MonoBehaviour
         carRB.centerOfMass += -carRB.transform.up + -carRB.transform.forward;
         StartCoroutine(DriveNormal());
         StartCoroutine(UnFlip());
+        StartCoroutine(ControlWeight());
     }
 
     IEnumerator ControlWeight()
@@ -66,7 +67,7 @@ public class CarController : MonoBehaviour
                                     return val * partConfig.part_weights[index];
                                 }))
                                 .Aggregate((l,r) => l + r);
-            carRB.mass = Mathf.LerpUnclamped(carRB.mass, newWeight, .5f);
+            carRB.mass = Mathf.Lerp(carRB.mass, newWeight, .5f);
             yield return new WaitForSeconds(1);
         }
     }
@@ -79,7 +80,7 @@ public class CarController : MonoBehaviour
             SteerNormal();
             rearWheels.Map(SetStiffness);
             frontWheels.Map(SetStiffness);
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
     }
 
@@ -122,18 +123,24 @@ public class CarController : MonoBehaviour
                     wheel.motorTorque = -carConfig.reverseSpeed * pci.footBrake * parts[(int)part.brake];
                 return;
                 }
+
+                if (pci.handBrakePulled == (int)XInputDotNetPure.ButtonState.Pressed)
+                {
+                    wheel.brakeTorque = Mathf.Pow(2,32);
+                    return;
+                }
                     wheel.brakeTorque = pci.footBrake * carConfig.maxBrake * Mathf.Sqrt(carRB.velocity.magnitude);
                     if (wheel.brakeTorque > 0) return;
                     float dot = Vector3.Dot(inputDir, groundDir);
 
 
-                    if (dot < 0) //IF TODO boost reduce effect
+                    if (dot < 0 && throttle < .15f) //IF TODO boost reduce effect
                     {
                         wheel.motorTorque *= (1 - Mathf.Pow(dot,2)) * Time.deltaTime;
                     }
                     else
                     {
-                        wheel.motorTorque = Mathf.SmoothDamp( wheel.motorTorque, carConfig.gearThrottles[curGear] * pci.direction.magnitude * (throttle + 1),ref acceleration,.01f);
+                        wheel.motorTorque = Mathf.SmoothDamp( wheel.motorTorque, carConfig.gearThrottles[curGear] * (pci.direction.magnitude + pci.throttle) * (throttle + 1),ref acceleration,.01f);
                     }
 
             });
@@ -141,7 +148,7 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+
         var rocketBoost = pci.throttle * carConfig.rearForceConstant * transform.forward * Mathf.Clamp01(2 - 1 / Mathf.Pow(2,parts[(int)part.engine] - 1));
           
         rocketBoost = new Vector3(rocketBoost.x,Mathf.Sqrt(Mathf.Abs(rocketBoost.y)),rocketBoost.z);
@@ -181,7 +188,7 @@ public class CarController : MonoBehaviour
                     maxSteer += (carConfig.maxSteer - maxSteer) / Mathf.Pow(3,i);
 
 
-                if (carRB.velocity.magnitude < 5)
+                if (carRB.velocity.magnitude < 5 && pci.throttle < .1f)
                 {
                     maxSteer *= Mathf.Lerp(1,1.7f,6 - carRB.velocity.magnitude);
                 }
@@ -191,9 +198,9 @@ public class CarController : MonoBehaviour
                            Mathf.Clamp(thetaDelta, -maxSteer + 180, maxSteer - 180));
                 
                 
-                float visualWheelDir = Mathf.Clamp(-Mathf.DeltaAngle(thetaCar, thetaInput) - 90.0f, -180.0f, 0f);
-                frontLWheel.localEulerAngles = new Vector3(0, 90 + visualWheelDir, 0);
-                frontRWheel.localEulerAngles = new Vector3(0, 90 + visualWheelDir, 0);
+                float visualWheelDir = Mathf.Clamp(-Mathf.DeltaAngle(thetaCar, thetaInput), -45.0f, 45f);
+                frontLWheel.localEulerAngles = new Vector3(0, visualWheelDir, 0);
+                frontRWheel.localEulerAngles = new Vector3(0, visualWheelDir, 0);
                 //steerAngle = (inputDir.x * 50 / Mathf.Max(carRB.velocity.magnitude * 50.0f, 1.0f));
                 wheel.steerAngle = -thetaDelta;
             });

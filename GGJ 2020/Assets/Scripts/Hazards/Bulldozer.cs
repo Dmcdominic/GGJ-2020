@@ -47,10 +47,15 @@ public class Bulldozer : Hazard
     {
         Vector3 target = new Vector3(transform.position.x, transform.position.y - riseHeight, transform.position.z);
 
+        string r = "Bulldoze" + Random.value.ToString();
+        SoundManager.instance.StartLoop(movesound, r, 0.3f);
+
         while (transform.position != target)
         {
             transform.position = Vector3.MoveTowards(transform.position, target, riseSpeed);
             yield return new WaitForFixedUpdate();
         }
+
+        SoundManager.instance.StopLoop(movesound, r);
     }
 }
