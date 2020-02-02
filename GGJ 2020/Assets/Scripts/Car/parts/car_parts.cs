@@ -142,7 +142,7 @@ public class car_parts : MonoBehaviour {
     }
 
     // Called by a floating part when you pick it up
-    public void pickup_part(part partType) {
+    public void pickup_part(part partType, int p) {
         my_parts[playerID].val[(int)partType]++;
         Debug.Log("Car now has " + (my_parts[playerID].val[(int)partType]) + " " + partType + "(s)");
     }
