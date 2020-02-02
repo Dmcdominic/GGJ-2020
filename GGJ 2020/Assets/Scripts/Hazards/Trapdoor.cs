@@ -14,6 +14,8 @@ public class Trapdoor : MonoBehaviour
     [SerializeField] private float duration;
     [SerializeField] private float warningDuration;
     [SerializeField] private AnimationCurve warningInterval;
+    [SerializeField] private AudioClip trapdoorSFX;
+    [SerializeField] private AudioClip warningSFX;
     [SerializeField] private bool startOnEnable;
 #pragma warning restore 0649
 
@@ -48,6 +50,7 @@ public class Trapdoor : MonoBehaviour
         float timer = 0;
         door1Collider.enabled = false;
         door2Collider.enabled = false;
+        SoundManager.instance.PlayOnce(trapdoorSFX);
         while(timer < openTime)
         {
             yield return new WaitForFixedUpdate();
@@ -62,6 +65,7 @@ public class Trapdoor : MonoBehaviour
         float timer = 0;
         door1Collider.enabled = true;
         door2Collider.enabled = true;
+        SoundManager.instance.PlayOnce(trapdoorSFX);
         while (timer < openTime)
         {
             yield return new WaitForFixedUpdate();
@@ -84,6 +88,7 @@ public class Trapdoor : MonoBehaviour
             if (intervalTimer >= warningInterval.Evaluate(timer / warningDuration))
             {
                 warningIndicator.SetActive(!warningIndicator.activeSelf);
+                if (warningIndicator.activeSelf) SoundManager.instance.PlayOnce(warningSFX, 0.5f);
                 intervalTimer = 0;
             }
         }

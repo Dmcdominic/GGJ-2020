@@ -12,6 +12,8 @@ public class Turret : Hazard
     [SerializeField] private float fireRate;
     [SerializeField] private GameObject bullet;
     [SerializeField] private bool doubleFire;
+    [SerializeField] private AudioClip whirrSFX;
+    [SerializeField] private AudioClip shootSFX;
     [SerializeField] private bool startOnEnable;
 #pragma warning restore 0649
 
@@ -55,11 +57,14 @@ public class Turret : Hazard
     {
         Vector3 target = new Vector3(transform.position.x, transform.position.y + riseHeight, transform.position.z);
 
+        string id = "Turret" + Random.value.ToString();
+        SoundManager.instance.StartLoop(whirrSFX, id, 0.3f);
         while (transform.position != target)
         {
             transform.position = Vector3.MoveTowards(transform.position, target, riseSpeed);
             yield return new WaitForFixedUpdate();
         }
+        SoundManager.instance.StopLoop(whirrSFX, id);
 
     }
 
@@ -67,11 +72,15 @@ public class Turret : Hazard
     {
         Vector3 target = new Vector3(transform.position.x, transform.position.y - riseHeight, transform.position.z);
 
+        string id = "Turret" + Random.value.ToString();
+        SoundManager.instance.StartLoop(whirrSFX, id, 0.3f);
         while (transform.position != target)
         {
             transform.position = Vector3.MoveTowards(transform.position, target, riseSpeed);
             yield return new WaitForFixedUpdate();
         }
+        SoundManager.instance.StopLoop(whirrSFX, id);
+
     }
 
     private IEnumerator Rotate()
@@ -89,6 +98,7 @@ public class Turret : Hazard
 
         while (Time.time < endTime)
         {
+            SoundManager.instance.PlayOnce(shootSFX);
             GameObject o = Instantiate(bullet);
             o.transform.position = transform.position;
             o.transform.forward = transform.forward;
