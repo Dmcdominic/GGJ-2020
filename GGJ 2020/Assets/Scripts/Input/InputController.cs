@@ -89,16 +89,16 @@ public class InputController : MonoBehaviour
             hornPressed = true;
             if (ishornlooping)
             {
-                SoundManager.instance.StartLoop(getHorns(), p.ToString());
+                //SoundManager.instance.StartLoop(getHorns(), p.ToString());
             }
             else
             {
-                SoundManager.instance.PlayOnce(getHorns());
+                //SoundManager.instance.PlayOnce(getHorns());
             }
         }
         if (hornPressed && playerControlInfo.hornNo)
         {
-            if (ishornlooping) SoundManager.instance.StopLoop(getHorns(), p.ToString());
+            //if (ishornlooping) SoundManager.instance.StopLoop(getHorns(), p.ToString());
             hornPressed = false;
         }
 
