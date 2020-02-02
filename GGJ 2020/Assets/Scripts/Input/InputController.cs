@@ -18,6 +18,7 @@ public class InputController : MonoBehaviour
     // Horn sound
     public AudioConfig audioConfig;
     [SerializeField] private AudioClip EngineRun;
+    [SerializeField] private AudioClip Fire;
     // Whether this horn is supposed to loop or not
 
     private int p;
@@ -128,10 +129,12 @@ public class InputController : MonoBehaviour
         {
             SoundManager.instance.PlayOnce(getRev());
             rightshoulderpressed = true;
+            SoundManager.instance.StartLoop(Fire, p.ToString(), 0.15f);
 
         }
         if (rightshoulderpressed && GamePad.GetState(player).Triggers.Right == 0)
         {
+            SoundManager.instance.StartLoop(Fire, p.ToString());
             rightshoulderpressed = false;
         }
 

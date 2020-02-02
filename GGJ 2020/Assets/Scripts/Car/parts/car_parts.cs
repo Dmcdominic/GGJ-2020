@@ -78,27 +78,29 @@ public class car_parts : MonoBehaviour {
         }
 
         //Debug.Log("car_parts collision impulse: " + collision.impulse.magnitude);
-        if (collision.impulse.magnitude > partConfig.impulseToLosePart)
-        {
+        if (collision.impulse.magnitude > partConfig.impulseToLosePart) {
             Vector3 selfVelocity = this.GetComponent<Rigidbody>().velocity;
-            Vector3 otherVelcity = collision.gameObject.GetComponent<Rigidbody>().velocity;
             Vector3 impulse = collision.impulse;
-            float selfDot = Vector3.Dot(selfVelocity.normalized, impulse);
-            float otherDot = Vector3.Dot(otherVelcity.normalized, impulse);
 
-            if (selfDot < otherDot) //other car suffers
-            {
-                float upper_bound = Mathf.Pow(0.5f, my_parts[playerID].val[(int)part.bumper]);
-                float random_roll = Random.Range(0, 1);
-                if(random_roll < upper_bound)
-                {
-                    collision.gameObject.GetComponentInParent<car_parts>().lose_random_part(collision.impulse);
+            float selfDot = Mathf.Abs(Vector3.Dot(transform.forward, impulse.normalized));
+
+            const float dotThreshold = 0.5f;
+            const float veloThreshold = 9f;
+            if (selfDot < dotThreshold || selfVelocity.magnitude < veloThreshold) { // always lose a part if your dot or velo is under a threshold
+                lose_random_part(collision.impulse);
+            } else {
+                int protects = my_parts[playerID].val[(int)part.bumper] + 1;
+                for (int i=0; i < protects; i++) {
+                    if(Random.Range(0f, 1f) > 0.5f) {
+                        return;
+                    }
                 }
-            }
-            else //you suffer
-            {
-                // TODO - THEY suffer
-                //lose_random_part(collision.impulse);
+
+                if (my_parts[playerID].val[(int)part.bumper] > 0) {
+                    lose_part(part.bumper, collision.impulse);
+                } else {
+                    lose_random_part(collision.impulse);
+                }
             }
         }
     }
