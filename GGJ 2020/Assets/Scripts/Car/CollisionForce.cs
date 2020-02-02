@@ -9,7 +9,7 @@ public class CollisionForce : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.transform.tag == "Car")
+        if(collision.transform.tag == "car")
         {
             Vector3 selfVelocity = this.GetComponent<Rigidbody>().velocity;
             Vector3 otherVelcity = collision.gameObject.GetComponent<Rigidbody>().velocity;

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6971338879005465890}
   - component: {fileID: 3238887084842592296}
   - component: {fileID: 2862221946569373699}
+  - component: {fileID: 7041501564316840386}
   m_Layer: 0
   m_Name: door
   m_TagString: Untagged
@@ -127,3 +128,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   partConfig: {fileID: 11400000, guid: bdef7cb8351cdf14eaaf3b751b82695d, type: 2}
   part_type: 6
+--- !u!114 &7041501564316840386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7206308972685799697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26fe2d8050200c74e9001bbf5da1b9ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerColor: []
