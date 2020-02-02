@@ -88,7 +88,7 @@ public class Trapdoor : MonoBehaviour
             if (intervalTimer >= warningInterval.Evaluate(timer / warningDuration))
             {
                 warningIndicator.SetActive(!warningIndicator.activeSelf);
-                if (warningIndicator.activeSelf) SoundManager.instance.PlayOnce(warningSFX, 0.5f);
+                if (warningIndicator.activeSelf) SoundManager.instance.PlayOnce(warningSFX, 0.1f);
                 intervalTimer = 0;
             }
         }
