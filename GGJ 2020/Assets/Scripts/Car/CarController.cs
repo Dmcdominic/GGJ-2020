@@ -31,7 +31,6 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform frontLWheel;
     [SerializeField] private Transform frontRWheel;
     [SerializeField] private PartList myParts;
-    [SerializeField] private Transform root;
     private float steerAngle = 0;
     
     private int curGear = 0;
@@ -58,19 +57,22 @@ public class CarController : MonoBehaviour
         {
             ThrottleNormal();
             SteerNormal();
-            rearWheels.Map(wheel =>
-            {
-                var wheelForwardFriction = wheel.forwardFriction;    
-                wheelForwardFriction.stiffness =
-                    carConfig.tireForwardStiffness.Evaluate(1 - 1 / Mathf.Pow(2, parts[(int) part.tire]));
-                var wheelSideFriction = wheel.sidewaysFriction;    
-                wheelSideFriction.stiffness =
-                    carConfig.tireSideStiffness.Evaluate(1 - 1 / Mathf.Pow(2, parts[(int) part.tire]));
-                wheel.forwardFriction = wheelForwardFriction;
-                wheel.sidewaysFriction = wheelSideFriction;
-            });
+            rearWheels.Map(SetStiffness);
+            frontWheels.Map(SetStiffness);
             yield return null;
         }
+    }
+
+    private void SetStiffness(WheelCollider wheel)
+    {
+        var wheelForwardFriction = wheel.forwardFriction;    
+        wheelForwardFriction.stiffness =
+            carConfig.tireForwardStiffness.Evaluate(1 - 1 / Mathf.Pow(2, parts[(int) part.tire] - 1));
+        var wheelSideFriction = wheel.sidewaysFriction;    
+        wheelSideFriction.stiffness =
+            carConfig.tireSideStiffness.Evaluate(1 - 1 / Mathf.Pow(2, parts[(int) part.tire] - 1));
+        wheel.forwardFriction = wheelForwardFriction;
+        wheel.sidewaysFriction = wheelSideFriction;
     }
 
     IEnumerator UnFlip()
@@ -101,14 +103,14 @@ public class CarController : MonoBehaviour
                 }*/
                     wheel.brakeTorque = pci.footBrake * carConfig.maxBrake * Mathf.Sqrt(carRB.velocity.magnitude);
                     float dot = Vector3.Dot(inputDir, groundDir) * carConfig.gearThrottles[curGear];
-                    if (dot < 0)
+                    if (dot < -.2)
                     {
-                        if (dot < -.5f)
+                        if (dot > -.7f)
                             dot *= .5f;
                         else
                             dot = 0;
                     }
-                    wheel.motorTorque = dot;
+                    wheel.motorTorque = dot * (pci.throttle + 1);
                     
 
 
@@ -117,10 +119,12 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        carRB.AddForceAtPosition(pci.throttle * 40000.0f * (Quaternion.AngleAxis(steerAngle, transform.up) * carRB.transform.forward), carRB.transform.position);
-        if(pci.throttle < 0.1f)
+            carRB.AddForceAtPosition(pci.throttle * carConfig.rearForceConstant * pci.throttle *
+                                                   (Quaternion.AngleAxis(steerAngle, transform.up) 
+                                                     * carRB.transform.forward), carRB.transform.position);
+        if(pci.throttle < 0.1f && pci.direction.sqrMagnitude < .6f)
         {
-            carRB.drag = carRB.velocity.magnitude *  0.24f;
+            carRB.drag = carRB.velocity.magnitude *  0.3f;
         }
         else
         {
@@ -148,8 +152,7 @@ public class CarController : MonoBehaviour
 
                 thetaDelta = 
                     minABS(Mathf.Clamp(thetaDelta, -maxSteer, maxSteer),
-                           Mathf.Clamp(thetaDelta, -maxSteer + 180, maxSteer - 180)
-                    );
+                           Mathf.Clamp(thetaDelta, -maxSteer + 180, maxSteer - 180));
                 float visualWheelDir = Mathf.Clamp(-Mathf.DeltaAngle(thetaCar, thetaInput) - 90.0f, -180.0f, 0f);
                 frontLWheel.localEulerAngles = new Vector3(0, visualWheelDir, 0);
                 frontRWheel.localEulerAngles = new Vector3(0, visualWheelDir, 0);

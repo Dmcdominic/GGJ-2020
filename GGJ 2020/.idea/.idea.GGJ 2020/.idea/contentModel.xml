@@ -22,6 +22,7 @@
           <e p="UnitEvent.cs" t="Include" />
           <e p="Vector3Ref.cs" t="Include" />
         </e>
+        <e p="Dragger.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="adhoc" t="Include">
             <e p="ColorCorrection.cs" t="Include" />
@@ -41,6 +42,7 @@
           <e p="Hazards" t="Include">
             <e p="Bar.cs" t="Include" />
             <e p="Barrier.cs" t="Include" />
+            <e p="Bulldozer.cs" t="Include" />
             <e p="Bullet.cs" t="Include" />
             <e p="Hazard.cs" t="Include" />
             <e p="HazardManager.cs" t="Include" />
@@ -56,6 +58,7 @@
           </e>
           <e p="playerID.cs" t="Include" />
         </e>
+        <e p="SqrtDrag.cs" t="Include" />
         <e p="XInputDotNet" t="Include">
           <e p="Docs.txt" t="Include" />
           <e p="MITLicense.txt" t="Include" />
