@@ -14,7 +14,7 @@ public class CameraShakeScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 	running = false;
-	act.AddListener(i => activate(i * .0001f,.25f));
+	act.AddListener(i => activate(i * .01f,.25f));
 	}
 	
 	IEnumerator shake(float mag, float dur){
