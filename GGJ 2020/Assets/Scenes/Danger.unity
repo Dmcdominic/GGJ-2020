@@ -859,6 +859,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 171135120, guid: 8712cf139834edd4eb91b656914521d5, type: 3}
+      propertyPath: m_TagString
+      value: killzone
+      objectReference: {fileID: 0}
     - target: {fileID: 6307678080174335238, guid: 8712cf139834edd4eb91b656914521d5,
         type: 3}
       propertyPath: m_LocalPosition.x
