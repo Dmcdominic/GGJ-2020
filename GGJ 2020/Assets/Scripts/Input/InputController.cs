@@ -8,9 +8,6 @@ using XInputDotNetPure;
 
 public class InputController : MonoBehaviour
 {
-    // Used to uniquely identify this car for audio purposes.
-    public string carId;
-
     [SerializeField]
     PlayerControlState state;
 
@@ -18,14 +15,12 @@ public class InputController : MonoBehaviour
 
     bool usingKeyboard;
 
-    // Throttle sound
-    public AudioClip revSound;
-
     // Horn sound
-    public AudioClip honk;
+    public AudioConfig audioConfig;
     // Whether this horn is supposed to loop or not
     public bool isHornLooping;
 
+    private int p;
 
 #if UNITY_STANDALONE_WIN
     XInputDotNetPure.PlayerIndex player;
@@ -43,8 +38,9 @@ public class InputController : MonoBehaviour
 
     private void Awake()
     {
+        p = GetComponentInParent<playerID>().p;
 #if UNITY_STANDALONE_WIN
-        player = (PlayerIndex)GetComponentInParent<playerID>().p;
+        player = (PlayerIndex)p;
 
         var playerControlInfo = state[(int)player];
         state[(int)player] = playerControlInfo;
@@ -68,33 +64,33 @@ public class InputController : MonoBehaviour
             if (!leftshoulderpressed && GamePad.GetState(player).Triggers.Left > 0)
                 if (playerControlInfo.horn)
                 {
-                    if (isHornLooping)
-                        SoundManager.instance.StartLoop(honk, carId);
-                    else
-                        SoundManager.instance.PlayOnce(honk);
+                if (isHornLooping)
+                    SoundManager.instance.StartLoop(getHorn(), p.ToString());
+                else
+                    SoundManager.instance.PlayOnce(getHorn());
                 }
                 else if (!playerControlInfo.horn)
                 {
                     if (isHornLooping)
-                        SoundManager.instance.StopLoop(honk, carId);
+                        SoundManager.instance.StopLoop(getHorn(), p.ToString());
                 }
 
             if (playerControlInfo.throttle > 0)
             {
-                SoundManager.instance.PlayOnce(revSound);
+                SoundManager.instance.PlayOnce(getRev());
             }
 
             if (playerControlInfo.horn)
             {
                 if (isHornLooping)
-                    SoundManager.instance.StartLoop(honk, carId);
+                    SoundManager.instance.StartLoop(getHorn(), p.ToString());
                 else
-                    SoundManager.instance.PlayOnce(honk);
+                    SoundManager.instance.PlayOnce(getHorn());
             }
             else if (!playerControlInfo.horn)
             {
                 if (isHornLooping)
-                    SoundManager.instance.StopLoop(honk, carId);
+                    SoundManager.instance.StopLoop(getHorn(), p.ToString());
             }
 
             if (!leftshoulderpressed && GamePad.GetState(player).Buttons.LeftShoulder == ButtonState.Pressed)
@@ -136,6 +132,13 @@ public class InputController : MonoBehaviour
             }
 
         }
+
+    private AudioClip getHorn() {
+        return audioConfig.horns[p % audioConfig.horns.Count];
+    }
+    private AudioClip getRev() {
+        return audioConfig.revs[p % audioConfig.revs.Count];
+    }
 
     private void OnDestroy()
     {

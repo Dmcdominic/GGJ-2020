@@ -57,6 +57,10 @@ public class car_parts : MonoBehaviour {
             return;
         }
 
+        if (collision.gameObject.GetComponent<floating_part>()) {
+            return;
+        }
+
         playerID pID = collision.gameObject.GetComponentInParent<playerID>();
         if (!pID) {
             if (collision.gameObject.tag != "ground" && (collision.impulse.magnitude > partConfig.impulseToLosePartNonPlayer)) {
