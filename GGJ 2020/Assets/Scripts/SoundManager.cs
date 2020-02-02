@@ -20,17 +20,7 @@ public class SoundManager : MonoBehaviour
         
     }
 
-    public void Tmp (AudioClip clip)
-    {
-        StartLoop(clip, "01");
-    }
-
-    public void Tmp2 (AudioClip clip)
-    {
-        StopLoop(clip, "01");
-    }
-
-    public void StartLoop(AudioClip clip,string carID)
+    public void StartLoop(AudioClip clip,string carID, float volume = 1f)
     {
         //If already playing, don't do it again you stupid
         if (myLoops.ContainsKey(clip.ToString() + carID)) return; 
@@ -39,6 +29,7 @@ public class SoundManager : MonoBehaviour
         AudioSource newSrc = newPlayer.GetComponent<AudioSource>();
         newSrc.loop = true;
         newSrc.clip = clip;
+        newSrc.volume = volume;
         newPlayer.name = clip.ToString() + carID;
         newSrc.Play();
         myLoops.Add(newPlayer.name, newPlayer);
@@ -52,8 +43,8 @@ public class SoundManager : MonoBehaviour
         myLoops.Remove(search);
     }
 
-    public void PlayOnce(AudioClip clip)
+    public void PlayOnce(AudioClip clip,float volume = 1f)
     {
-        GetComponent<AudioSource>().PlayOneShot(clip);
+        GetComponent<AudioSource>().PlayOneShot(clip,volume);
     }
 }
