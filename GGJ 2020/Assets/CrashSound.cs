@@ -6,12 +6,14 @@ public class CrashSound : MonoBehaviour
 {
     private void OnCollisionEnter(Collision other)
     {
+        playSound(.5f);
         if (gameObject.CompareTag(other.gameObject.tag))
         {
-            playSound(1);
             StartCoroutine(play());
+            GetComponent<Rigidbody>()?.AddExplosionForce(other.relativeVelocity.sqrMagnitude * other.rigidbody.mass * 1.25f,other.contacts[0].point + Vector3.down *.001f,10);
+
         }
-        GetComponent<Rigidbody>().AddExplosionForce(other.relativeVelocity.sqrMagnitude * other.rigidbody.mass * 1.25f,other.contacts[0].point + Vector3.down *.001f,10);
+        
     }
 
     void playSound(float k)

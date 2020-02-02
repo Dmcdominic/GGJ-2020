@@ -14,8 +14,9 @@ public class SerializedParts
 public class car_parts : MonoBehaviour {
 
     // Readonly settings
-    public static readonly int[] parts_init = { 4, 1, 2, 0, 0, 2, 2, 1, 1}; // Number of parts to start with
+    public static readonly int[] parts_init = {0, 0, 0, 0, 0, 0, 0, 0,1};//{ 4, 1, 2, 0, 0, 2, 2, 1, 1}; // Number of parts to start with
     public static readonly int num_diff_parts = System.Enum.GetValues(typeof(part)).Length; //icky
+    [SerializeField] private AudioClip pick_up_sound;
 
 
     [SerializeField] private PartList my_parts;
@@ -146,6 +147,7 @@ public class car_parts : MonoBehaviour {
     // Called by a floating part when you pick it up
     public void pickup_part(part partType, int p) {
         my_parts[playerID].val[(int)partType]++;
+        SoundManager.instance.PlayOnce(pick_up_sound);
         Debug.Log("Car now has " + (my_parts[playerID].val[(int)partType]) + " " + partType + "(s)");
     }
 }
