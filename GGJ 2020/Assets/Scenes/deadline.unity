@@ -2112,7 +2112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26fe2d8050200c74e9001bbf5da1b9ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerColor: []
+  colorConfig: {fileID: 11400000, guid: 0211a7aad4d6c374cbc83c813623aab0, type: 2}
 --- !u!114 &378665145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2407,7 +2407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26fe2d8050200c74e9001bbf5da1b9ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerColor: []
+  colorConfig: {fileID: 11400000, guid: 0211a7aad4d6c374cbc83c813623aab0, type: 2}
 --- !u!114 &426356086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4137,7 +4137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26fe2d8050200c74e9001bbf5da1b9ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerColor: []
+  colorConfig: {fileID: 11400000, guid: 0211a7aad4d6c374cbc83c813623aab0, type: 2}
 --- !u!114 &914569016
 MonoBehaviour:
   m_ObjectHideFlags: 0
