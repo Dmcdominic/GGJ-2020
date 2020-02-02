@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f32f593851fec47b82329be27d2466, type: 3}
   m_Name: CarConfig
   m_EditorClassIdentifier: 
-  minSteer: 5
+  minSteer: 8
   maxSteer: 45
   gearThrottles:
-  - 10000
+  - 40000
   maxBrake: 200000
-  downForce: 5
-  unflipSpeed: 10
+  downForce: 2
+  unflipSpeed: 5
   reverseSpeed: 500
   tireForwardStiffness:
     serializedVersion: 2
@@ -113,4 +113,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  rearForceConstant: 20500
+  rearForceConstant: 40000

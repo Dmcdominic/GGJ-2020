@@ -96,17 +96,17 @@ public class CarController : MonoBehaviour
         (
             wheel =>
             {
-                if ((Vector3.Dot(carRB.velocity,transform.forward) < 0 || carRB.velocity.magnitude < 1) && pci.footBrake > .8f)
+                if ((Vector3.Dot(carRB.velocity,transform.forward) < 0 || carRB.velocity.magnitude < 100) && pci.footBrake > .1f)
                 {
-                    wheel.motorTorque = -carConfig.reverseSpeed;
+                    wheel.motorTorque = -carConfig.reverseSpeed * pci.footBrake;
                 return;
                 }
                     wheel.brakeTorque = pci.footBrake * carConfig.maxBrake * Mathf.Sqrt(carRB.velocity.magnitude);
                     float dot = Vector3.Dot(inputDir, groundDir) * carConfig.gearThrottles[curGear];
 
+                    
+                    if (dot < 0) dot *= 0;
                     wheel.motorTorque = dot * (pci.throttle + 1);
-                    if ( dot < 0) dot *= 0;
-
 
             });
     }
