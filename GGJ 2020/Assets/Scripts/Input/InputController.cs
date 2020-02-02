@@ -34,12 +34,14 @@ public class InputController : MonoBehaviour
 
     private bool leftshoulderpressed;
     private bool rightshoulderpressed;
-
+    private bool startPressed = false;
     private float vibration = 0;
     private float vibration_standby = 0.00f;
     private float vibration_move = 0.001f;
     private float vibration_boost = 0.02f;
     private float vibration_break = 0.05f;
+
+    Spawner spawner;
 
     private void Awake()
     {
@@ -48,42 +50,39 @@ public class InputController : MonoBehaviour
 
         var playerControlInfo = state[(int)player];
         state[(int)player] = playerControlInfo;
+        spawner = FindObjectOfType<Spawner>();
+
 #endif
     }
-        // Update is called once per frame
-        void Update() 
-        {
+    // Update is called once per frame
+    void Update() 
+    {
 #if UNITY_STANDALONE_WIN
-            var stick = GamePad.GetState(player).ThumbSticks.Left;
-            var playerControlInfo = state[(int)player];
-            playerControlInfo.direction = new Vector3(stick.X, 0, stick.Y);
-            playerControlInfo.footBrake = GamePad.GetState(player).Triggers.Left;
-            playerControlInfo.handBrakePulled = (int)GamePad.GetState(player).Buttons.X;
-            playerControlInfo.throttle = GamePad.GetState(player).Triggers.Right;
-            playerControlInfo.horn = GamePad.GetState(player).Buttons.A == ButtonState.Pressed;
-            state[(int)player] = playerControlInfo;
+        var stick = GamePad.GetState(player).ThumbSticks.Left;
+        var playerControlInfo = state[(int)player];
+        playerControlInfo.direction = new Vector3(stick.X, 0, stick.Y);
+        playerControlInfo.footBrake = GamePad.GetState(player).Triggers.Left;
+        playerControlInfo.handBrakePulled = (int)GamePad.GetState(player).Buttons.X;
+        playerControlInfo.throttle = GamePad.GetState(player).Triggers.Right;
+        playerControlInfo.horn = GamePad.GetState(player).Buttons.A == ButtonState.Pressed;
+        state[(int)player] = playerControlInfo;
+
+        if(spawner == null) { spawner = FindObjectOfType<Spawner>(); }
+            
+        if(!startPressed && GamePad.GetState(player).Buttons.Start == ButtonState.Pressed)
+        {
+            playerControlInfo.inGame = !playerControlInfo.inGame;
+            //spawner.changeState((int)player);
+            startPressed = true;
+        }
+
+        if (startPressed && GamePad.GetState(player).Buttons.Start == ButtonState.Released)
+        {
+            startPressed = false;
+        }
 
 
-
-            if (!leftshoulderpressed && GamePad.GetState(player).Triggers.Left > 0)
-                if (playerControlInfo.horn)
-                {
-                    if (isHornLooping)
-                        SoundManager.instance.StartLoop(honk, carId);
-                    else
-                        SoundManager.instance.PlayOnce(honk);
-                }
-                else if (!playerControlInfo.horn)
-                {
-                    if (isHornLooping)
-                        SoundManager.instance.StopLoop(honk, carId);
-                }
-
-            if (playerControlInfo.throttle > 0)
-            {
-                SoundManager.instance.PlayOnce(revSound);
-            }
-
+        if (!leftshoulderpressed && GamePad.GetState(player).Triggers.Left > 0)
             if (playerControlInfo.horn)
             {
                 if (isHornLooping)
@@ -97,45 +96,63 @@ public class InputController : MonoBehaviour
                     SoundManager.instance.StopLoop(honk, carId);
             }
 
-            if (!leftshoulderpressed && GamePad.GetState(player).Buttons.LeftShoulder == ButtonState.Pressed)
-            {
-                leftshoulderpressed = true;
-                state[(int)player].shiftDown.Invoke();
-            }
-            if (leftshoulderpressed && GamePad.GetState(player).Triggers.Left == 0)
-            {
-                leftshoulderpressed = false;
-            }
-            if (!rightshoulderpressed && GamePad.GetState(player).Triggers.Right > 0)
-            {
-                rightshoulderpressed = true;
-                state[(int)player].shiftDown.Invoke();
+        if (playerControlInfo.throttle > 0)
+        {
+            SoundManager.instance.PlayOnce(revSound);
+        }
 
-            }
-            if (rightshoulderpressed && GamePad.GetState(player).Triggers.Right == 0)
-            {
-                rightshoulderpressed = false;
-
-            }
-
-            if (leftshoulderpressed)
-            {
-                XInputDotNetPure.GamePad.SetVibration(player, vibration_break, 0);
-            }
-            else if (rightshoulderpressed)
-            {
-                XInputDotNetPure.GamePad.SetVibration(player, 0, vibration_boost);
-            }
-            else if (playerControlInfo.direction != new Vector3())
-            {
-                XInputDotNetPure.GamePad.SetVibration(player, vibration_move, vibration_standby);
-            }
+        if (playerControlInfo.horn)
+        {
+            if (isHornLooping)
+                SoundManager.instance.StartLoop(honk, carId);
             else
-            {
-                XInputDotNetPure.GamePad.SetVibration(player, vibration_standby, vibration_standby);
-            }
+                SoundManager.instance.PlayOnce(honk);
+        }
+        else if (!playerControlInfo.horn)
+        {
+            if (isHornLooping)
+                SoundManager.instance.StopLoop(honk, carId);
+        }
+
+        if (!leftshoulderpressed && GamePad.GetState(player).Buttons.LeftShoulder == ButtonState.Pressed)
+        {
+            leftshoulderpressed = true;
+            state[(int)player].shiftDown.Invoke();
+        }
+        if (leftshoulderpressed && GamePad.GetState(player).Triggers.Left == 0)
+        {
+            leftshoulderpressed = false;
+        }
+        if (!rightshoulderpressed && GamePad.GetState(player).Triggers.Right > 0)
+        {
+            rightshoulderpressed = true;
+            state[(int)player].shiftDown.Invoke();
 
         }
+        if (rightshoulderpressed && GamePad.GetState(player).Triggers.Right == 0)
+        {
+            rightshoulderpressed = false;
+
+        }
+
+        if (leftshoulderpressed)
+        {
+            XInputDotNetPure.GamePad.SetVibration(player, vibration_break, 0);
+        }
+        else if (rightshoulderpressed)
+        {
+            XInputDotNetPure.GamePad.SetVibration(player, 0, vibration_boost);
+        }
+        else if (playerControlInfo.direction != new Vector3())
+        {
+            XInputDotNetPure.GamePad.SetVibration(player, vibration_move, vibration_standby);
+        }
+        else
+        {
+            XInputDotNetPure.GamePad.SetVibration(player, vibration_standby, vibration_standby);
+        }
+
+    }
 
     private void OnDestroy()
     {

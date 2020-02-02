@@ -11,9 +11,11 @@ public struct PlayerControlInfo
     public int handBrakePulled;
     public float throttle;
     public bool horn;
+    public bool inGame;
     public UnityEvent shiftUp;
     public UnityEvent shiftDown;
     public UnityEvent playHorn;
+    public IntEvent changeState;
 }
 
 public class PCSEvent : UnityEvent<PlayerControlInfo[]> {}
