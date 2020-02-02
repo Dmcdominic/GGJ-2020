@@ -32,9 +32,9 @@ public class InputController : MonoBehaviour
 
     private float vibration = 0;
     private float vibration_standby = 0.00f;
-    private float vibration_move = 0.001f;
-    private float vibration_boost = 0.02f;
-    private float vibration_break = 0.05f;
+    private float vibration_move = 0.002f;
+    private float vibration_boost = 0.04f;
+    private float vibration_break = 0.1f;
 
     private void Awake()
     {
@@ -116,19 +116,19 @@ public class InputController : MonoBehaviour
 
             if (leftshoulderpressed)
             {
-                XInputDotNetPure.GamePad.SetVibration(player, vibration_break, 0);
+                XInputDotNetPure.GamePad.SetVibration(player, vibration_break * Random.value, 0);
             }
             else if (rightshoulderpressed)
             {
-                XInputDotNetPure.GamePad.SetVibration(player, 0, vibration_boost);
+                XInputDotNetPure.GamePad.SetVibration(player, 0, vibration_boost * Random.value);
             }
             else if (playerControlInfo.direction != new Vector3())
             {
-                XInputDotNetPure.GamePad.SetVibration(player, vibration_move, vibration_standby);
+                XInputDotNetPure.GamePad.SetVibration(player, vibration_move * Random.value, vibration_standby * Random.value);
             }
             else
             {
-                XInputDotNetPure.GamePad.SetVibration(player, vibration_standby, vibration_standby);
+                XInputDotNetPure.GamePad.SetVibration(player, vibration_standby * Random.value, vibration_standby * Random.value);
             }
 
         }
