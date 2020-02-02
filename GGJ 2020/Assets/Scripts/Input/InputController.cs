@@ -41,12 +41,18 @@ public class InputController : MonoBehaviour
     private void Awake()
     {
         p = GetComponentInParent<playerID>().p;
+        isHornLooping = !(p == 0);
 #if UNITY_STANDALONE_WIN
         player = (PlayerIndex)p;
 
         var playerControlInfo = state[(int)player];
         state[(int)player] = playerControlInfo;
 #endif
+    }
+
+    private void Start()
+    {
+        StartCoroutine(EngineMonitor());
     }
     // Update is called once per frame
     void Update()
@@ -126,7 +132,6 @@ public class InputController : MonoBehaviour
         if (!rightshoulderpressed && GamePad.GetState(player).Triggers.Right > 0)
         {
             SoundManager.instance.PlayOnce(getRev());
-            SoundManager.instance.StartLoop(EngineRun,p.ToString(),0.1f);
             rightshoulderpressed = true;
 
         }
@@ -154,6 +159,7 @@ public class InputController : MonoBehaviour
         }
 #endif
     }
+
     private AudioClip getHorn()
     {
         return audioConfig.horns[p % audioConfig.horns.Count];
@@ -162,6 +168,18 @@ public class InputController : MonoBehaviour
     {
         return audioConfig.revs[p % audioConfig.revs.Count];
     }
+
+    private IEnumerator EngineMonitor()
+    {
+        while(true)
+        {
+            yield return new WaitUntil(() => playerControlInfo.direction != Vector3.zero);
+            SoundManager.instance.StartLoop(EngineRun, p.ToString(), 0.1f);
+            yield return new WaitUntil(() => playerControlInfo.direction == Vector3.zero);
+            SoundManager.instance.StopLoop(EngineRun, p.ToString());
+        }
+    }
+
 #if UNITY_STANDALONE_WIN
     private void OnDestroy()
     {
