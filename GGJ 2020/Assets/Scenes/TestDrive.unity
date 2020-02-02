@@ -229,13 +229,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 338264856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9193ca247afb1b74aa2fa38dceb6df26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  forceMultiplier: 100
   serializedVersion: 6
   m_Component:
   - component: {fileID: 583830570}
@@ -362,6 +355,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1719085774}
   - component: {fileID: 1719085773}
+  - component: {fileID: 1719085775}
   m_Layer: 0
   m_Name: InputController
   m_TagString: Untagged
@@ -383,7 +377,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: {fileID: 11400000, guid: 381b57a0c3b89bd4296219bc23273dd0, type: 2}
   usingKeyboard: 0
-  player: 0
 --- !u!4 &1719085774
 Transform:
   m_ObjectHideFlags: 0
@@ -398,6 +391,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1719085775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719085772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d9a929640096d745802cdd4aa698157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p: 0
 --- !u!1 &2063776716
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,7 +588,7 @@ PrefabInstance:
     - target: {fileID: 7634585277039386806, guid: 25d53071bcb4b9a4a8bfa353df0a5dcc,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8815550028680810535, guid: 25d53071bcb4b9a4a8bfa353df0a5dcc,
         type: 3}
@@ -599,6 +605,5 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7634585277039386806, guid: 25d53071bcb4b9a4a8bfa353df0a5dcc, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25d53071bcb4b9a4a8bfa353df0a5dcc, type: 3}
