@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 1022570312665612482}
   - component: {fileID: -1099608323053844007}
   - component: {fileID: 8965247612023366215}
+  - component: {fileID: -950724348174673759}
+  - component: {fileID: -3227403222260002442}
   m_Layer: 0
   m_Name: horn
   m_TagString: Untagged
@@ -128,3 +130,29 @@ MonoBehaviour:
   partConfig: {fileID: 11400000, guid: bdef7cb8351cdf14eaaf3b751b82695d, type: 2}
   part_type: 3
   rbody: {fileID: -1099608323053844007}
+--- !u!114 &-950724348174673759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8122921856556905272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26fe2d8050200c74e9001bbf5da1b9ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorConfig: {fileID: 11400000, guid: 0211a7aad4d6c374cbc83c813623aab0, type: 2}
+--- !u!114 &-3227403222260002442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8122921856556905272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d9a929640096d745802cdd4aa698157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p: 0

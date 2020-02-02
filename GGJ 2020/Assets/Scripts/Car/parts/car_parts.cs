@@ -14,7 +14,7 @@ public class SerializedParts
 public class car_parts : MonoBehaviour {
 
     // Readonly settings
-    public static readonly int[] parts_init = { 4, 1, 2, 0, 0, 2, 2, 1, 1}; // Number of parts to start with
+    public static readonly int[] parts_init = { 4, 1, 2, 12, 1, 2, 2, 1, 1}; // Number of parts to start with
     public static readonly int num_diff_parts = System.Enum.GetValues(typeof(part)).Length; //icky
     [SerializeField] private AudioClip pick_up_sound;
 

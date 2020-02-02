@@ -87,18 +87,28 @@ public class InputController : MonoBehaviour
         if (!hornPressed && playerControlInfo.horn)
         {
             hornPressed = true;
-            if (ishornlooping)
+            
+            foreach (var audioClip in getHorns())
             {
-                //SoundManager.instance.StartLoop(getHorns(), p.ToString());
-            }
-            else
-            {
-                //SoundManager.instance.PlayOnce(getHorns());
+                if (audioClip.length.Equals(audioConfig.horns[0].length))
+                {
+                    SoundManager.instance.PlayOnce(audioClip);
+                }
+                else
+                {
+                    SoundManager.instance.StartLoop(audioClip, p.ToString());
+                }
             }
         }
         if (hornPressed && playerControlInfo.hornNo)
         {
-            //if (ishornlooping) SoundManager.instance.StopLoop(getHorns(), p.ToString());
+            foreach (var audioClip in getHorns())
+            {
+                if (!audioClip.length.Equals(audioConfig.horns[0].length))
+                {
+                    SoundManager.instance.StartLoop(audioClip, p.ToString());
+                }
+            }
             hornPressed = false;
         }
 
@@ -160,12 +170,10 @@ public class InputController : MonoBehaviour
     private List<AudioClip> getHorns()
     {
         var restult = new List<AudioClip>();
-        for (int i = p; i < myParts[p].val[(int) part.horn] + p; i++)
+        for (int i = p; (i % audioConfig.horns.Count) < myParts[p].val[(int) part.horn] + p; i++)
         {
-            ishornlooping = i == 0;
             restult.Add(audioConfig.horns[i % audioConfig.horns.Count]);
         }
-
         
         return restult;
     }

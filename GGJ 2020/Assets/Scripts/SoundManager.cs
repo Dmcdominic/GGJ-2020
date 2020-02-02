@@ -56,8 +56,11 @@ public class SoundManager : MonoBehaviour
     public void StopLoop(AudioClip clip, string carID)
     {
         string search = clip.ToString() + carID;
-        Destroy(myLoops[search]);
-        myLoops.Remove(search);
+        if (myLoops.ContainsKey(search))
+        {
+            Destroy(myLoops[search]);
+            myLoops.Remove(search);
+        }
     }
 
     public void PlayWhile(Func<bool> f)
