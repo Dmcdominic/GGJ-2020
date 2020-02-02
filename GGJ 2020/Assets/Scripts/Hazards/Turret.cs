@@ -31,6 +31,12 @@ public class Turret : Hazard
             routine = StartCoroutine(Routine());
     }
 
+    public void HardModeActivate()
+    {
+        if (Random.value <= 0.5f) doubleFire = true;
+        Activate();
+    }
+
     private IEnumerator Routine()
     {
         yield return StartCoroutine(Rise());

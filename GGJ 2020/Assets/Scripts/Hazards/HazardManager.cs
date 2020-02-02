@@ -46,7 +46,8 @@ public class HazardManager : MonoBehaviour
                         //turret.Activate();
                         o = Instantiate(turret.gameObject, hazardParent.transform);
                         o.transform.position = new Vector3(Random.Range(-5, 5), o.transform.position.y, Random.Range(-3, 3));
-                        o.GetComponent<Hazard>().Activate();
+                        if (timer / maxTime > 0.6f) o.GetComponent<Turret>().HardModeActivate();
+                        else o.GetComponent<Hazard>().Activate();
                         break;
                     case 1:
                         trap.Activate();

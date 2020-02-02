@@ -41,7 +41,9 @@ public class CarController : MonoBehaviour
     private Vector3 inputDir => pci.direction.normalized;
     private Vector3 groundDir => (transform.forward - transform.forward.y * Vector3.up).normalized;
     private int[] parts => myParts[player].val;
-    
+
+
+    private float acceleration = 1;
 
     private void Awake()
     {
@@ -105,8 +107,8 @@ public class CarController : MonoBehaviour
                     float dot = Vector3.Dot(inputDir, groundDir) * carConfig.gearThrottles[curGear];
 
                     
-                    if (dot < 0) dot *= 0;
-                    wheel.motorTorque = dot * (pci.throttle + 1);
+                    if (-.9 < dot && dot < 0) dot *= 0;
+                    wheel.motorTorque = Mathf.SmoothDamp( wheel.motorTorque, dot * (pci.throttle + 1),ref acceleration,.1f);
 
             });
     }
@@ -136,25 +138,23 @@ public class CarController : MonoBehaviour
         (
             wheel =>
             {
-                if (inputDir.magnitude < .1f)
-                {
-                    return wheel.steerAngle = 0;
-                }
                 var thetaCar = Mathf.Atan2(groundDir.z, groundDir.x) * Mathf.Rad2Deg;
                 var thetaInput = Mathf.Atan2(inputDir.z, inputDir.x) * Mathf.Rad2Deg;
                 var thetaDelta = Mathf.DeltaAngle(thetaCar, thetaInput);
 
                 var maxSteer = carConfig.minSteer;
                 for (int i = 0; i < myParts[player].val[(int) part.steering_wheel]; i++)
-                    maxSteer += (carConfig.maxSteer - carConfig.minSteer) / Mathf.Pow(3,i);
+                    maxSteer += (carConfig.maxSteer - maxSteer) / Mathf.Pow(3,i);
 
+                
                 thetaDelta = 
                     minABS(Mathf.Clamp(thetaDelta, -maxSteer, maxSteer),
                            Mathf.Clamp(thetaDelta, -maxSteer + 180, maxSteer - 180));
+                
+                
                 float visualWheelDir = Mathf.Clamp(-Mathf.DeltaAngle(thetaCar, thetaInput) - 90.0f, -180.0f, 0f);
-                frontLWheel.localEulerAngles = new Vector3(0, visualWheelDir, 0);
-                frontRWheel.localEulerAngles = new Vector3(0, visualWheelDir, 0);
-                steerAngle = (thetaInput);
+                frontLWheel.localEulerAngles = new Vector3(0, 90 + visualWheelDir, 0);
+                frontRWheel.localEulerAngles = new Vector3(0, 90 + visualWheelDir, 0);
                 return wheel.steerAngle = -thetaDelta;
             });
     }

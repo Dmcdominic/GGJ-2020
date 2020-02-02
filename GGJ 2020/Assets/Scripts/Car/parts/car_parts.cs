@@ -56,7 +56,19 @@ public class car_parts : MonoBehaviour {
             return;
         }
 
-        Debug.Log("car_parts collision impulse: " + collision.impulse.magnitude);
+        playerID pID = collision.gameObject.GetComponentInParent<playerID>();
+        if (!pID) {
+            if (collision.gameObject.tag != "ground" && (collision.impulse.magnitude > partConfig.impulseToLosePartNonPlayer)) {
+                lose_random_part(collision.impulse);
+            }
+            return;
+        }
+
+        if (pID.p == playerID) {
+            return;
+        }
+
+        //Debug.Log("car_parts collision impulse: " + collision.impulse.magnitude);
         if (collision.impulse.magnitude > partConfig.impulseToLosePart) {
             lose_random_part(collision.impulse);
         }
