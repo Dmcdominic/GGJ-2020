@@ -84,6 +84,7 @@ GameObject:
   - component: {fileID: 5994093657581151778}
   - component: {fileID: 5320972095164744952}
   - component: {fileID: 7055730738656034128}
+  - component: {fileID: 544087149}
   m_Layer: 5
   m_Name: icons (1)
   m_TagString: Untagged
@@ -143,6 +144,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   p: 1
+--- !u!225 &544087149
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433681922613700488}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1596694012871851470
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,6 +386,7 @@ GameObject:
   - component: {fileID: 4628549288588115719}
   - component: {fileID: 4628549288588115717}
   - component: {fileID: 4628549288588115718}
+  - component: {fileID: 1971538917}
   m_Layer: 5
   m_Name: icons (0)
   m_TagString: Untagged
@@ -432,6 +446,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   p: 0
+--- !u!225 &1971538917
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4628549288588115712}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &4628549289031463508
 GameObject:
   m_ObjectHideFlags: 0
@@ -691,6 +717,7 @@ GameObject:
   - component: {fileID: 379522250610148541}
   - component: {fileID: 1159428666215324858}
   - component: {fileID: 568362143314909814}
+  - component: {fileID: 1040783251}
   m_Layer: 5
   m_Name: icons (2)
   m_TagString: Untagged
@@ -750,6 +777,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   p: 2
+--- !u!225 &1040783251
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5117922491090517070}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &5724958724007516923
 GameObject:
   m_ObjectHideFlags: 0
@@ -907,6 +946,7 @@ GameObject:
   - component: {fileID: 4987052806255224434}
   - component: {fileID: 6134259126358627145}
   - component: {fileID: 6017129369997040124}
+  - component: {fileID: 741484296}
   m_Layer: 5
   m_Name: icons (3)
   m_TagString: Untagged
@@ -966,6 +1006,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   p: 3
+--- !u!225 &741484296
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8277301559289018063}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8494203082952059613
 GameObject:
   m_ObjectHideFlags: 0
