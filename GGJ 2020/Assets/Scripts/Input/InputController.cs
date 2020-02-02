@@ -134,6 +134,13 @@ public class InputController : MonoBehaviour
             {
                 XInputDotNetPure.GamePad.SetVibration(player, vibration_standby, vibration_standby);
             }
-#endif
+
         }
+
+    private void OnDestroy()
+    {
+        XInputDotNetPure.GamePad.SetVibration(player, 0, 0);
     }
+
+#endif
+}
