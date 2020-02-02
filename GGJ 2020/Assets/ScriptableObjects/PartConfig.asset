@@ -41,9 +41,10 @@ MonoBehaviour:
     Prefab: {fileID: 7206308972685799697, guid: 925e44748aee6694a81c6f0ef9fa9c37,
       type: 3}
   - Part: 7
-    Prefab: {fileID: 0}
-  - Part: 7
     Prefab: {fileID: 228447272017031864, guid: 71603a89238e07847871179fa18420da, type: 3}
+  - Part: 8
+    Prefab: {fileID: 7960605356337448360, guid: f4f98f8e865945e49823c9eabc65b1b2,
+      type: 3}
   part_weights:
   - 9
   - 15
