@@ -4,28 +4,49 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour {
 
+    private readonly int numPlayers = 4; // TODO - DYNAMIC. DROP IN W/ START
+    private readonly float spawn_delay = 2f;
+
     // Public fields
-    public playerID carPrefab;
     public List<GameObject> spawnPoints;
+
+    public playerID carPrefab;
+    public IntEvent playerDied;
+    public LivesList playerLives;
 
     // Private vars
     private int spawnLoopIndex = 0;
 
+
+    // Init
+    private void Awake() {
+        // TODO - whenever a player drops in, initialize their lives. For now, 4 players always
+        for(int p = 0; p < numPlayers; p++) {
+            // initialize lives (TODO)
+        }
+    }
 
     // Start is called before the first frame update
     void Start() {
 
     }
 
-    // Update is called once per frame
-    void Update() {
+    // Called whenever a player dies
+    private void onPlayerDied(int player) {
+        // TODO - check if lives > 0, then decrement
+        spawnCarDelayed(player, spawn_delay);
+    }
 
+    IEnumerator spawnCarDelayed(int player, float delay) {
+        yield return new WaitForSeconds(delay);
+        spawnCar(player);
     }
 
     // Spawn a car for a certain player
-    public void spawnCar(int player) {
+    private void spawnCar(int player) {
         carPrefab.p = player;
         GameObject newCar = Instantiate(carPrefab.gameObject);
-        newCar.transform.position = spawnPoints[spawnLoopIndex++].transform.position;
+        newCar.transform.position = spawnPoints[spawnLoopIndex].transform.position;
+        spawnLoopIndex = (spawnLoopIndex + 1) % spawnPoints.Count;
     }
 }
