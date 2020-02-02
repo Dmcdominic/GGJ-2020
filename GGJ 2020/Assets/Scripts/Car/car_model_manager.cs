@@ -6,6 +6,7 @@ public class car_model_manager : MonoBehaviour {
 
     // Serialized fields
     [SerializeField] private PartList my_parts;
+    [SerializeField] private PartList pickup_player_ids;
 
     // The parts in the model
     [SerializeField] private List<part_ref_list> partObjs;
@@ -26,7 +27,12 @@ public class car_model_manager : MonoBehaviour {
                 continue;
             }
             for (int i = 0; i < pRL.Refs.Count; i++) {
-                pRL.Refs[i].SetActive(my_parts[playerID].val[(int)pRL.Part] > i);
+                bool setActive = my_parts[playerID].val[(int)pRL.Part] > i;
+                bool justEnabledNow = !(pRL.Refs[i].activeInHierarchy) && setActive;
+                pRL.Refs[i].SetActive(setActive);
+                if (justEnabledNow) {
+                    ColorCorrection.correctColor(pRL.Refs[i].GetComponent<MeshRenderer>(), pickup_player_ids[playerID].val[(int)pRL.Part]);
+                }
             }
         }
     }
