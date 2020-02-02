@@ -11,6 +11,7 @@ public class MusicManager : MonoBehaviour
     private void Awake()
     {
         MusicSource = GetComponent<AudioSource>();
+        MusicSource.volume = 0.60f;
         if (instance != null)
         {
             Destroy(gameObject);
