@@ -59,9 +59,15 @@
             <e p="PlayerControlState.cs" t="Include" />
           </e>
           <e p="playerID.cs" t="Include" />
+          <e p="SideTrigger.cs" t="Include" />
           <e p="SoundManager.cs" t="Include" />
+          <e p="SparksGenerator.cs" t="Include" />
+          <e p="TestForce.cs" t="Include" />
         </e>
         <e p="SqrtDrag.cs" t="Include" />
+        <e p="Textures" t="Include">
+          <e p="License (Read before using).txt" t="Include" />
+        </e>
         <e p="XInputDotNet" t="Include">
           <e p="Docs.txt" t="Include" />
           <e p="MITLicense.txt" t="Include" />

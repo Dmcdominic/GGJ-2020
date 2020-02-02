@@ -95,12 +95,12 @@ public class CarController : MonoBehaviour
         rearWheels.Map
         (
             wheel =>
-            {/*
+            {
                 if ((Vector3.Dot(carRB.velocity,transform.forward) < 0 || carRB.velocity.magnitude < 1) && pci.footBrake > .8f)
                 {
                     wheel.motorTorque = -carConfig.reverseSpeed;
                 return;
-                }*/
+                }
                     wheel.brakeTorque = pci.footBrake * carConfig.maxBrake * Mathf.Sqrt(carRB.velocity.magnitude);
                     float dot = Vector3.Dot(inputDir, groundDir) * carConfig.gearThrottles[curGear];
 
