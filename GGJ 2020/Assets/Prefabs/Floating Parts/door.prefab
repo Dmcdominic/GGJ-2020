@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3238887084842592296}
   - component: {fileID: 2862221946569373699}
   - component: {fileID: 7041501564316840386}
+  - component: {fileID: -6779531264036267653}
   m_Layer: 0
   m_Name: door
   m_TagString: Untagged
@@ -63,7 +64,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: -7805965318761107941, guid: 056ae240be19ec449a1e4022144370b4, type: 3}
-  - {fileID: 8182101616850083958, guid: 056ae240be19ec449a1e4022144370b4, type: 3}
+  - {fileID: 2100000, guid: baee85c9fbe2a0e46b81269c56c89851, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -140,4 +141,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26fe2d8050200c74e9001bbf5da1b9ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerColor: []
+  colorConfig: {fileID: 11400000, guid: 0211a7aad4d6c374cbc83c813623aab0, type: 2}
+--- !u!114 &-6779531264036267653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7206308972685799697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d9a929640096d745802cdd4aa698157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p: 0
