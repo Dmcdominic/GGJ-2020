@@ -76,10 +76,12 @@ public class car_parts : MonoBehaviour {
             float selfDot = Mathf.Abs(Vector3.Dot(selfVelocity.normalized, impulse));
             float otherDot = Mathf.Abs(Vector3.Dot(otherVelcity.normalized, impulse));
 
-            if (selfDot > otherDot) //other car suffers
+            if (selfDot < otherDot) //other car suffers
             {
-                float upper_bound = Mathf.Pow(2, my_parts[playerID].val[(int)part.bumper]);
+                float upper_bound = Mathf.Pow(0.5f, my_parts[playerID].val[(int)part.bumper]);
                 float random_roll = Random.Range(0, 1);
+                Debug.Log(upper_bound);
+                Debug.Log(this.transform.name);
                 if(random_roll < upper_bound)
                 {
                     lose_random_part(collision.impulse);
