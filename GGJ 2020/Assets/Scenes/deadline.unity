@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
+  m_Sun: {fileID: 874107256}
   m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -268,6 +268,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 84575170}
   m_CullTransparentMesh: 0
+--- !u!1001 &163112608
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5648123072697731412, guid: b72598fd3342b4245befc2497d425673,
+        type: 3}
+      propertyPath: m_Name
+      value: Sparks
+      objectReference: {fileID: 0}
+    - target: {fileID: 5648123072697731415, guid: b72598fd3342b4245befc2497d425673,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 5648123072697731415, guid: b72598fd3342b4245befc2497d425673,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.7788687
+      objectReference: {fileID: 0}
+    - target: {fileID: 5648123072697731415, guid: b72598fd3342b4245befc2497d425673,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.3600001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5648123072697731415, guid: b72598fd3342b4245befc2497d425673,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5648123072697731415, guid: b72598fd3342b4245befc2497d425673,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5648123072697731415, guid: b72598fd3342b4245befc2497d425673,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5648123072697731415, guid: b72598fd3342b4245befc2497d425673,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5648123072697731415, guid: b72598fd3342b4245befc2497d425673,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5648123072697731415, guid: b72598fd3342b4245befc2497d425673,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5648123072697731415, guid: b72598fd3342b4245befc2497d425673,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5648123072697731415, guid: b72598fd3342b4245befc2497d425673,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b72598fd3342b4245befc2497d425673, type: 3}
 --- !u!1001 &179504060
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1000,7 +1069,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.87058824, b: 0.7882353, a: 1}
+  m_Color: {r: 1, g: 0.9520044, b: 0.9098039, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -1057,13 +1126,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 874107255}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.6873742, y: 0.043858565, z: 0.5131799, w: 0.51209337}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 41.223003, y: -273.90198, z: -231.164}
 --- !u!1 &891853082
 GameObject:
   m_ObjectHideFlags: 0
@@ -1674,16 +1743,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2430613937558349611, guid: d888e97c81479eb4eb531979ce296b25,
-        type: 3}
-      propertyPath: p
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3393458212490733300, guid: d888e97c81479eb4eb531979ce296b25,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8539077316296231840, guid: d888e97c81479eb4eb531979ce296b25,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1744,40 +1803,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car 2.0
       objectReference: {fileID: 0}
-    - target: {fileID: 8539077316296231845, guid: d888e97c81479eb4eb531979ce296b25,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8539077316814288857, guid: d888e97c81479eb4eb531979ce296b25,
-        type: 3}
-      propertyPath: partConfig
-      value: 
-      objectReference: {fileID: 11400000, guid: bdef7cb8351cdf14eaaf3b751b82695d,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d888e97c81479eb4eb531979ce296b25, type: 3}
---- !u!1 &1621373532 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8539077316296231845, guid: d888e97c81479eb4eb531979ce296b25,
-    type: 3}
-  m_PrefabInstance: {fileID: 1621373531}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1621373533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1621373532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b33c2434004eaa945b01ae3eaf0f87ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sparksPrefab: {fileID: 5648123072697731417, guid: b72598fd3342b4245befc2497d425673,
-    type: 3}
-  sparksDelay: 0.2
 --- !u!1001 &1979774128
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1844,11 +1871,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Car 2.0 (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8539077316296231845, guid: d888e97c81479eb4eb531979ce296b25,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d888e97c81479eb4eb531979ce296b25, type: 3}
