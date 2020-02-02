@@ -134,13 +134,9 @@ public class InputController : MonoBehaviour
         }
 
     private AudioClip getHorn() {
-        Debug.Log(audioConfig);
-        Debug.Log(audioConfig.horns);
         return audioConfig.horns[p % audioConfig.horns.Count];
     }
     private AudioClip getRev() {
-        Debug.Log(audioConfig);
-        Debug.Log(audioConfig.revs);
         return audioConfig.revs[p % audioConfig.revs.Count];
     }
 
