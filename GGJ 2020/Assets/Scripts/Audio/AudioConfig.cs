@@ -6,4 +6,5 @@ using UnityEngine;
 public class AudioConfig : ScriptableObject {
     public List<AudioClip> revs;
     public List<AudioClip> horns;
+    public List<AudioClip> crashes;
 }

@@ -31,45 +31,46 @@ public class IconManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        BrakeFlash.Match<Unit>(f =>
-            {
-                if (partList[id].val[(int) part.brake] > 0)
+        if (true)
+        {
+            
+            BrakeFlash.Match<Unit>(f =>
                 {
-                    Destroy(f);
-                    BrakeFlash = Sum<FlashImage, Unit>.Inr(new Unit());
-                }
-                return new Unit();
-            },
-            u =>
-            {
-                if (partList[id].val[(int) part.brake] < 1)
-                    BrakeFlash = Sum<FlashImage,Unit>.Inl(Instantiate(X_mark.gameObject,BrakeImage.transform).GetComponent<FlashImage>());
-                return new Unit();
-            });
+                    if (partList[id].val[(int) part.brake] > 0)
+                    {
+                        Destroy(f.gameObject);
+                        BrakeFlash = Sum<FlashImage, Unit>.Inr(new Unit());
+                    }
+                    return new Unit();
+                },
+                u =>
+                {
+                    if (partList[id].val[(int) part.brake] < 1)
+                        BrakeFlash = Sum<FlashImage,Unit>.Inl(Instantiate(X_mark.gameObject,BrakeImage.transform).GetComponent<FlashImage>());
+                    return new Unit();
+                });
      
-        SteerFlash.Match<Unit>(f =>
-            {
-                if (partList[id].val[(int) part.steering_wheel] > 0)
+            SteerFlash.Match<Unit>(f =>
                 {
-                    Destroy(f);
-                    SteerFlash = Sum<FlashImage, Unit>.Inr(new Unit());
-                }
-                return new Unit();
-            },
-            u =>
-            {
-                if (partList[id].val[(int) part.steering_wheel] < 1)
-                    SteerFlash = Sum<FlashImage,Unit>.Inl(Instantiate(X_mark.gameObject,SteeringWheelImage.transform).GetComponent<FlashImage>());
-                return new Unit();
-            });
-        if (partList[id].val[(int) part.steering_wheel] < 1)
-            Instantiate(X_mark.gameObject, SteeringWheelImage.transform);
+                    if (partList[id].val[(int) part.steering_wheel] > 0)
+                    {
+                        Destroy(f.gameObject);
+                        SteerFlash = Sum<FlashImage, Unit>.Inr(new Unit());
+                    }
+                    return new Unit();
+                },
+                u =>
+                {
+                    if (partList[id].val[(int) part.steering_wheel] < 1)
+                        SteerFlash = Sum<FlashImage,Unit>.Inl(Instantiate(X_mark.gameObject,SteeringWheelImage.transform).GetComponent<FlashImage>());
+                    return new Unit();
+                });
+        }
         else
         {
-            foreach (var flashImage in SteeringWheelImage.GetComponents<FlashImage>())
-            {
-                Destroy(flashImage);
-            }
+            SteeringWheelImage.color = new Color(0,0,0,1);
+            BrakeImage.color = new Color(0,0,0,1);
         }
+
     }
 }

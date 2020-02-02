@@ -1,23 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
-public class DiesFromKillzone : MonoBehaviour {
+public class DiesFromKillzone : MonoBehaviour
+{
 
+    [SerializeField] private GameObject carModel;
+    [SerializeField] private GameObject explosionEffect;
+    [SerializeField] private AudioClip dieClip;
+    private car_parts parts;
+    private int playerid;
     public IntEvent playerDied;
 
-    public GameObject explosionEffect;
-
     private bool diedThisFrame = false;
-    private int playerId;
 
-    private car_parts parts;
+    private float creationTime;
 
     private void Start()
     {
         parts = GetComponentInParent<car_parts>();
-        playerId = GetComponentInParent<playerID>().p;
+        playerid = GetComponentInParent<playerID>().p;
+        creationTime = Time.time;
     }
+
+    private void Update()
+    {
+        if (parts.partCount(playerid, part.engine) < 1)
+        {
+            GameObject expl = GameObject.Instantiate(explosionEffect);
+            expl.transform.position = gameObject.transform.position;
+            SoundManager.instance.PlayOnce(dieClip, 1);
+            playerDied.Invoke(GetComponentInParent<playerID>().p);
+            diedThisFrame = true;
+            Destroy(gameObject);
+        }
+    }
+
 
     private void OnTriggerEnter(Collider collider) {
         if (diedThisFrame) {
@@ -28,19 +47,30 @@ public class DiesFromKillzone : MonoBehaviour {
             diedThisFrame = true;
             Destroy(gameObject);
             // TODO - EXPLODE
+            carModel.transform.parent = null;
+            foreach (MeshRenderer meshRenderer in carModel.GetComponentsInChildren<MeshRenderer>())
+            {
+                var rb = meshRenderer.gameObject.AddComponent<Rigidbody>();
+                rb.AddExplosionForce(5,transform.position,20);
+            }
+
+            foreach (TrailRenderer trail in carModel.GetComponentsInChildren<TrailRenderer>())
+            {
+                StartCoroutine(fadeTrail(trail));
+            }
         }
     }
 
-    private void Update()
+
+    IEnumerator fadeTrail(TrailRenderer trail)
     {
-        if(parts.partCount(playerId, part.engine) < 1)
+        while (true)
         {
-            GameObject expl = GameObject.Instantiate(explosionEffect);
-            expl.transform.position = gameObject.transform.position;
-            
-            playerDied.Invoke(GetComponentInParent<playerID>().p);
-            diedThisFrame = true;
-            Destroy(gameObject);
+            trail.widthMultiplier *= (1 - Time.deltaTime);
+            trail.time = Time.time - creationTime + 2;
+            yield return null;
         }
+
+        
     }
 }

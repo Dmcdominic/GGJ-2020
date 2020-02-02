@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ public class SoundManager : MonoBehaviour
 
     public GameObject AudioPlayer;
     public GameObject OneShotPlayer;
+    public AudioConfig config;
 
     private Dictionary<string, GameObject> myLoops = new Dictionary<string, GameObject>();
 
@@ -34,10 +36,10 @@ public class SoundManager : MonoBehaviour
         
     }
 
-    public void StartLoop(AudioClip clip,string carID, float volume = 1f)
+    public GameObject StartLoop(AudioClip clip,string carID, float volume = 1f)
     {
         //If already playing, don't do it again you stupid
-        if (myLoops.ContainsKey(clip.ToString() + carID)) return; 
+        if (myLoops.ContainsKey(clip.ToString() + carID)) return null; 
         GameObject newPlayer = Instantiate(AudioPlayer);
         newPlayer.transform.SetParent(transform);
         AudioSource newSrc = newPlayer.GetComponent<AudioSource>();
@@ -47,18 +49,31 @@ public class SoundManager : MonoBehaviour
         newPlayer.name = clip.ToString() + carID;
         newSrc.Play();
         myLoops.Add(newPlayer.name, newPlayer);
+        return newPlayer;
     }
     
 
     public void StopLoop(AudioClip clip, string carID)
     {
         string search = clip.ToString() + carID;
-        Destroy(myLoops[search]);
-        myLoops.Remove(search);
+        if (myLoops.ContainsKey(search))
+        {
+            Destroy(myLoops[search]);
+            myLoops.Remove(search);
+        }
     }
 
-    public void PlayOnce(AudioClip clip,float volume = 1f)
+    public void PlayWhile(Func<bool> f)
     {
-        GetComponent<AudioSource>().PlayOneShot(clip,volume);
+        
+    }
+
+    public void PlayOnce(AudioClip clip ,float volume = 1f, bool random = false)
+    {
+        if (random)
+            OneShotPlayer.GetComponent<AudioSource>().pitch = 1f + UnityEngine.Random.Range(-0.1f, 0.1f);
+        else
+            OneShotPlayer.GetComponent<AudioSource>().pitch = 1f;
+        OneShotPlayer.GetComponent<AudioSource>().PlayOneShot(clip,volume);
     }
 }

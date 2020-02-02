@@ -13,7 +13,7 @@ public class SmokeUnderTheHood : MonoBehaviour
     void Start()
     {
         playerID = GetComponentInParent<playerID>().p;
-        parts = GetComponent<car_parts>();
+        parts = GetComponentInParent<car_parts>();
     }
 
     // Update is called once per frame
@@ -21,6 +21,7 @@ public class SmokeUnderTheHood : MonoBehaviour
     {
         if(!playing && parts.partCount(playerID, part.hood) < 1)
         {
+            Debug.Log("playing");
             smoke.Play();
             playing = true;
         }

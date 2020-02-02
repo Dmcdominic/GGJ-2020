@@ -31,9 +31,11 @@ MonoBehaviour:
   - Part: 2
     Prefab: {fileID: 920722567664410646, guid: 2848f571214a8e34c97fc3cb24bf864d, type: 3}
   - Part: 3
-    Prefab: {fileID: 0}
+    Prefab: {fileID: 8122921856556905272, guid: 5e48e02f22e13fa459559c2f1dfc0401,
+      type: 3}
   - Part: 4
-    Prefab: {fileID: 0}
+    Prefab: {fileID: 2050355569856188493, guid: b989bf39aa7fffe49956091cd14024e6,
+      type: 3}
   - Part: 5
     Prefab: {fileID: 4220210661053036008, guid: 525fb5f4fdb9efc44b0efc64bb4865ce,
       type: 3}

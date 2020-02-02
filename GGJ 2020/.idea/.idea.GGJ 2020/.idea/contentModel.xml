@@ -15,6 +15,7 @@
           <e p="IntEvent.cs" t="Include" />
           <e p="IntRef.cs" t="Include" />
           <e p="PartList.cs" t="Include" />
+          <e p="PlayerBoolRef.cs" t="Include" />
           <e p="PlayerRef.cs" t="Include" />
           <e p="Reference.cs" t="Include" />
           <e p="Shrub.cs" t="Include" />
@@ -24,16 +25,22 @@
           <e p="Vector3Ref.cs" t="Include" />
         </e>
         <e p="CameraAdjuster.cs" t="Include" />
+        <e p="CrashSound.cs" t="Include" />
         <e p="Dragger.cs" t="Include" />
         <e p="Editor" t="Include">
           <e p="uGUITools.cs" t="Include" />
         </e>
         <e p="EffectManager.cs" t="Include" />
+        <e p="FadeSlower.cs" t="Include" />
+        <e p="FrontCollision.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="adhoc" t="Include">
             <e p="ColorCorrection.cs" t="Include" />
             <e p="FlashImage.cs" t="Include" />
             <e p="IconManager.cs" t="Include" />
+          </e>
+          <e p="Audio" t="Include">
+            <e p="AudioConfig.cs" t="Include" />
           </e>
           <e p="Car" t="Include">
             <e p="car_model_manager.cs" t="Include" />
@@ -81,6 +88,12 @@
         <e p="Shaders" t="Include">
           <e p="Outline.shader" t="Include" />
         </e>
+        <e p="SimpleFX" t="Include">
+          <e p="Materials" t="Include">
+            <e p="UnlitVertexColour_Alpha.shader" t="Include" />
+          </e>
+        </e>
+        <e p="SmokeUnderTheHood.cs" t="Include" />
         <e p="SqrtDrag.cs" t="Include" />
         <e p="Textures" t="Include">
           <e p="License (Read before using).txt" t="Include" />

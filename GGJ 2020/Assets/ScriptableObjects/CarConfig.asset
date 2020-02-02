@@ -17,7 +17,7 @@ MonoBehaviour:
   gearThrottles:
   - 10000
   maxBrake: 150000
-  downForce: 20
+  downForce: 5
   unflipSpeed: 5
   reverseSpeed: 7000
   tireForwardStiffness:
@@ -104,5 +104,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  rearForceConstant: 40500
+  rearForceConstant: 50500
   defaultWeight: 500
