@@ -93,7 +93,7 @@ public class car_parts : MonoBehaviour {
             }
             else //you suffer
             {
-                lose_random_part(collision.impulse);
+                //lose_random_part(collision.impulse);
             }
         }
     }

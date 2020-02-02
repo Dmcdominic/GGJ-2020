@@ -16,6 +16,7 @@ public class FrontCollision : MonoBehaviour
     // Update is called once per frame
     private void OnCollisionEnter(Collision collision)
     {
+        return;
         if (cp.lostPartDelay > 0)
         {
             return;
