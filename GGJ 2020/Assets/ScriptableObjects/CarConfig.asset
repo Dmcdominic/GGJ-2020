@@ -17,7 +17,7 @@ MonoBehaviour:
   gearThrottles:
   - 10000
   maxBrake: 150000
-  downForce: 20
+  downForce: 5
   unflipSpeed: 5
   reverseSpeed: 7000
   tireForwardStiffness:

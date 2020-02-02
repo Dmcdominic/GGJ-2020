@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DiesFromKillzone : MonoBehaviour {
+public class DiesFromKillzone : MonoBehaviour
+{
 
+    [SerializeField] private GameObject carModel;
     public IntEvent playerDied;
 
     private bool diedThisFrame = false;
@@ -18,6 +20,14 @@ public class DiesFromKillzone : MonoBehaviour {
             diedThisFrame = true;
             Destroy(gameObject);
             // TODO - EXPLODE
+            carModel.transform.parent = null;
+            
         }
+    }
+
+
+    IEnumerator fadeTrail()
+    {
+        
     }
 }

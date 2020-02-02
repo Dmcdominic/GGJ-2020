@@ -35,7 +35,7 @@ public class IconManager : MonoBehaviour
             {
                 if (partList[id].val[(int) part.brake] > 0)
                 {
-                    Destroy(f);
+                    Destroy(f.gameObject);
                     BrakeFlash = Sum<FlashImage, Unit>.Inr(new Unit());
                 }
                 return new Unit();
@@ -51,7 +51,7 @@ public class IconManager : MonoBehaviour
             {
                 if (partList[id].val[(int) part.steering_wheel] > 0)
                 {
-                    Destroy(f);
+                    Destroy(f.gameObject);
                     SteerFlash = Sum<FlashImage, Unit>.Inr(new Unit());
                 }
                 return new Unit();

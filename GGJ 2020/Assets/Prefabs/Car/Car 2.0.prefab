@@ -20065,6 +20065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f5eab091a4d6540973f252f03a981e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  carModel: {fileID: 2416103267611446271}
   playerDied: {fileID: 11400000, guid: 1c97506cb208ce542b2f4ce950e03acb, type: 2}
 --- !u!114 &1979774130
 MonoBehaviour:
@@ -20387,7 +20388,7 @@ PrefabInstance:
     - target: {fileID: -166166669766478846, guid: f39d533edb9f361428c6b9fd6df315d3,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -166166669766478846, guid: f39d533edb9f361428c6b9fd6df315d3,
         type: 3}
