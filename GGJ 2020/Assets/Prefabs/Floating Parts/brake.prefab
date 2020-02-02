@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 7580382436801584765}
   - component: {fileID: 6137749513399731383}
   - component: {fileID: 463926857790971681}
+  - component: {fileID: -1553636192460976545}
+  - component: {fileID: -8971811040996331038}
   m_Layer: 0
   m_Name: brake
   m_TagString: Untagged
@@ -125,4 +127,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   partConfig: {fileID: 11400000, guid: bdef7cb8351cdf14eaaf3b751b82695d, type: 2}
-  part_type: 7
+  part_type: 8
+--- !u!114 &-1553636192460976545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7960605356337448360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26fe2d8050200c74e9001bbf5da1b9ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorConfig: {fileID: 11400000, guid: 0211a7aad4d6c374cbc83c813623aab0, type: 2}
+--- !u!114 &-8971811040996331038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7960605356337448360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d9a929640096d745802cdd4aa698157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p: 0

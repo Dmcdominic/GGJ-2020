@@ -8,6 +8,7 @@ TagManager:
   - SlowMo
   - SideTrigger
   - ground
+  - obstacle
   layers:
   - Default
   - TransparentFX

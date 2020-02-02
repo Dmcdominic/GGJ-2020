@@ -14,10 +14,16 @@ public class CameraAdjuster : MonoBehaviour
         player = GetComponentInParent<playerID>().p;
         switch (player) {
             case 0:
-                orthoCam.rect = new Rect(-0.04f, 0, 0.17f, 0.57f);
+                orthoCam.rect = new Rect(-0.04f, 0, 0.17f, 0.5f);
                 break;
             case 1:
-                orthoCam.rect = new Rect(0.86f, 0, 0.17f, 0.57f);
+                orthoCam.rect = new Rect(0.86f, 0, 0.17f, 0.5f);
+                break;
+            case 2:
+                orthoCam.rect = new Rect(0.86f, 0.44f, 0.17f, 0.5f);
+                break;
+            case 3:
+                orthoCam.rect = new Rect(-0.04f, 0.5f, 0.17f, 0.5f);
                 break;
         }
 

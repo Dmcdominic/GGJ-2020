@@ -42,3 +42,15 @@ MonoBehaviour:
       type: 3}
   - Part: 7
     Prefab: {fileID: 0}
+  - Part: 7
+    Prefab: {fileID: 228447272017031864, guid: 71603a89238e07847871179fa18420da, type: 3}
+  part_weights:
+  - 10
+  - 15
+  - 100
+  - 15
+  - 30
+  - 60
+  - 50
+  - 150
+  - 10

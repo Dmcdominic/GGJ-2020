@@ -34,11 +34,11 @@ public class Bar : Hazard
 
     private IEnumerator Rise()
     {
-        float targetY = transform.position.y + riseHeight;
+        Vector3 target = new Vector3(transform.position.x, transform.position.y + riseHeight, transform.position.z);
 
-        while (transform.position.y < targetY)
+        while (transform.position != target)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y + riseSpeed, transform.position.z);
+            transform.position = Vector3.MoveTowards(transform.position, target, riseSpeed);
             yield return new WaitForFixedUpdate();
         }
 
@@ -46,11 +46,11 @@ public class Bar : Hazard
 
     private IEnumerator Fall()
     {
-        float targetY = transform.position.y - riseHeight;
+        Vector3 target = new Vector3(transform.position.x, transform.position.y - riseHeight, transform.position.z);
 
-        while (transform.position.y > targetY)
+        while (transform.position != target)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y - riseSpeed, transform.position.z);
+            transform.position = Vector3.MoveTowards(transform.position, target, riseSpeed);
             yield return new WaitForFixedUpdate();
         }
     }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum part { tire, steering_wheel, bumper, horn, muffler, hood, door, engine } // WHEN YOU CHANGE THIS, update parts_init
+public enum part { tire, steering_wheel, bumper, horn, muffler, hood, door, engine, brake } // WHEN YOU CHANGE THIS, update parts_init
 
 [System.Serializable]
 public class SerializedParts
@@ -14,8 +14,8 @@ public class SerializedParts
 public class car_parts : MonoBehaviour {
 
     // Readonly settings
-    public static readonly int[] parts_init = { 4, 1, 2, 0, 0, 2, 2, 0 }; // Number of parts to start with
-    public static readonly int num_diff_parts = System.Enum.GetValues(typeof(part)).Length;
+    public static readonly int[] parts_init = { 4, 1, 2, 0, 0, 2, 2, 1, 0}; // Number of parts to start with
+    public static readonly int num_diff_parts = System.Enum.GetValues(typeof(part)).Length; //icky
 
 
     [SerializeField] private PartList my_parts;
