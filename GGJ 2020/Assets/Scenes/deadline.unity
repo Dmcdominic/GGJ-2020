@@ -2359,6 +2359,34 @@ MonoBehaviour:
   - {fileID: 2100000, guid: da6a600923fc2824fb8a586c9cbb09d1, type: 2}
   - {fileID: 2100000, guid: 418c6257be8cf6c40acc56db67f35e5b, type: 2}
   - {fileID: 2100000, guid: cb98502f4435ec84c857071a617c0324, type: 2}
+--- !u!114 &426356086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426356083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b33c2434004eaa945b01ae3eaf0f87ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sparksPrefab: {fileID: 5648123072697731417, guid: b72598fd3342b4245befc2497d425673,
+    type: 3}
+  sparksDelay: 0.2
+--- !u!114 &426356093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426356083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9193ca247afb1b74aa2fa38dceb6df26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceMultiplier: 10
 --- !u!1001 &461498999
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3963,7 +3991,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9193ca247afb1b74aa2fa38dceb6df26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceMultiplier: 50
+  forceMultiplier: 10
+--- !u!114 &914569018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914569014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b33c2434004eaa945b01ae3eaf0f87ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sparksPrefab: {fileID: 5648123072697731417, guid: b72598fd3342b4245befc2497d425673,
+    type: 3}
+  sparksDelay: 0.2
 --- !u!1001 &920632980
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4226,7 +4269,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9193ca247afb1b74aa2fa38dceb6df26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceMultiplier: 50
+  forceMultiplier: 10
+--- !u!114 &960405411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 960405409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b33c2434004eaa945b01ae3eaf0f87ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sparksPrefab: {fileID: 5648123072697731417, guid: b72598fd3342b4245befc2497d425673,
+    type: 3}
+  sparksDelay: 0.2
 --- !u!1001 &962887058
 PrefabInstance:
   m_ObjectHideFlags: 0
