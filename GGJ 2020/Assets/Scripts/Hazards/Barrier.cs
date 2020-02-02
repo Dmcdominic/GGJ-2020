@@ -23,11 +23,23 @@ public class Barrier : Hazard
     {
         if(routine == null)
             routine = StartCoroutine(Routine());
+        else
+        {
+            StopCoroutine(routine);
+            routine = StartCoroutine(Extend());
+        }
     }
 
     private IEnumerator Routine()
     {
         yield return StartCoroutine(Fall());
+        yield return new WaitForSeconds(duration);
+        yield return StartCoroutine(Rise());
+        routine = null;
+    }
+
+    private IEnumerator Extend()
+    {
         yield return new WaitForSeconds(duration);
         yield return StartCoroutine(Rise());
         routine = null;
