@@ -19,10 +19,11 @@ public class InputController : MonoBehaviour
     public AudioConfig audioConfig;
     [SerializeField] private AudioClip EngineRun;
     // Whether this horn is supposed to loop or not
-    public bool isHornLooping;
 
     private int p;
 
+    [SerializeField] private PartList myParts;
+    
 #if UNITY_STANDALONE_WIN
     XInputDotNetPure.PlayerIndex player;
 #endif
@@ -41,7 +42,6 @@ public class InputController : MonoBehaviour
     private void Awake()
     {
         p = GetComponentInParent<playerID>().p;
-        isHornLooping = !(p == 0);
 #if UNITY_STANDALONE_WIN
         player = (PlayerIndex)p;
 
@@ -86,9 +86,13 @@ public class InputController : MonoBehaviour
         {
             hornPressed = true;
             if (isHornLooping)
+            {
                 SoundManager.instance.StartLoop(getHorn(), p.ToString());
+            }
             else
+            {
                 SoundManager.instance.PlayOnce(getHorn());
+            }
         }
         if (hornPressed && playerControlInfo.hornNo)
         {
@@ -136,7 +140,7 @@ public class InputController : MonoBehaviour
         }
         else if (rightshoulderpressed)
         {
-            XInputDotNetPure.GamePad.SetVibration(player, 0, Mathf.Sqrt(vibration_boost * Random.value));
+            XInputDotNetPure.GamePad.SetVibration(player, 0, Mathf.Sqrt(vibration_boost * Random.value *  (myParts[p].val[(int)part.muffler] == 0 ? 10 : 1)));
         }
         else if (playerControlInfo.direction != Vector3.zero)
         {
@@ -149,9 +153,15 @@ public class InputController : MonoBehaviour
 #endif
     }
 
-    private AudioClip getHorn()
+    private List<AudioClip> getHorns()
     {
-        return audioConfig.horns[p % audioConfig.horns.Count];
+        var restult = new List<AudioClip>();
+        for (int i = 0; i < myParts[p].val[(int) part.horn]; i++)
+        {
+            restult.Add(audioConfig.horns[i % audioConfig.horns.Count]);
+        }
+
+        return restult;
     }
     private AudioClip getRev()
     {
@@ -164,7 +174,7 @@ public class InputController : MonoBehaviour
         {
             GameObject MySound;
             yield return new WaitUntil(() => playerControlInfo.direction != Vector3.zero);
-            MySound = SoundManager.instance.StartLoop(EngineRun, p.ToString(), 0.1f);
+            MySound = SoundManager.instance.StartLoop(EngineRun, p.ToString(), 0.1f * (myParts[p].val[(int)part.muffler] == 0 ? 10 : 1));
             MySound.GetComponent<AudioSource>().pitch = 1f + playerControlInfo.direction.magnitude;
             yield return new WaitUntil(() => playerControlInfo.direction == Vector3.zero);
             SoundManager.instance.StopLoop(EngineRun, p.ToString());
