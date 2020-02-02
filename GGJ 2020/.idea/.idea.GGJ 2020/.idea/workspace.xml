@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55b7a199-f117-47e8-aebb-3315ead5e7e1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GGJ 2020/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GGJ 2020/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Car/Car 2.0.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Car/Car 2.0.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Car/DiesFromKillzone.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Car/DiesFromKillzone.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/adhoc/IconManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/adhoc/IconManager.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -140,14 +140,18 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/Car/DiesFromKillzone.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="7" column="49" lean-forward="true" selection-start-line="7" selection-start-column="49" selection-end-line="7" selection-end-column="49" />
+            <state relative-caret-position="473">
+              <caret line="43" column="27" selection-start-line="43" selection-start-column="27" selection-end-line="43" selection-end-column="27" />
               <folding>
-                <marker date="1580654045719" expanded="false" signature="6:78" ph="..." />
-                <marker date="1580654045719" expanded="true" signature="125:600" ph="{...}" />
-                <marker date="1580654045719" expanded="true" signature="305:598" ph="{...}" />
-                <marker date="1580654045719" expanded="true" signature="334:365" ph="{...}" />
-                <marker date="1580654045719" expanded="true" signature="417:592" ph="{...}" />
+                <marker date="1580654810934" expanded="false" signature="6:114" ph="..." />
+                <marker date="1580654810934" expanded="true" signature="161:1344" ph="{...}" />
+                <marker date="1580654810934" expanded="true" signature="341:1122" ph="{...}" />
+                <marker date="1580654810934" expanded="true" signature="370:401" ph="{...}" />
+                <marker date="1580654810934" expanded="true" signature="453:1116" ph="{...}" />
+                <marker date="1580654810934" expanded="true" signature="764:932" ph="{...}" />
+                <marker date="1580654810934" expanded="true" signature="1028:1106" ph="{...}" />
+                <marker date="1580654810934" expanded="true" signature="1171:1342" ph="{...}" />
+                <marker date="1580654810934" expanded="true" signature="1198:1336" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -398,12 +402,12 @@
       <option name="presentableId" value="Default" />
       <updated>1580564283947</updated>
       <workItem from="1580564286957" duration="13900000" />
-      <workItem from="1580647579439" duration="5938000" />
+      <workItem from="1580647579439" duration="6703000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60599000" />
+    <option name="totallyTimeSpent" value="61364000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -912,14 +916,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/Car/DiesFromKillzone.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="7" column="49" lean-forward="true" selection-start-line="7" selection-start-column="49" selection-end-line="7" selection-end-column="49" />
+        <state relative-caret-position="473">
+          <caret line="43" column="27" selection-start-line="43" selection-start-column="27" selection-end-line="43" selection-end-column="27" />
           <folding>
-            <marker date="1580654045719" expanded="false" signature="6:78" ph="..." />
-            <marker date="1580654045719" expanded="true" signature="125:600" ph="{...}" />
-            <marker date="1580654045719" expanded="true" signature="305:598" ph="{...}" />
-            <marker date="1580654045719" expanded="true" signature="334:365" ph="{...}" />
-            <marker date="1580654045719" expanded="true" signature="417:592" ph="{...}" />
+            <marker date="1580654810934" expanded="false" signature="6:114" ph="..." />
+            <marker date="1580654810934" expanded="true" signature="161:1344" ph="{...}" />
+            <marker date="1580654810934" expanded="true" signature="341:1122" ph="{...}" />
+            <marker date="1580654810934" expanded="true" signature="370:401" ph="{...}" />
+            <marker date="1580654810934" expanded="true" signature="453:1116" ph="{...}" />
+            <marker date="1580654810934" expanded="true" signature="764:932" ph="{...}" />
+            <marker date="1580654810934" expanded="true" signature="1028:1106" ph="{...}" />
+            <marker date="1580654810934" expanded="true" signature="1171:1342" ph="{...}" />
+            <marker date="1580654810934" expanded="true" signature="1198:1336" ph="{...}" />
           </folding>
         </state>
       </provider>

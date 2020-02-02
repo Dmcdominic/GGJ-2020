@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class DiesFromKillzone : MonoBehaviour
@@ -21,13 +22,27 @@ public class DiesFromKillzone : MonoBehaviour
             Destroy(gameObject);
             // TODO - EXPLODE
             carModel.transform.parent = null;
-            
+            foreach (MeshRenderer meshRenderer in carModel.GetComponentsInChildren<MeshRenderer>())
+            {
+                var rb = meshRenderer.gameObject.AddComponent<Rigidbody>();
+                rb.AddExplosionForce(10,transform.position,20);
+            }
+
+            foreach (TrailRenderer trail in carModel.GetComponentsInChildren<TrailRenderer>())
+            {
+                StartCoroutine(fadeTrail(trail));
+            }
         }
     }
 
 
-    IEnumerator fadeTrail()
+    IEnumerator fadeTrail(TrailRenderer trail)
     {
-        
+        while (true)
+        {
+            trail.widthMultiplier *= (1 - Time.deltaTime);
+            trail.time = Time.time + 1;
+            yield return null;
+        }
     }
 }
