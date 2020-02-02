@@ -198,9 +198,9 @@ public class CarController : MonoBehaviour
                            Mathf.Clamp(thetaDelta, -maxSteer + 180, maxSteer - 180));
                 
                 
-                float visualWheelDir = Mathf.Clamp(-Mathf.DeltaAngle(thetaCar, thetaInput) - 90.0f, -180.0f, 0f);
-                frontLWheel.localEulerAngles = new Vector3(0, 90 + visualWheelDir, 0);
-                frontRWheel.localEulerAngles = new Vector3(0, 90 + visualWheelDir, 0);
+                float visualWheelDir = Mathf.Clamp(-Mathf.DeltaAngle(thetaCar, thetaInput), -45.0f, 45f);
+                frontLWheel.localEulerAngles = new Vector3(0, visualWheelDir, 0);
+                frontRWheel.localEulerAngles = new Vector3(0, visualWheelDir, 0);
                 //steerAngle = (inputDir.x * 50 / Mathf.Max(carRB.velocity.magnitude * 50.0f, 1.0f));
                 wheel.steerAngle = -thetaDelta;
             });
