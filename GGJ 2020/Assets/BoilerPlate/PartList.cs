@@ -1,10 +1,7 @@
-
-
-
 using UnityEngine;
 using UnityEngine.Events;
 
-public class IntArrayEvent : UnityEvent<SerializedParts[]> {}
+public class SerializedPartArrayEvent : UnityEvent<SerializedParts[]> {}
 
 [CreateAssetMenu(menuName = "Derby/PartList")]
-public class PartList : PlayerRef<SerializedParts,IntArrayEvent> {}
+public class PartList : PlayerRef<SerializedParts, SerializedPartArrayEvent> {}
