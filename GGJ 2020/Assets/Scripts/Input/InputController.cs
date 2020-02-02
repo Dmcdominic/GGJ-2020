@@ -8,6 +8,8 @@ using XInputDotNetPure;
 
 public class InputController : MonoBehaviour
 {
+    // Used to uniquely identify this car for audio purposes.
+    public string carId;
 
     [SerializeField]
     PlayerControlState state;
@@ -15,6 +17,15 @@ public class InputController : MonoBehaviour
     [SerializeField]
 
     bool usingKeyboard;
+
+    // Throttle sound
+    public AudioClip revSound;
+
+    // Horn sound
+    public AudioClip honk;
+    // Whether this horn is supposed to loop or not
+    public bool isHornLooping;
+
 
 #if UNITY_STANDALONE_WIN
     XInputDotNetPure.PlayerIndex player;
@@ -33,6 +44,8 @@ public class InputController : MonoBehaviour
     private void Awake()
     {
 #if UNITY_STANDALONE_WIN
+    private void Awake()
+    {
         player = (PlayerIndex)GetComponentInParent<playerID>().p;
 
         var playerControlInfo = state[(int)player];
@@ -40,6 +53,7 @@ public class InputController : MonoBehaviour
 #endif
 
     }
+#endif
 
     // Update is called once per frame
     void Update()
@@ -57,6 +71,38 @@ public class InputController : MonoBehaviour
 
 
         if (!leftshoulderpressed && GamePad.GetState(player).Triggers.Left > 0)
+        if (playerControlInfo.horn)
+        {
+            if (isHornLooping)
+                SoundManager.instance.StartLoop(honk, carId);
+            else
+                SoundManager.instance.PlayOnce(honk);
+        }
+        else if (!playerControlInfo.horn)
+        {
+            if (isHornLooping)
+                SoundManager.instance.StopLoop(honk, carId);
+        }
+
+        if (playerControlInfo.throttle > 0) 
+        {
+            SoundManager.instance.PlayOnce(revSound);
+        }
+
+        if (playerControlInfo.horn )
+        {
+            if (isHornLooping)
+                SoundManager.instance.StartLoop(honk, carId);
+            else
+                SoundManager.instance.PlayOnce(honk);
+        }
+        else if (!playerControlInfo.horn )
+        {
+            if (isHornLooping)
+                SoundManager.instance.StopLoop(honk, carId);
+        }
+
+        if (!leftshoulderpressed && GamePad.GetState(player).Buttons.LeftShoulder == ButtonState.Pressed)
         {
             leftshoulderpressed = true;
             state[(int) player].shiftDown.Invoke();
@@ -69,10 +115,12 @@ public class InputController : MonoBehaviour
         {
             rightshoulderpressed = true;
             state[(int) player].shiftDown.Invoke();
+
         }
         if(rightshoulderpressed && GamePad.GetState(player).Triggers.Right == 0)
         {
             rightshoulderpressed = false;
+
         }
 
         if (leftshoulderpressed)

@@ -4,6 +4,7 @@
     <e p="C:\Users\Martin-Lof\.Rider2018.3\system\extResources" t="IncludeRecursive" />
     <e p="C:\Users\Martin-Lof\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_GGJ 2020.1260584287.00" t="ExcludeRecursive" />
     <e p="C:\Users\Martin-Lof\Documents\projects\GGJ-2020\GGJ 2020" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="BoilerPlate" t="Include">
@@ -22,9 +23,12 @@
           <e p="UnitEvent.cs" t="Include" />
           <e p="Vector3Ref.cs" t="Include" />
         </e>
+        <e p="CameraAdjuster.cs" t="Include" />
         <e p="Dragger.cs" t="Include" />
-        <e p="KillSelf.cs" t="Include" />
-        <e p="MusicManager.cs" t="Include" />
+        <e p="Editor" t="Include">
+          <e p="uGUITools.cs" t="Include" />
+        </e>
+        <e p="EffectManager.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="adhoc" t="Include">
             <e p="ColorCorrection.cs" t="Include" />
@@ -34,6 +38,7 @@
             <e p="CarConfig.cs" t="Include" />
             <e p="CarController.cs" t="Include" />
             <e p="CollisionForce.cs" t="Include" />
+            <e p="DiesFromKillzone.cs" t="Include" />
             <e p="DownwardForce.cs" t="Include" />
             <e p="parts" t="Include">
               <e p="car_parts.cs" t="Include" />
@@ -42,6 +47,10 @@
             </e>
           </e>
           <e p="ColorConfig.cs" t="Include" />
+          <e p="GameLoop" t="Include">
+            <e p="LivesList.cs" t="Include" />
+            <e p="Spawner.cs" t="Include" />
+          </e>
           <e p="Hazards" t="Include">
             <e p="Bar.cs" t="Include" />
             <e p="Barrier.cs" t="Include" />
@@ -59,6 +68,8 @@
             <e p="InputController.cs" t="Include" />
             <e p="PlayerControlState.cs" t="Include" />
           </e>
+          <e p="KillSelf.cs" t="Include" />
+          <e p="MusicManager.cs" t="Include" />
           <e p="playerID.cs" t="Include" />
           <e p="SideTrigger.cs" t="Include" />
           <e p="SoundManager.cs" t="Include" />
