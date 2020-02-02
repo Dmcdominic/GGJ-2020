@@ -8,9 +8,6 @@ using XInputDotNetPure;
 
 public class InputController : MonoBehaviour
 {
-    // Used to uniquely identify this car for audio purposes.
-    public string carId;
-
     [SerializeField]
     PlayerControlState state;
 
@@ -18,14 +15,12 @@ public class InputController : MonoBehaviour
 
     bool usingKeyboard;
 
-    // Throttle sound
-    public AudioClip revSound;
-
     // Horn sound
-    public AudioClip honk;
+    public AudioConfig audioConfig;
     // Whether this horn is supposed to loop or not
     public bool isHornLooping;
 
+    private int p;
 
 #if UNITY_STANDALONE_WIN
     XInputDotNetPure.PlayerIndex player;
@@ -37,16 +32,17 @@ public class InputController : MonoBehaviour
     private bool startPressed = false;
     private float vibration = 0;
     private float vibration_standby = 0.00f;
-    private float vibration_move = 0.001f;
-    private float vibration_boost = 0.02f;
-    private float vibration_break = 0.05f;
+    private float vibration_move = 0.002f;
+    private float vibration_boost = 0.04f;
+    private float vibration_break = 0.1f;
 
     Spawner spawner;
 
     private void Awake()
     {
+        p = GetComponentInParent<playerID>().p;
 #if UNITY_STANDALONE_WIN
-        player = (PlayerIndex)GetComponentInParent<playerID>().p;
+        player = (PlayerIndex)p;
 
         var playerControlInfo = state[(int)player];
         state[(int)player] = playerControlInfo;
@@ -80,20 +76,27 @@ public class InputController : MonoBehaviour
         {
             startPressed = false;
         }
-
+            var stick = GamePad.GetState(player).ThumbSticks.Left;
+            var playerControlInfo = state[(int)player];
+            playerControlInfo.direction = new Vector3(stick.X, 0, stick.Y);
+            playerControlInfo.footBrake = GamePad.GetState(player).Triggers.Left;
+            playerControlInfo.handBrakePulled = (int)GamePad.GetState(player).Buttons.X;
+            playerControlInfo.throttle = GamePad.GetState(player).Triggers.Right;
+            playerControlInfo.horn = GamePad.GetState(player).Buttons.A == ButtonState.Pressed;
+            state[(int)player] = playerControlInfo;
 
         if (!leftshoulderpressed && GamePad.GetState(player).Triggers.Left > 0)
             if (playerControlInfo.horn)
             {
                 if (isHornLooping)
-                    SoundManager.instance.StartLoop(honk, carId);
+                    SoundManager.instance.StartLoop(getHorn(), p.ToString());
                 else
-                    SoundManager.instance.PlayOnce(honk);
+                    SoundManager.instance.PlayOnce(getHorn());
             }
             else if (!playerControlInfo.horn)
             {
                 if (isHornLooping)
-                    SoundManager.instance.StopLoop(honk, carId);
+                    SoundManager.instance.StopLoop(getHorn(), p.ToString());
             }
 
         if (playerControlInfo.throttle > 0)
@@ -133,25 +136,30 @@ public class InputController : MonoBehaviour
         {
             rightshoulderpressed = false;
 
-        }
-
         if (leftshoulderpressed)
         {
-            XInputDotNetPure.GamePad.SetVibration(player, vibration_break, 0);
+            XInputDotNetPure.GamePad.SetVibration(player, vibration_break * Random.value, 0);
         }
         else if (rightshoulderpressed)
         {
-            XInputDotNetPure.GamePad.SetVibration(player, 0, vibration_boost);
+            XInputDotNetPure.GamePad.SetVibration(player, 0, vibration_boost * Random.value);
         }
         else if (playerControlInfo.direction != new Vector3())
         {
-            XInputDotNetPure.GamePad.SetVibration(player, vibration_move, vibration_standby);
+            XInputDotNetPure.GamePad.SetVibration(player, vibration_move * Random.value, vibration_standby * Random.value);
         }
         else
         {
-            XInputDotNetPure.GamePad.SetVibration(player, vibration_standby, vibration_standby);
+            XInputDotNetPure.GamePad.SetVibration(player, vibration_standby * Random.value, vibration_standby * Random.value);
         }
 
+        }
+
+    private AudioClip getHorn() {
+        return audioConfig.horns[p % audioConfig.horns.Count];
+    }
+    private AudioClip getRev() {
+        return audioConfig.revs[p % audioConfig.revs.Count];
     }
 
     private void OnDestroy()

@@ -19,6 +19,8 @@ public class car_parts : MonoBehaviour {
 
 
     [SerializeField] private PartList my_parts;
+
+    public int partCount(int player, part p) => my_parts[player].val[(int)p];
     
 
     // Serialized fields
@@ -52,6 +54,10 @@ public class car_parts : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision) {
         if (lostPartDelay > 0) {
+            return;
+        }
+
+        if (collision.gameObject.GetComponent<floating_part>()) {
             return;
         }
 
@@ -138,7 +144,7 @@ public class car_parts : MonoBehaviour {
     }
 
     // Called by a floating part when you pick it up
-    public void pickup_part(part partType) {
+    public void pickup_part(part partType, int p) {
         my_parts[playerID].val[(int)partType]++;
         Debug.Log("Car now has " + (my_parts[playerID].val[(int)partType]) + " " + partType + "(s)");
     }

@@ -39,22 +39,26 @@ public class floating_part : MonoBehaviour {
 
     // While something is touching you, try to collide with it
     private void OnCollisionEnter(Collision collision) {
-        tryPickupFromCollision(collision);
+        tryPickupFromCollision(collision.collider);
+    }
+
+    private void OnTriggerEnter(Collider coll)
+    {
+        tryPickupFromCollision(coll);
     }
     private void OnCollisionStay(Collision collision) {
-        tryPickupFromCollision(collision);
+        tryPickupFromCollision(collision.collider);
     }
 
     // If the collision is with a car that can pick this up, get picked up
-    private void tryPickupFromCollision(Collision collision) {
+    private void tryPickupFromCollision(Collider coll) {
         if (pickup_delay > 0) {
             return;
         }
-
-        GameObject obj = collision.gameObject;
+        GameObject obj = coll.gameObject;
         car_parts carParts = obj.GetComponentInParent<car_parts>();
         if (carParts) {
-            carParts.pickup_part(this.part_type);
+            carParts.pickup_part(this.part_type, this.GetComponent<playerID>().p);
             Instantiate(partConfig.dust_cloud).transform.position = transform.position;
             Destroy(gameObject);
             return;
