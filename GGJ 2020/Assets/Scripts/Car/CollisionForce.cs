@@ -9,7 +9,7 @@ public class CollisionForce : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.transform.tag == "Car")
+        if(collision.transform.tag == "car")
         {
             Vector3 selfVelocity = this.GetComponent<Rigidbody>().velocity;
             Vector3 otherVelcity = collision.gameObject.GetComponent<Rigidbody>().velocity;
@@ -20,7 +20,7 @@ public class CollisionForce : MonoBehaviour
             if (selfDot > otherDot)
             {
                 float boostForce = Mathf.Sqrt(selfVelocity.sqrMagnitude * this.GetComponent<Rigidbody>().mass * 0.5f);
-                this.GetComponent<Rigidbody>().AddForce(boostForce * selfVelocity.normalized, ForceMode.Impulse);
+                this.GetComponent<Rigidbody>().AddForceAtPosition(-boostForce * selfVelocity.normalized, collision.collider.ClosestPointOnBounds(this.transform.position), ForceMode.Impulse);
             }
             else
             {
