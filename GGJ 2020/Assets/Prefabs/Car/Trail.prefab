@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6439157016199911570}
   - component: {fileID: 4938072840483361485}
   - component: {fileID: 5305935565414743902}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
