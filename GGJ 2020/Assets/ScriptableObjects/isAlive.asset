@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9df0bbe9b9f4a57a1e4dab153a9d2f9, type: 3}
   m_Name: isAlive
   m_EditorClassIdentifier: 
-  value: 
+  value: 0000000000000000000000000000000000000000
