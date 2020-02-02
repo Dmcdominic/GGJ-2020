@@ -4773,8 +4773,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 138238a624faa484abb30563c410debd, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   my_parts: {fileID: 11400000, guid: f2b4d52f68897814fa350eaf01da7dc4, type: 2}
   partObjs:
   - Part: 0
@@ -9630,8 +9630,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3f3c965a49152c4d9b267f2fab7bee5, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   frontWheels:
     leftWheel: {fileID: 7189803943939372453}
     rightWheel: {fileID: 8815550028680810535}
@@ -9714,8 +9714,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3225e004653ecca4da509d1292f7d282, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   carConfig: {fileID: 11400000, guid: 84584a4b5b279734fa396bb3c250795b, type: 2}
 --- !u!114 &7634585277039386806
 MonoBehaviour:
@@ -9727,8 +9727,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6415ba7603c4af4cbcee76f492af92e, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   my_parts: {fileID: 11400000, guid: f2b4d52f68897814fa350eaf01da7dc4, type: 2}
   partConfig: {fileID: 11400000, guid: bdef7cb8351cdf14eaaf3b751b82695d, type: 2}
 --- !u!114 &1499295659682628888
@@ -9741,22 +9741,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d9a929640096d745802cdd4aa698157, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   p: 0
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4896875803444423062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acfe97a551ad1b7459ec9c288d08a535, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
-  state: {fileID: 11400000, guid: 381b57a0c3b89bd4296219bc23273dd0, type: 2}
-  usingKeyboard: 0
 --- !u!114 &1585577532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9767,8 +9754,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 26fe2d8050200c74e9001bbf5da1b9ec, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   colorConfig: {fileID: 11400000, guid: 0211a7aad4d6c374cbc83c813623aab0, type: 2}
 --- !u!114 &1715436792778098854
 MonoBehaviour:
@@ -9780,8 +9767,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: edbb2adaaeaed6d4fad3762132d42b44, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   input: {fileID: 11400000, guid: 381b57a0c3b89bd4296219bc23273dd0, type: 2}
   leftBurst: {fileID: 7589539768600811719}
   rightBurst: {fileID: 6811985539326464977}
@@ -15231,7 +15218,7 @@ PrefabInstance:
     - target: {fileID: -166166669766478846, guid: f39d533edb9f361428c6b9fd6df315d3,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 667373228759537660, guid: f39d533edb9f361428c6b9fd6df315d3,
         type: 3}
