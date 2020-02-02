@@ -39,14 +39,14 @@ public class HazardManager : MonoBehaviour
             timer += 1;
             if (Random.value <= trapFreq.Evaluate(Mathf.Clamp01(timer / maxTime)))
             {
-                int rng = Mathf.FloorToInt(Random.Range(0, 4));
+                int rng = Random.Range(0, 4);
                 GameObject o;
                 switch (rng)
                 {
                     case 0:
                         //turret.Activate();
                         o = Instantiate(turret.gameObject, hazardParent.transform);
-                        o.transform.position = new Vector3(Random.Range(-25, 25), o.transform.position.y, Random.Range(-15, 15));
+                        o.transform.position = new Vector3(Random.Range(-25f, 25f), o.transform.position.y, Random.Range(-15f, 15f));
                         if (timer / maxTime > 0.6f) o.GetComponent<Turret>().HardModeActivate();
                         else o.GetComponent<Hazard>().Activate();
                         break;
