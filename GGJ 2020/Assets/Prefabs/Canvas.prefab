@@ -129,6 +129,7 @@ MonoBehaviour:
   SteeringWheelImage: {fileID: 4404489295753080432}
   partList: {fileID: 11400000, guid: f2b4d52f68897814fa350eaf01da7dc4, type: 2}
   X_mark: {fileID: 4188393262191731939, guid: 57d115020e0d2494e85bf0ef53ec8105, type: 3}
+  alive: {fileID: 11400000, guid: 4aad872570b73394a90a3a529a0f2956, type: 2}
 --- !u!114 &7055730738656034128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -417,6 +418,7 @@ MonoBehaviour:
   SteeringWheelImage: {fileID: 4628549290509569227}
   partList: {fileID: 11400000, guid: f2b4d52f68897814fa350eaf01da7dc4, type: 2}
   X_mark: {fileID: 4188393262191731939, guid: 57d115020e0d2494e85bf0ef53ec8105, type: 3}
+  alive: {fileID: 11400000, guid: 4aad872570b73394a90a3a529a0f2956, type: 2}
 --- !u!114 &4628549288588115718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -734,6 +736,7 @@ MonoBehaviour:
   SteeringWheelImage: {fileID: 5218495276056758396}
   partList: {fileID: 11400000, guid: f2b4d52f68897814fa350eaf01da7dc4, type: 2}
   X_mark: {fileID: 4188393262191731939, guid: 57d115020e0d2494e85bf0ef53ec8105, type: 3}
+  alive: {fileID: 11400000, guid: 4aad872570b73394a90a3a529a0f2956, type: 2}
 --- !u!114 &568362143314909814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -949,6 +952,7 @@ MonoBehaviour:
   SteeringWheelImage: {fileID: 8288178890509229926}
   partList: {fileID: 11400000, guid: f2b4d52f68897814fa350eaf01da7dc4, type: 2}
   X_mark: {fileID: 4188393262191731939, guid: 57d115020e0d2494e85bf0ef53ec8105, type: 3}
+  alive: {fileID: 11400000, guid: 4aad872570b73394a90a3a529a0f2956, type: 2}
 --- !u!114 &6017129369997040124
 MonoBehaviour:
   m_ObjectHideFlags: 0
