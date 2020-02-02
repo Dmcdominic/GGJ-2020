@@ -29,7 +29,7 @@ public class car_parts : MonoBehaviour {
 
     // Private vars
     private int playerID;
-    private float lostPartDelay = 0;
+    public float lostPartDelay = 0;
 
     // Init
     private void Awake() {
@@ -88,7 +88,7 @@ public class car_parts : MonoBehaviour {
                 float random_roll = Random.Range(0, 1);
                 if(random_roll < upper_bound)
                 {
-                    lose_random_part(collision.impulse);
+                    collision.gameObject.GetComponentInParent<car_parts>().lose_random_part(collision.impulse);
                 }
             }
             else //you suffer
