@@ -33,6 +33,7 @@ public class EffectManager : MonoBehaviour
         StartCoroutine(DisparentTread(FrontRTire));
         StartCoroutine(DisparentTread(RearLTire));
         StartCoroutine(DisparentTread(RearRTire));
+        StartCoroutine(control());
 
     }
 
@@ -49,20 +50,24 @@ public class EffectManager : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+
+    IEnumerator control()
     {
-        if(pci.throttle > 0.1f && !playing && carParts[player].val[(int)part.engine] > 0)
+        while (true)
         {
-            leftBurst.Play();
-            rightBurst.Play();
-            playing = true;
-        }
-        else if(pci.throttle <= 0.1f  && playing)
-        {
-            leftBurst.Stop();
-            rightBurst.Stop();
-            playing = false;
+            while (carParts[player].val[(int) part.engine] > 0)
+            {
+                yield return new WaitUntil(() => pci.throttle > .1f);
+
+                leftBurst.Play();
+                rightBurst.Play();
+                yield return new WaitWhile(() => pci.throttle > .1f);
+            
+                leftBurst.Stop();
+                rightBurst.Stop();
+            }
+
+            yield return null;
         }
     }
 }
