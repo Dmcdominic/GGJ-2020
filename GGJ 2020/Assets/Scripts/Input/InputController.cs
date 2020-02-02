@@ -38,6 +38,7 @@ public class InputController : MonoBehaviour
     private float vibration_move = 0.01f;
     private float vibration_boost = 0.03f;
     private float vibration_break = 0.02f;
+    private bool ishornlooping;
 
     private void Awake()
     {
@@ -85,18 +86,18 @@ public class InputController : MonoBehaviour
         if (!hornPressed && playerControlInfo.horn)
         {
             hornPressed = true;
-            if (isHornLooping)
+            if (ishornlooping)
             {
-                SoundManager.instance.StartLoop(getHorn(), p.ToString());
+                SoundManager.instance.StartLoop(getHorns(), p.ToString());
             }
             else
             {
-                SoundManager.instance.PlayOnce(getHorn());
+                SoundManager.instance.PlayOnce(getHorns());
             }
         }
         if (hornPressed && playerControlInfo.hornNo)
         {
-            if (isHornLooping) SoundManager.instance.StopLoop(getHorn(), p.ToString());
+            if (ishornlooping) SoundManager.instance.StopLoop(getHorns(), p.ToString());
             hornPressed = false;
         }
 
@@ -156,11 +157,13 @@ public class InputController : MonoBehaviour
     private List<AudioClip> getHorns()
     {
         var restult = new List<AudioClip>();
-        for (int i = 0; i < myParts[p].val[(int) part.horn]; i++)
+        for (int i = p; i < myParts[p].val[(int) part.horn] + p; i++)
         {
+            ishornlooping = i == 0;
             restult.Add(audioConfig.horns[i % audioConfig.horns.Count]);
         }
 
+        
         return restult;
     }
     private AudioClip getRev()
