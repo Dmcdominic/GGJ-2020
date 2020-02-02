@@ -73,10 +73,10 @@ public class car_parts : MonoBehaviour {
             Vector3 selfVelocity = this.GetComponent<Rigidbody>().velocity;
             Vector3 otherVelcity = collision.gameObject.GetComponent<Rigidbody>().velocity;
             Vector3 impulse = collision.impulse;
-            float selfDot = Mathf.Abs(Vector3.Dot(selfVelocity.normalized, impulse));
-            float otherDot = Mathf.Abs(Vector3.Dot(otherVelcity.normalized, impulse));
+            float selfDot = Vector3.Dot(selfVelocity.normalized, impulse);
+            float otherDot = Vector3.Dot(otherVelcity.normalized, impulse);
 
-            if (selfDot > otherDot) //other car suffers
+            if (selfDot < otherDot) //other car suffers
             {
                 float upper_bound = Mathf.Pow(0.5f, my_parts[playerID].val[(int)part.bumper]);
                 float random_roll = Random.Range(0, 1);

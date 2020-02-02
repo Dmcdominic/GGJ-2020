@@ -13,6 +13,7 @@ public struct PlayerControlInfo
     public bool horn;
     public UnityEvent shiftUp;
     public UnityEvent shiftDown;
+    public UnityEvent playHorn;
 }
 
 public class PCSEvent : UnityEvent<PlayerControlInfo[]> {}
