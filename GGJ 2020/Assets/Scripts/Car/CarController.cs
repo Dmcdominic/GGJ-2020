@@ -103,15 +103,9 @@ public class CarController : MonoBehaviour
                 }*/
                     wheel.brakeTorque = pci.footBrake * carConfig.maxBrake * Mathf.Sqrt(carRB.velocity.magnitude);
                     float dot = Vector3.Dot(inputDir, groundDir) * carConfig.gearThrottles[curGear];
-                    if (dot < -.2)
-                    {
-                        if (dot > -.7f)
-                            dot *= .5f;
-                        else
-                            dot = 0;
-                    }
+
                     wheel.motorTorque = dot * (pci.throttle + 1);
-                    
+                    if ( dot < 0) dot *= 0;
 
 
             });
@@ -119,9 +113,15 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
-            carRB.AddForceAtPosition(pci.throttle * carConfig.rearForceConstant * pci.throttle *
-                                                   (Quaternion.AngleAxis(steerAngle, transform.up) 
-                                                     * carRB.transform.forward), carRB.transform.position);
+        var rocketBoost = pci.throttle * carConfig.rearForceConstant *
+                          (Quaternion.AngleAxis(steerAngle, transform.up)
+                           * carRB.transform.forward);
+        rocketBoost = new Vector3(rocketBoost.x,Mathf.Sqrt(Mathf.Abs(rocketBoost.y)),rocketBoost.z);
+        bool canBoost = true;
+        rearWheels.Map(wheel => canBoost &= wheel.isGrounded);
+        frontWheels.Map(wheel => canBoost &= wheel.isGrounded);
+        if(canBoost)
+            carRB.AddForceAtPosition(rocketBoost, carRB.transform.position);
         if(pci.throttle < 0.1f && pci.direction.sqrMagnitude < .6f)
         {
             carRB.drag = carRB.velocity.magnitude *  0.3f;
