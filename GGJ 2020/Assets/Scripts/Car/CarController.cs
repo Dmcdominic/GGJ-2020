@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = System.Random;
+
 [System.Serializable]
 public struct WheelAxis
 {
@@ -100,20 +102,27 @@ public class CarController : MonoBehaviour
         yield return new WaitForSeconds(5);
         while(true)
         {
-            bool mustFlip = false;
-            rearWheels.Map(wheel => mustFlip |= wheel.isGrounded);
-            frontWheels.Map(wheel => mustFlip |= wheel.isGrounded);
-            while (carRB.transform.up.y < Mathf.Sqrt(2) || mustFlip)
+            bool mustFlip = true;
+            rearWheels.Map(wheel => mustFlip &= !wheel.isGrounded);
+            frontWheels.Map(wheel => mustFlip &= !wheel.isGrounded);
+            yield return null;
+            while (mustFlip)
             {
-                mustFlip = false;
-                rearWheels.Map(wheel => mustFlip |= wheel.isGrounded);
-                frontWheels.Map(wheel => mustFlip |= wheel.isGrounded);
-                if (mustFlip)
+                Vector3 pos = transform.position;
+                yield return new WaitForSeconds(1);
+                
+                mustFlip = true;
+                rearWheels.Map(wheel => mustFlip &= !wheel.isGrounded);
+                frontWheels.Map(wheel => mustFlip &= !wheel.isGrounded);
+
+                print($"mustflip: {mustFlip}. dist {Vector3.Distance(transform.position,pos)}");
+                if (mustFlip && Vector3.Distance(transform.position,pos) < 2)
                 {
-                    yield return new WaitForSeconds(2);
+                    carRB.transform.position += Vector3.up * 5;
+                    carRB.transform.rotation = Quaternion.identity;
+                    carRB.velocity = Vector3.zero;
                 }
-                //carRB.AddForce(Vector3.up * carConfig.unflipSpeed,ForceMode.VelocityChange);
-                yield return null;
+                yield return new WaitForSeconds(1);
             }
 
         }
