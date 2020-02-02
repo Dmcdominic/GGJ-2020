@@ -41,6 +41,7 @@
               <e p="part_config.cs" t="Include" />
             </e>
           </e>
+          <e p="ColorConfig.cs" t="Include" />
           <e p="Hazards" t="Include">
             <e p="Bar.cs" t="Include" />
             <e p="Barrier.cs" t="Include" />

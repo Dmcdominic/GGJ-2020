@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColorConfig : MonoBehaviour {
-    // TODO
+[CreateAssetMenu(menuName = "Derby/Color Config")]
+public class ColorConfig : ScriptableObject {
+    public Material[] playerColor;
 }
