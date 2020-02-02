@@ -220,6 +220,7 @@ MonoBehaviour:
   targetX: 0
   riseSpeed: 0.5
   riseHeight: 20
+  movesound: {fileID: 8300000, guid: a1f46256a74fe41dc912636dc2a15886, type: 3}
 --- !u!1 &1426141916
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,6 +348,7 @@ MonoBehaviour:
   targetX: 0
   riseSpeed: 0.5
   riseHeight: 20
+  movesound: {fileID: 8300000, guid: a1f46256a74fe41dc912636dc2a15886, type: 3}
 --- !u!1 &1588347979
 GameObject:
   m_ObjectHideFlags: 0
