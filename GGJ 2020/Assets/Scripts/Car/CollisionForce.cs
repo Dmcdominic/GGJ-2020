@@ -14,8 +14,8 @@ public class CollisionForce : MonoBehaviour
             Vector3 selfVelocity = this.GetComponent<Rigidbody>().velocity;
             Vector3 otherVelcity = collision.gameObject.GetComponent<Rigidbody>().velocity;
             Vector3 impulse = collision.impulse;
-            float selfDot = Mathf.Abs(Vector3.Dot(selfVelocity, impulse));
-            float otherDot = Mathf.Abs(Vector3.Dot(otherVelcity, impulse));
+            float selfDot = Mathf.Abs(Vector3.Dot(selfVelocity.normalized, impulse));
+            float otherDot = Mathf.Abs(Vector3.Dot(otherVelcity.normalized, impulse));
 
             if (selfDot > otherDot)
             {

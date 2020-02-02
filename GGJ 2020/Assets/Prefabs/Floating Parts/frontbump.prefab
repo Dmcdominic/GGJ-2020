@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 3050161003447274495}
   - component: {fileID: 1878325929705037793}
   - component: {fileID: 604156069097532557}
+  - component: {fileID: 361568705822165839}
+  - component: {fileID: 9054939097407660223}
   m_Layer: 0
   m_Name: frontbump
   m_TagString: Untagged
@@ -61,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8182101616850083958, guid: 566396ac176fdf843a7d978837010c89, type: 3}
+  - {fileID: 2100000, guid: baee85c9fbe2a0e46b81269c56c89851, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -125,3 +127,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &361568705822165839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920722567664410646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26fe2d8050200c74e9001bbf5da1b9ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorConfig: {fileID: 11400000, guid: 0211a7aad4d6c374cbc83c813623aab0, type: 2}
+--- !u!114 &9054939097407660223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920722567664410646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d9a929640096d745802cdd4aa698157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p: 1

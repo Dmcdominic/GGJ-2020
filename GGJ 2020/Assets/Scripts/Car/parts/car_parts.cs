@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum part { tire, steering_wheel, bumper, horn, muffler, hood, door, engine } // WHEN YOU CHANGE THIS, update parts_init
+public enum part { tire, steering_wheel, bumper, horn, muffler, hood, door, engine, brake } // WHEN YOU CHANGE THIS, update parts_init
 
 [System.Serializable]
 public class SerializedParts
@@ -14,8 +14,8 @@ public class SerializedParts
 public class car_parts : MonoBehaviour {
 
     // Readonly settings
-    public static readonly int[] parts_init = { 4, 1, 2, 0, 0, 2, 2, 0 }; // Number of parts to start with
-    public static readonly int num_diff_parts = System.Enum.GetValues(typeof(part)).Length;
+    public static readonly int[] parts_init = { 4, 1, 2, 0, 0, 2, 2, 0, 0}; // Number of parts to start with
+    public static readonly int num_diff_parts = System.Enum.GetValues(typeof(part)).Length; //icky
 
 
     [SerializeField] private PartList my_parts;
@@ -56,7 +56,19 @@ public class car_parts : MonoBehaviour {
             return;
         }
 
-        Debug.Log("car_parts collision impulse: " + collision.impulse.magnitude);
+        playerID pID = collision.gameObject.GetComponentInParent<playerID>();
+        if (!pID) {
+            if (collision.gameObject.tag != "ground" && (collision.impulse.magnitude > partConfig.impulseToLosePartNonPlayer)) {
+                lose_random_part(collision.impulse);
+            }
+            return;
+        }
+
+        if (pID.p == playerID) {
+            return;
+        }
+
+        //Debug.Log("car_parts collision impulse: " + collision.impulse.magnitude);
         if (collision.impulse.magnitude > partConfig.impulseToLosePart) {
             lose_random_part(collision.impulse);
         }
@@ -100,6 +112,7 @@ public class car_parts : MonoBehaviour {
                 GameObject floatingPart = Instantiate(pp.Prefab);
                 floatingPart.transform.position = transform.position + Vector3.up * partConfig.flyingPartYOffset;
                 floatingPart.GetComponent<Rigidbody>().AddForce(partImpulse, ForceMode.Impulse);
+                floatingPart.GetComponent<playerID>().p = playerID;
                 return;
             }
         }

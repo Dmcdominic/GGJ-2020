@@ -14,4 +14,5 @@ public class CarConfig : ScriptableObject
     public AnimationCurve tireForwardStiffness;
     public AnimationCurve tireSideStiffness;
     public float rearForceConstant = 10000;
+    public float defaultWeight;
 }

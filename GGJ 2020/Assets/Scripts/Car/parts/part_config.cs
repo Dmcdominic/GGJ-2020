@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Derby/Part Config")]
 public class part_config : ScriptableObject {
     public float impulseToLosePart;
+    public float impulseToLosePartNonPlayer;
     public float delayBetweenLosingParts;
 
     public float pickupDelay;
@@ -18,6 +19,8 @@ public class part_config : ScriptableObject {
 
     // Floating part prefabs
     public List<part_prefab> partPrefabs;
+
+    public float[] part_weights;
 }
 
 
