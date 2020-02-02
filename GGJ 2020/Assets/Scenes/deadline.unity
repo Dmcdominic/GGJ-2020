@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9133,16 +9133,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2430613937558349611, guid: d888e97c81479eb4eb531979ce296b25,
-        type: 3}
-      propertyPath: p
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3393458212490733300, guid: d888e97c81479eb4eb531979ce296b25,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8539077316296231840, guid: d888e97c81479eb4eb531979ce296b25,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9203,40 +9193,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car 2.0
       objectReference: {fileID: 0}
-    - target: {fileID: 8539077316296231845, guid: d888e97c81479eb4eb531979ce296b25,
+    - target: {fileID: 8602039778836129853, guid: d888e97c81479eb4eb531979ce296b25,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8539077316814288857, guid: d888e97c81479eb4eb531979ce296b25,
-        type: 3}
-      propertyPath: partConfig
+      propertyPath: dieClip
       value: 
-      objectReference: {fileID: 11400000, guid: bdef7cb8351cdf14eaaf3b751b82695d,
-        type: 2}
+      objectReference: {fileID: 8300000, guid: 08c5ab4a509cc40d596945145ba4ff59, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d888e97c81479eb4eb531979ce296b25, type: 3}
---- !u!1 &1621373532 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8539077316296231845, guid: d888e97c81479eb4eb531979ce296b25,
-    type: 3}
-  m_PrefabInstance: {fileID: 1621373531}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1621373533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1621373532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b33c2434004eaa945b01ae3eaf0f87ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sparksPrefab: {fileID: 5648123072697731417, guid: b72598fd3342b4245befc2497d425673,
-    type: 3}
-  sparksDelay: 0.2
 --- !u!1001 &1637177225
 PrefabInstance:
   m_ObjectHideFlags: 0
