@@ -78,7 +78,8 @@ MonoBehaviour:
   usingKeyboard: 0
   audioConfig: {fileID: 11400000, guid: 7f5dafacfdb0e214893918b4854c5604, type: 2}
   EngineRun: {fileID: 8300000, guid: 354bcc37a981748639ca0c478b1bfbe9, type: 3}
-  isHornLooping: 0
+  Fire: {fileID: 8300000, guid: 8353ad20c0de84a65bb183e330cd4c5d, type: 3}
+  myParts: {fileID: 11400000, guid: f2b4d52f68897814fa350eaf01da7dc4, type: 2}
 --- !u!114 &3684976111592868045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,7 +171,8 @@ MonoBehaviour:
   usingKeyboard: 0
   audioConfig: {fileID: 11400000, guid: 7f5dafacfdb0e214893918b4854c5604, type: 2}
   EngineRun: {fileID: 8300000, guid: 354bcc37a981748639ca0c478b1bfbe9, type: 3}
-  isHornLooping: 0
+  Fire: {fileID: 8300000, guid: 8353ad20c0de84a65bb183e330cd4c5d, type: 3}
+  myParts: {fileID: 11400000, guid: f2b4d52f68897814fa350eaf01da7dc4, type: 2}
 --- !u!114 &4394396820655919474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,7 +294,8 @@ MonoBehaviour:
   usingKeyboard: 0
   audioConfig: {fileID: 11400000, guid: 7f5dafacfdb0e214893918b4854c5604, type: 2}
   EngineRun: {fileID: 8300000, guid: 354bcc37a981748639ca0c478b1bfbe9, type: 3}
-  isHornLooping: 0
+  Fire: {fileID: 8300000, guid: 8353ad20c0de84a65bb183e330cd4c5d, type: 3}
+  myParts: {fileID: 11400000, guid: f2b4d52f68897814fa350eaf01da7dc4, type: 2}
 --- !u!114 &2995815452545685256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,7 +357,8 @@ MonoBehaviour:
   usingKeyboard: 0
   audioConfig: {fileID: 11400000, guid: 7f5dafacfdb0e214893918b4854c5604, type: 2}
   EngineRun: {fileID: 8300000, guid: 354bcc37a981748639ca0c478b1bfbe9, type: 3}
-  isHornLooping: 0
+  Fire: {fileID: 8300000, guid: 8353ad20c0de84a65bb183e330cd4c5d, type: 3}
+  myParts: {fileID: 11400000, guid: f2b4d52f68897814fa350eaf01da7dc4, type: 2}
 --- !u!114 &6563759663343859675
 MonoBehaviour:
   m_ObjectHideFlags: 0
