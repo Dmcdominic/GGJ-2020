@@ -105,16 +105,6 @@ public class InputController : MonoBehaviour
                     SoundManager.instance.StopLoop(getHorn(), p.ToString());
             }*/
 
-        if (playerControlInfo.horn)
-        {
-            
-        }
-        else if (!playerControlInfo.horn)
-        {
-            if (isHornLooping)
-                SoundManager.instance.StopLoop(getHorn(), p.ToString());
-        }
-
         if (!leftshoulderpressed && GamePad.GetState(player).Triggers.Left > 0)
         {
             leftshoulderpressed = true;

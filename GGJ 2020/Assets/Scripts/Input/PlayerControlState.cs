@@ -11,6 +11,7 @@ public struct PlayerControlInfo
     public int handBrakePulled;
     public float throttle;
     public bool horn;
+    public bool hornNo;
     public bool inGame;
     public UnityEvent playHorn;
     public IntEvent changeState;
