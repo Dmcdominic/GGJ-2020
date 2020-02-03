@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 [RequireComponent(typeof(playerID))]
 public class CrashSound : MonoBehaviour
 {
@@ -14,8 +15,17 @@ public class CrashSound : MonoBehaviour
         playSound(.5f);
         if (gameObject.CompareTag(other.gameObject.tag))
         {
+            Rigidbody rb = GetComponent<Rigidbody>();
+            if (!rb) return;
+            
             StartCoroutine(play());
-            GetComponent<Rigidbody>()?.AddExplosionForce(other.relativeVelocity.sqrMagnitude * other.rigidbody.mass * 1.25f,other.contacts[0].point + Vector3.down *.001f,10);
+            var average_pos = other.contacts.Select(c => c.point).Aggregate((a, b) => a + b) / other.contacts.Length;
+            Vector3 dir = average_pos - transform.position;
+            float power = other.relativeVelocity.magnitude * Mathf.Pow(other.rigidbody.mass,1.25f);
+             
+            power *= Mathf.Lerp(1, 13, Vector3.Dot(dir.normalized, rb.velocity.normalized) / Mathf.Cos(Mathf.PI / 2));
+            rb.AddExplosionForce(power,average_pos,10,.1f);
+            rb.AddForceAtPosition(other.impulse - other.impulse.y * Vector3.up,average_pos,ForceMode.Impulse);
 
         }
         

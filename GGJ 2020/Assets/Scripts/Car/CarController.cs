@@ -77,7 +77,8 @@ public class CarController : MonoBehaviour
     {
         while (true)
         {
-            ThrottleNormal();
+            rearWheels.Map(ThrottleNormal);
+            frontWheels.Map(ThrottleNormal);
             SteerNormal();
             rearWheels.Map(SetStiffness);
             frontWheels.Map(SetStiffness);
@@ -87,12 +88,14 @@ public class CarController : MonoBehaviour
 
     private void SetStiffness(WheelCollider wheel)
     {
-        var wheelForwardFriction = wheel.forwardFriction;    
+        var wheelForwardFriction = wheel.forwardFriction;
         wheelForwardFriction.stiffness =
             carConfig.tireForwardStiffness.Evaluate(1 - 1 / Mathf.Pow(2, parts[(int) part.tire] - 1));
+        
         var wheelSideFriction = wheel.sidewaysFriction;    
         wheelSideFriction.stiffness =
-            carConfig.tireSideStiffness.Evaluate(1 - 1 / Mathf.Pow(2, parts[(int) part.tire] - 1));
+            carConfig.tireSideStiffness.Evaluate(1 - 1 / Mathf.Pow(2, parts[(int) part.tire] - 1)) *  (1 - pci.throttle + .35f);
+        
         wheel.forwardFriction = wheelForwardFriction;
         wheel.sidewaysFriction = wheelSideFriction;
     }
@@ -109,14 +112,14 @@ public class CarController : MonoBehaviour
             while (mustFlip)
             {
                 Vector3 pos = transform.position;
-                yield return new WaitForSeconds(.5f);
+                yield return new WaitForSeconds(.2f);
                 
                 mustFlip = true;
                 rearWheels.Map(wheel => mustFlip &= !wheel.isGrounded);
                 frontWheels.Map(wheel => mustFlip &= !wheel.isGrounded);
 
                 print($"mustflip: {mustFlip}. dist {Vector3.Distance(transform.position,pos)}");
-                if (mustFlip && Vector3.Distance(transform.position,pos) < .3f)
+                if (mustFlip && Vector3.Distance(transform.position,pos) < .5f)
                 {
                     for (float dur = 0; dur < 1; dur += Time.deltaTime * 2)
                     {
@@ -126,54 +129,55 @@ public class CarController : MonoBehaviour
                         yield return null;
                     }
                 }
-                yield return new WaitForSeconds(1);
             }
-
         }
     }
 
-    void ThrottleNormal()
+    void ThrottleNormal(WheelCollider wheel)
     {
 
-        rearWheels.Map
-        (
-            wheel =>
-            {
                 var throttle = pci.throttle * parts[(int) part.engine] - .1f;
                 
-                if ((Vector3.Dot(carRB.velocity,transform.forward) < 0 || carRB.velocity.magnitude < 100) && pci.footBrake > .1f)
+                if (pci.footBrake > .1f)
                 {
-                    wheel.motorTorque = -carConfig.reverseSpeed * pci.footBrake * (parts[(int)part.brake] + .2f);
-                return;
-                }
-#if UNITY_STANDALONE_WIN
-                if (pci.handBrakePulled == (int)XInputDotNetPure.ButtonState.Pressed && parts[(int)part.brake] > 0)
-                {
-                    wheel.brakeTorque = Mathf.Pow(2,32);
+                    wheel.motorTorque = -carConfig.reverseSpeed * pci.footBrake;
                     return;
                 }
-#endif
-                wheel.brakeTorque = pci.footBrake * carConfig.maxBrake * Mathf.Sqrt(carRB.velocity.magnitude);
-                    if (wheel.brakeTorque > 0) return;
-                    float dot = Vector3.Dot(inputDir, groundDir);
+                if (pci.handBrakePulled == 0 && parts[(int)part.brake] > 0)
+                {
+                    wheel.brakeTorque = Mathf.Pow(2,30);
+                    return;
+                }
+
+                wheel.brakeTorque = 0;//pci.footBrake * carConfig.maxBrake * Mathf.Sqrt(carRB.velocity.magnitude);
+                
+                //if (wheel.brakeTorque > 0) return;
+                
+                float dot = Vector3.Dot(inputDir, groundDir);
 
 
-                    if (dot < 0 && throttle < .15f && parts[(int)part.brake] > 0) //IF TODO boost reduce effect
+               
+                
+                var target = 
+                    Mathf.SmoothDamp( wheel.motorTorque, 
+                        carConfig.gearThrottles[curGear] * (pci.direction.magnitude + pci.throttle) * (throttle + 1),
+                        ref acceleration,.1f);
+
+                if (parts[(int) part.brake] > 0)
+                {
+                    wheel.motorTorque = target;
+                    if (dot < 0 && throttle < .15f) 
                     {
-                        wheel.motorTorque *= (1 - Mathf.Pow(dot,2)) * Time.deltaTime;
+                        wheel.motorTorque *= Mathf.Clamp01(1.5f - Mathf.Pow(dot,2));
                     }
-                    else
-                    {
-                        wheel.motorTorque = Mathf.SmoothDamp( wheel.motorTorque, carConfig.gearThrottles[curGear] * (pci.direction.magnitude + pci.throttle) * (throttle + 1),ref acceleration,parts[(int)part.brake] > 0 ? .01f : Mathf.Infinity);
-                    }
+                }
+                else
+                {
+                    wheel.motorTorque = Mathf.Max(target, (wheel.motorTorque + target) / 2);
+                }
+                
+                
 
-                    if (myParts[player].val[(int) part.brake] <= 0)
-                    {
-                        wheel.motorTorque = Mathf.Clamp(wheel.motorTorque, carConfig.gearThrottles[curGear] * .5f,
-                            wheel.motorTorque);
-                    }
-
-            });
     }
 
     private void FixedUpdate()
@@ -218,12 +222,17 @@ public class CarController : MonoBehaviour
 
                 var maxSteer = carConfig.minSteer;
                 for (int i = 0; i < myParts[player].val[(int) part.steering_wheel]; i++)
-                    maxSteer += (carConfig.maxSteer - maxSteer) / Mathf.Pow(3,i);
+                    maxSteer += (carConfig.maxSteer - maxSteer) / Mathf.Pow(2,i);
 
 
-                if (carRB.velocity.magnitude < 5 && pci.throttle < .1f)
+                if (pci.throttle < .1f)
                 {
-                    maxSteer *= Mathf.Lerp(1,1.7f,6 - carRB.velocity.magnitude);
+                    maxSteer = Mathf.Lerp(maxSteer,Mathf.Max(maxSteer,75),20 - carRB.velocity.magnitude);
+                }
+
+                if (pci.handBrakePulled == 0)
+                {
+                    maxSteer = 60;
                 }
                 
                 thetaDelta = 

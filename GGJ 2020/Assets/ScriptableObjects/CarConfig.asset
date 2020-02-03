@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: CarConfig
   m_EditorClassIdentifier: 
   minSteer: 20
-  maxSteer: 45
+  maxSteer: 37
   gearThrottles:
-  - 10000
+  - 6000
   maxBrake: 150000
-  downForce: 5
+  downForce: 15
   unflipSpeed: 5
   reverseSpeed: 5000
   tireForwardStiffness:
@@ -104,5 +104,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  rearForceConstant: 60500
+  rearForceConstant: 1500
   defaultWeight: 500

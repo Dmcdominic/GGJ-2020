@@ -128,7 +128,7 @@ public class InputController : MonoBehaviour
         {
             SoundManager.instance.PlayOnce(getRev());
             rightshoulderpressed = true;
-            SoundManager.instance.StartLoop(Fire, p.ToString(), 0.15f);
+            SoundManager.instance.StartLoop(Fire, p.ToString(), 0.25f);
 
         }
         if (rightshoulderpressed && GamePad.GetState(player).Triggers.Right == 0)
@@ -145,7 +145,7 @@ public class InputController : MonoBehaviour
         {
             XInputDotNetPure.GamePad.SetVibration(player, 0, Mathf.Sqrt(vibration_boost * Random.value *  (myParts[p].val[(int)part.muffler] == 0 ? 10 : 1)));
         }
-        else if (playerControlInfo.direction != Vector3.zero)
+        else if (playerControlInfo.direction.magnitude > .2f)
         {
             XInputDotNetPure.GamePad.SetVibration(player, vibration_move * Random.value, vibration_move * Random.value);
         }
@@ -175,8 +175,8 @@ public class InputController : MonoBehaviour
         while(true)
         {
             GameObject MySound;
-            yield return new WaitUntil(() => playerControlInfo.direction != Vector3.zero);
-            MySound = SoundManager.instance.StartLoop(EngineRun, p.ToString(), 0.1f * (myParts[p].val[(int)part.muffler] == 0 ? 10 : 1));
+            yield return new WaitUntil(() => playerControlInfo.direction.magnitude > .2f);
+            MySound = SoundManager.instance.StartLoop(EngineRun, p.ToString(), 0.3f * (myParts[p].val[(int)part.muffler] == 0 ? 2 : 1));
             MySound.GetComponent<AudioSource>().pitch = 1f + playerControlInfo.direction.magnitude;
             yield return new WaitUntil(() => playerControlInfo.direction == Vector3.zero);
             SoundManager.instance.StopLoop(EngineRun, p.ToString());
