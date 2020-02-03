@@ -10,9 +10,11 @@ public class camerashake : MonoBehaviour
     [SerializeField] private float duration = .5f;
     [SerializeField] private float travelSpeed = 10;
     [SerializeField] private IntEvent activate;
+    [SerializeField] private Vector3 startLocation;
 
     void Start()
     {
+        startLocation = transform.position;
         activate.AddListener(i =>
         {
             Activate(i);

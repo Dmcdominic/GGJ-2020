@@ -40,7 +40,10 @@ public class InputController : MonoBehaviour
     private float vibration_boost = 0.03f;
     private float vibration_break = 0.02f;
     private bool ishornlooping;
-
+    private List<AudioClip> horns;
+    
+    
+    
     private void Awake()
     {
         p = GetComponentInParent<playerID>().p;
@@ -72,6 +75,7 @@ public class InputController : MonoBehaviour
 
         
         
+        
         if (!startPressed && GamePad.GetState(player).Buttons.Start == ButtonState.Pressed)
         {
             playerControlInfo.inGame = !playerControlInfo.inGame;
@@ -87,8 +91,8 @@ public class InputController : MonoBehaviour
         if (!hornPressed && playerControlInfo.horn)
         {
             hornPressed = true;
-            
-            foreach (var audioClip in getHorns())
+            horns = getHorns();
+            foreach (var audioClip in horns)
             {
                 if (audioClip.length.Equals(audioConfig.horns[0].length))
                 {
@@ -102,7 +106,7 @@ public class InputController : MonoBehaviour
         }
         if (hornPressed && playerControlInfo.hornNo)
         {
-            foreach (var audioClip in getHorns())
+            foreach (var audioClip in horns)
             {
                 if (!audioClip.length.Equals(audioConfig.horns[0].length))
                 {
@@ -159,7 +163,6 @@ public class InputController : MonoBehaviour
         {
             restult.Add(audioConfig.horns[i % audioConfig.horns.Count]);
         }
-        
         return restult;
     }
     private AudioClip getRev()

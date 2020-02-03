@@ -9,17 +9,20 @@ public class CameraShakeScript : MonoBehaviour {
 	private float maxSpeed = 5;
 
 	[SerializeField] private IntEvent act;
+	[SerializeField] private Vector3 ogPos;
 
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
+		ogPos = transform.position;
 	running = false;
 	act.AddListener(i => activate(i * .01f,.25f));
 	}
 	
 	IEnumerator shake(float mag, float dur){
 			float elapsedTime = 0f;
-			Vector3 originalPos = transform.position;
+			Vector3 originalPos = ogPos;
 			int steps = 1000;
 			float stepTime = 0;
 			float stepSize = dur / steps;
