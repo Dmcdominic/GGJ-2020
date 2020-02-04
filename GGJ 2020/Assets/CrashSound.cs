@@ -21,9 +21,9 @@ public class CrashSound : MonoBehaviour
             StartCoroutine(play());
             var average_pos = other.contacts.Select(c => c.point).Aggregate((a, b) => a + b) / other.contacts.Length;
             Vector3 dir = average_pos - transform.position;
-            float power = other.relativeVelocity.magnitude * Mathf.Pow(other.rigidbody.mass,1.25f);
+            float power = other.relativeVelocity.magnitude * Mathf.Pow(other.rigidbody.mass,1.4f);
              
-            power *= Mathf.Lerp(1, 13, Vector3.Dot(dir.normalized, rb.velocity.normalized) / Mathf.Cos(Mathf.PI / 2));
+            power *= Mathf.Lerp(2, .5f, Vector3.Dot(dir.normalized, rb.velocity.normalized));
             rb.AddExplosionForce(power,average_pos,10,.1f);
             rb.AddForceAtPosition(other.impulse - other.impulse.y * Vector3.up,average_pos,ForceMode.Impulse);
 

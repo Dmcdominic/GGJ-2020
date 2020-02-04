@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TypeUtil;
 using UnityEngine;
 
 public enum part { tire, steering_wheel, bumper, horn, muffler, hood, door, engine, brake } // WHEN YOU CHANGE THIS, update parts_init
@@ -8,6 +9,7 @@ public enum part { tire, steering_wheel, bumper, horn, muffler, hood, door, engi
 public class SerializedParts
 {
     public int[] val;
+    public List<int> horns;
 } 
 
 
@@ -40,6 +42,8 @@ public class car_parts : MonoBehaviour {
         
         // Keep track of parts
         my_parts[playerID].val = new int[num_diff_parts];
+        my_parts[playerID].horns = new List<int>();
+        my_parts[playerID].horns.Add(playerID);
         pickup_player_ids[playerID].val = new int[num_diff_parts];
 
         if (parts_init.Length != num_diff_parts) {
@@ -153,6 +157,13 @@ public class car_parts : MonoBehaviour {
             Debug.LogError("Trying to lose part that you're already out of: " + partType);
         }
 
+
+        Sum<int, Unit> hornID = Sum<int, Unit>.Inr(new Unit());
+        if (partType == part.horn && my_parts[playerID].horns.Count > 0)
+        {
+            hornID = Sum<int, Unit>.Inl(my_parts[playerID].horns[0]);
+            my_parts[playerID].horns.RemoveAt(0);
+        }
         my_parts[playerID].val[(int)partType]--;
         foreach (part_prefab pp in partConfig.partPrefabs) {
             if (pp.Part == partType) {
@@ -163,7 +174,7 @@ public class car_parts : MonoBehaviour {
                 GameObject floatingPart = Instantiate(pp.Prefab);
                 floatingPart.transform.position = transform.position + Vector3.up * partConfig.flyingPartYOffset * Random.Range(1f, 3f);
                 floatingPart.GetComponent<Rigidbody>().AddForce(partImpulse, ForceMode.Impulse);
-                floatingPart.GetComponent<playerID>().p = playerID;
+                floatingPart.GetComponent<playerID>().p = hornID.Match(i => i,u => playerID);
                 return;
             }
         }
@@ -174,6 +185,8 @@ public class car_parts : MonoBehaviour {
     public void pickup_part(part partType, int p) {
         my_parts[playerID].val[(int)partType]++;
 
+        if(partType == part.horn) my_parts[playerID].horns.Add(p);
+        
         SoundManager.instance.PlayOnce(pick_up_sound);
        
         pickup_player_ids[playerID].val[(int)partType] = p;

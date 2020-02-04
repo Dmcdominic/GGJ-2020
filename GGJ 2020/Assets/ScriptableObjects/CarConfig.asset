@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f32f593851fec47b82329be27d2466, type: 3}
   m_Name: CarConfig
   m_EditorClassIdentifier: 
-  minSteer: 20
+  minSteer: 24
   maxSteer: 37
   gearThrottles:
-  - 6000
+  - 5000
   maxBrake: 150000
   downForce: 15
   unflipSpeed: 5
@@ -104,5 +104,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  rearForceConstant: 1500
+  rearForceConstant: 1200
   defaultWeight: 500

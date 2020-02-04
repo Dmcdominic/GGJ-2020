@@ -1,6 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using TypeUtil;
 using UnityEngine;
+using Random = UnityEngine.Random;
 #if UNITY_STANDALONE_WIN
 using XInputDotNetPure;
 #endif
@@ -13,7 +17,6 @@ public class InputController : MonoBehaviour
 
     [SerializeField]
 
-    bool usingKeyboard;
 
     // Horn sound
     public AudioConfig audioConfig;
@@ -30,22 +33,19 @@ public class InputController : MonoBehaviour
 #endif
 
 
-    private bool leftshoulderpressed;
-    private bool rightshoulderpressed;
-    private bool startPressed;
-    private bool hornPressed;
-    private float vibration = 0;
-    private float vibration_standby = 0.000f;
     private float vibration_move = 0.01f;
     private float vibration_boost = 0.03f;
     private float vibration_break = 0.02f;
-    private bool ishornlooping;
     private List<AudioClip> horns;
+    private Dictionary<int,float> leftVibrations;
+    private Dictionary<int, float> rightVibrations;
     
     
     
     private void Awake()
     {
+        leftVibrations = new Dictionary<int, float>();
+        rightVibrations = new Dictionary<int, float>();
         p = GetComponentInParent<playerID>().p;
 #if UNITY_STANDALONE_WIN
         player = (PlayerIndex)p;
@@ -58,6 +58,29 @@ public class InputController : MonoBehaviour
     private void Start()
     {
         StartCoroutine(EngineMonitor(state[(int)player]));
+        for (int i = 1; i < audioConfig.horns.Count; i++)
+        {
+            SoundManager.instance.PlayWhile(() =>
+            {
+                return state.val[p].horn && myParts[p].horns.Contains(i);
+            },audioConfig.horns[i],p.ToString());
+        }
+        SoundManager.instance.PlayWhen(() =>
+        {
+            return state.val[p].horn && myParts[p].horns.Contains(0);
+        },audioConfig.horns[0]);
+        
+        SoundManager.instance.PlayWhile(() => state[p].throttle > 0,Fire,p.ToString());
+        SoundManager.instance.PlayWhen(() => state[p].throttle > 0,getRev());
+
+        StartCoroutine(RumbleWhile(() => state[p].footBrake > 0,() => vibration_break,Sum<Unit, Unit>.Inl(new Unit())));
+        StartCoroutine(RumbleWhile(() => state[p].throttle > 0, () => vibration_boost,
+            Sum<Unit, Unit>.Inr(new Unit())));
+        StartCoroutine(RumbleWhile(() => state[p].throttle > .5f,() => vibration_boost * 2,Sum<Unit, Unit>.Inr(new Unit())));
+        StartCoroutine(RumbleWhile(() => state[p].direction.magnitude > .1f, () => vibration_move,
+            Sum<Unit, Unit>.Inl(new Unit())));
+        StartCoroutine(RumbleWhile(() => state[p].direction.magnitude > .1f, () => vibration_move,
+            Sum<Unit, Unit>.Inr(new Unit())));
     }
     // Update is called once per frame
     void Update()
@@ -72,98 +95,54 @@ public class InputController : MonoBehaviour
         playerControlInfo.horn = GamePad.GetState(player).Buttons.A == ButtonState.Pressed;
         playerControlInfo.hornNo = GamePad.GetState(player).Buttons.A == ButtonState.Released;
         state[(int)player] = playerControlInfo;
+#else
 
-        
-        
-        
-        if (!startPressed && GamePad.GetState(player).Buttons.Start == ButtonState.Pressed)
-        {
-            playerControlInfo.inGame = !playerControlInfo.inGame;
-            //spawner.changeState((int)player);
-            startPressed = true;
-        }
-
-        if (startPressed && GamePad.GetState(player).Buttons.Start == ButtonState.Released)
-        {
-            startPressed = false;
-        }
-
-        if (!hornPressed && playerControlInfo.horn)
-        {
-            hornPressed = true;
-            horns = getHorns();
-            foreach (var audioClip in horns)
-            {
-                if (audioClip.length.Equals(audioConfig.horns[0].length))
-                {
-                    SoundManager.instance.PlayOnce(audioClip, 0.35f);
-                }
-                else
-                {
-                    SoundManager.instance.StartLoop(audioClip, p.ToString());
-                }
-            }
-        }
-        if (hornPressed && playerControlInfo.hornNo)
-        {
-            foreach (var audioClip in horns)
-            {
-                if (!audioClip.length.Equals(audioConfig.horns[0].length))
-                {
-                    SoundManager.instance.StopLoop(audioClip, p.ToString());
-                }
-            }
-            hornPressed = false;
-        }
-
-        if (!leftshoulderpressed && GamePad.GetState(player).Triggers.Left > 0)
-        {
-            leftshoulderpressed = true;
-        }
-        if (leftshoulderpressed && GamePad.GetState(player).Triggers.Left == 0)
-        {
-            leftshoulderpressed = false;
-        }
-        if (!rightshoulderpressed && GamePad.GetState(player).Triggers.Right > 0)
-        {
-            SoundManager.instance.PlayOnce(getRev());
-            rightshoulderpressed = true;
-            SoundManager.instance.StartLoop(Fire, p.ToString(), 0.25f);
-
-        }
-        if (rightshoulderpressed && GamePad.GetState(player).Triggers.Right == 0)
-        {
-            SoundManager.instance.StopLoop(Fire, p.ToString());
-            rightshoulderpressed = false;
-        }
-
-        if (leftshoulderpressed)
-        {
-            XInputDotNetPure.GamePad.SetVibration(player, Mathf.Sqrt(vibration_break * Random.value), 0);
-        }
-        else if (rightshoulderpressed)
-        {
-            XInputDotNetPure.GamePad.SetVibration(player, 0, Mathf.Sqrt(vibration_boost * Random.value *  (myParts[p].val[(int)part.muffler] == 0 ? 10 : 1)));
-        }
-        else if (playerControlInfo.direction.magnitude > .2f)
-        {
-            XInputDotNetPure.GamePad.SetVibration(player, vibration_move * Random.value, vibration_move * Random.value);
-        }
-        else
-        {
-            XInputDotNetPure.GamePad.SetVibration(player, vibration_standby * Random.value, vibration_standby * Random.value);
-        }
 #endif
     }
 
+
+    IEnumerator RumbleWhile(Func<bool> P,Func<float> amount,Sum<Unit,Unit> side)
+    {
+        int id;
+        var vib = (side.Match(l => leftVibrations,r => rightVibrations));
+        while (true)
+        {
+            yield return new WaitUntil(P);
+            id = (int)(Random.value * 100000);
+            vib.Add(id, amount());
+            float max = vib.Max((pair => pair.Value)) * (myParts[p].val[(int) part.muffler] == 0 ? 3 : 1);
+            side.Match(u => { 
+                    XInputDotNetPure.GamePad.SetVibration(player,max,0);
+                    return 0;
+                },
+                u => {
+                    XInputDotNetPure.GamePad.SetVibration(player,0,max);
+                    return 0;
+                });
+            yield return new WaitWhile(P);
+            vib.Remove(id);
+            if (vib.Count > 0)
+                max =  vib.Max((pair => pair.Value)) * (myParts[p].val[(int) part.muffler] == 0 ? 3 : 1);
+            else
+                max = 0;
+            side.Match(u => { 
+                    XInputDotNetPure.GamePad.SetVibration(player,max,0);
+                    return 0;
+                },
+                u => {
+                    XInputDotNetPure.GamePad.SetVibration(player,0,max);
+                    return 0;
+                });
+        }
+    }
     private List<AudioClip> getHorns()
     {
-        var restult = new List<AudioClip>();
+        var result = new List<AudioClip>();
         for (int i = p; i < myParts[p].val[(int) part.horn] + p; i++)
         {
-            restult.Add(audioConfig.horns[i % audioConfig.horns.Count]);
+            result.Add(audioConfig.horns[i % audioConfig.horns.Count]);
         }
-        return restult;
+        return result;
     }
     private AudioClip getRev()
     {

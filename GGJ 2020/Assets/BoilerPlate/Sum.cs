@@ -25,6 +25,20 @@ namespace TypeUtil
             }
             throw new Exception();
         }
+        public void Match(Action<T1> l, Action<T2> r)
+        {
+            switch (injection)
+            {
+                case 0:
+                    l((T1)val);
+                    break;
+                case 1:
+                    r((T2)val);
+                    break;
+            }
+            throw new Exception();
+        }
+
         
         
         

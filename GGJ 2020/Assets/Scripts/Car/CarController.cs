@@ -52,7 +52,7 @@ public class CarController : MonoBehaviour
     private void Awake()
     {
         player = GetComponentInParent<playerID>().p;
-        carRB.centerOfMass += -carRB.transform.up + -carRB.transform.forward;
+        carRB.centerOfMass += -carRB.transform.up + -carRB.transform.forward * 1.25f;
         StartCoroutine(DriveNormal());
         StartCoroutine(UnFlip());
         StartCoroutine(ControlWeight());

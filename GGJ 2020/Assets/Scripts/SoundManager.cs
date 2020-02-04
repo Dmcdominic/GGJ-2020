@@ -63,9 +63,35 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void PlayWhile(Func<bool> f)
+    public void PlayWhile(Func<bool> f,AudioClip ac,string carID,float volume = 1)
     {
-        
+        StartCoroutine(_PlayWhile(f,ac,carID,volume));
+    }
+
+    public void PlayWhen(Func<bool> f, AudioClip ac, float volume = 1)
+    {
+        StartCoroutine(_PlayWhen(f, ac, volume));
+    }
+    
+    IEnumerator _PlayWhen(Func<bool> f, AudioClip ac, float volume)
+    {
+        while (true)
+        {
+            yield return new WaitUntil(f);
+            PlayOnce(ac,volume);
+            yield return new WaitWhile(f);
+        }
+    }
+    
+    IEnumerator _PlayWhile(Func<bool> f, AudioClip ac, string carID,float volume)
+    {
+        while (true)
+        {
+            yield return new WaitUntil(f);
+            StartLoop(ac, carID, volume);
+            yield return new WaitWhile(f);
+            StopLoop(ac,carID);
+        }
     }
 
     public void PlayOnce(AudioClip clip ,float volume = 1f, bool random = false)
